@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd" xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<graph id="G" edgedefault="directed" parse.order="adjacencylist">
+		<node id="AntTests"/>
+		<node id="AntTests.ClassA"/>
+		<edge source="AntTests" target="AntTests.ClassA" />
+		<edge source="AntTests.ClassA" target="java.io.FileNotFoundException"/>
+		<edge source="AntTests.ClassA" target="java.io.PrintStream"/>
+		<edge source="AntTests.ClassA" target="java.io.PrintWriter"/>
+		<edge source="AntTests.ClassA" target="java.io.UnsupportedEncodingException"/>
+		<edge source="AntTests.ClassA" target="java.lang.Object"/>
+		<edge source="AntTests.ClassA" target="java.lang.String"/>
+		<edge source="AntTests.ClassA" target="java.lang.System"/>
+		<node id="java.io"/>
+		<node id="java.io.FileNotFoundException"/>
+		<edge source="java.io" target="java.io.FileNotFoundException" />
+		<edge source="AntTests.ClassA" target="java.io.FileNotFoundException"/>
+		<node id="java.io.PrintStream"/>
+		<edge source="java.io" target="java.io.PrintStream" />
+		<edge source="AntTests.ClassA" target="java.io.PrintStream"/>
+		<node id="java.io.PrintWriter"/>
+		<edge source="java.io" target="java.io.PrintWriter" />
+		<edge source="AntTests.ClassA" target="java.io.PrintWriter"/>
+		<node id="java.io.UnsupportedEncodingException"/>
+		<edge source="java.io" target="java.io.UnsupportedEncodingException" />
+		<edge source="AntTests.ClassA" target="java.io.UnsupportedEncodingException"/>
+		<node id="java.lang"/>
+		<node id="java.lang.Object"/>
+		<edge source="java.lang" target="java.lang.Object" />
+		<edge source="AntTests.ClassA" target="java.lang.Object"/>
+		<node id="java.lang.String"/>
+		<edge source="java.lang" target="java.lang.String" />
+		<edge source="AntTests.ClassA" target="java.lang.String"/>
+		<node id="java.lang.System"/>
+		<edge source="java.lang" target="java.lang.System" />
+		<edge source="AntTests.ClassA" target="java.lang.System"/>
+	</graph>
+</graphml>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<graph edgedefault="directed">
+<node id="AntTests"></node>
+<node id="AntTests.ClassA"></node>
+<node id="java.io"></node>
+<node id="java.io.FileNotFoundException"></node>
+<node id="java.io.PrintStream"></node>
+<node id="java.io.PrintWriter"></node>
+<node id="java.io.UnsupportedEncodingException"></node>
+<node id="java.lang"></node>
+<node id="java.lang.Object"></node>
+<node id="java.lang.String"></node>
+<node id="java.lang.System"></node>
+<edge source="AntTests" target="AntTests.ClassA"></edge>
+<edge source="AntTests.ClassA" target="java.io.FileNotFoundException"></edge>
+<edge source="AntTests.ClassA" target="java.io.PrintStream"></edge>
+<edge source="AntTests.ClassA" target="java.io.PrintWriter"></edge>
+<edge source="AntTests.ClassA" target="java.io.UnsupportedEncodingException"></edge>
+<edge source="AntTests.ClassA" target="java.lang.Object"></edge>
+<edge source="AntTests.ClassA" target="java.lang.String"></edge>
+<edge source="AntTests.ClassA" target="java.lang.System"></edge>
+<edge source="java.io" target="java.io.FileNotFoundException"></edge>
+<edge source="AntTests.ClassA" target="java.io.FileNotFoundException"></edge>
+<edge source="java.io" target="java.io.PrintStream"></edge>
+<edge source="AntTests.ClassA" target="java.io.PrintStream"></edge>
+<edge source="java.io" target="java.io.PrintWriter"></edge>
+<edge source="AntTests.ClassA" target="java.io.PrintWriter"></edge>
+<edge source="java.io" target="java.io.UnsupportedEncodingException"></edge>
+<edge source="AntTests.ClassA" target="java.io.UnsupportedEncodingException"></edge>
+<edge source="java.lang" target="java.lang.Object"></edge>
+<edge source="AntTests.ClassA" target="java.lang.Object"></edge>
+<edge source="java.lang" target="java.lang.String"></edge>
+<edge source="AntTests.ClassA" target="java.lang.String"></edge>
+<edge source="java.lang" target="java.lang.System"></edge>
+<edge source="AntTests.ClassA" target="java.lang.System"></edge>
+</graph>
+</graphml>
