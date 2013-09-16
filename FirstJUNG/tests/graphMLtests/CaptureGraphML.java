@@ -1,4 +1,4 @@
-package tests;
+package graphMLtests;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +15,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphHasListOfVertices() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/sorted.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertNotNull(graph.getNodes());
 	}
@@ -23,7 +23,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphHasListOfEdges() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertNotNull(graph.getEdges());
 	}
@@ -31,23 +31,23 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsSizeOfNodesList() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
 		GraphWrapper graph = graphContext.getGraph();
-		assertEquals( 4, graph.getNodes().size());
+		assertEquals( 11, graph.getNodes().size());
 	}
 	
 	@Test
 	public void graphKnowsSizeOfEdgesList() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
 		GraphWrapper graph = graphContext.getGraph();
-		assertEquals( 3, graph.getEdges().size());
+		assertEquals( 22, graph.getEdges().size());
 	}
 	
 	@Test
 	public void graphKnowsIfItContainsSpecificNode() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertTrue(graph.containsNode("AntTests.ClassA"));	
 	}
@@ -55,7 +55,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsIfItContainsAnEdgeLinkedToSpecificNode() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertTrue(graph.containsEdge("AntTests.ClassA"));	
 	}
@@ -63,9 +63,9 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsIfItContainsAnEdgeLinkedToTwoSpecificNodes() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
 		GraphWrapper graph = graphContext.getGraph();
-		assertTrue(graph.containsEdge("AntTests.ClassA", "java.io"));
+		assertTrue(graph.containsEdge("AntTests.ClassA", "AntTests"));
 	}
 	
 
