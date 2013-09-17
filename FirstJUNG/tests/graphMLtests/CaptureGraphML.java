@@ -23,7 +23,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphHasListOfEdges() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertNotNull(graph.getEdges());
 	}
@@ -31,7 +31,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsSizeOfNodesList() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertEquals( 11, graph.getNodes().size());
 	}
