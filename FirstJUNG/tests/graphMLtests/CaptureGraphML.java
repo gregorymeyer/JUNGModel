@@ -80,6 +80,53 @@ public class CaptureGraphML {
 		assertTrue(graph.containsEdge("AntTests.ClassA", "AntTests"));
 	}
 	
+	@Test
+	public void nodeEqualityIsEvaluatedOnValueNotIdentity() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		
+		Vertex node1 = graph.getNode("AntTests.ClassA");
+		Vertex node2 = graph.getNode("AntTests.ClassA");
+		assertEquals(node1,node2);
+	}
+	
+	@Test
+	public void modifiedNodeEqualityIsEvaluatedOnValueNotIdentity() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		
+		List<Vertex> nodes1 = graph.getNodes();
+		List<Vertex> nodes2 = graph.getNodes();
+		Vertex node1 = nodes1.get(3);
+		Vertex node2 = nodes1.get(3);
+		node1.addData("loc", new Integer(8).toString());
+		//assertNotSame(node1,node2);
+		assertEquals(node1,node2);
+	}
+
+	@Test
+	public void shouldReturnNotNullWhenSearchedByByGMLidIfVertexExistsInGraph() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		
+		assertNotNull(graph.getNode("AntTests.ClassA"));
+	}
+	
+	@Test
+	public void shouldReturnNullWhenSearchedByGMLidIfVertexDoesNotExistInGraph() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		
+		assertNull(graph.getNode("aNonExistantNode"));
+	}
 	
 	
 

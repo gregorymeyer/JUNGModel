@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<metrics>
+	<project>
+		<group>
+			<class>
+                <name>AntTests.ClassA</name>
+                <measurement>
+                    <short-name>CNCC</short-name>
+                    <long-name>Character Count</long-name>
+                    <value>6.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>CNWC</short-name>
+                    <long-name>Word Count</long-name>
+                    <value>2.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>SLOC</short-name>
+                    <long-name>Single Lines of Code</long-name>
+                    <value>8.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>M</short-name>
+                    <long-name>Methods</long-name>
+                    <value>2.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PuM</short-name>
+                    <long-name>Public Methods</long-name>
+                    <value>2.0</value>
+                </measurement>
+            </class>
+		</group>
+	</project>
+</metrics>

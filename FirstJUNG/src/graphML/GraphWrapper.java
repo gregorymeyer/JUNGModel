@@ -1,6 +1,8 @@
 package graphML;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.bind.annotation.*;
@@ -166,6 +168,20 @@ public class GraphWrapper {
 		}
 		return isValueContained;
 	}
+
+	public Vertex getNode(String name)
+	{	
+		Vertex ret = null;
+		List<Vertex> nodes = this.getNodes();
+		for(int i = 0; i<nodes.size(); i++)
+		{
+			if(nodes.get(i).getProperty("GMLid").equals(name))
+				ret = nodes.get(i);
+		}
+		return ret;
+	}
+	
+	
     
     
     
