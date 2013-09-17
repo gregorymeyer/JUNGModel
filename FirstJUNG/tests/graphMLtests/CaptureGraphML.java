@@ -21,6 +21,18 @@ public class CaptureGraphML {
 	}
 	
 	@Test
+	public void graphCanFindEdgeCount() throws Exception {
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		assertEquals(graph.getEdgeCount(), graph.getEdges().size());
+		//Vertex v1 = graph.getNodes().iterator().;
+		//Vertex v2 = graph.getNodes().get(graph.getNodes())
+		//Edge myEdge = graph.findEdge(v1,v2);
+		//assertNotNull(myEdge);
+	}
+	
+	@Test
 	public void graphHasListOfEdges() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
@@ -67,6 +79,8 @@ public class CaptureGraphML {
 		GraphWrapper graph = graphContext.getGraph();
 		assertTrue(graph.containsEdge("AntTests.ClassA", "AntTests"));
 	}
+	
+	
 	
 
 }
