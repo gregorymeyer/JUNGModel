@@ -25,20 +25,8 @@ public class GraphPopulator
 	final String public_methods = "PuM";
 	StaxParser staxParser;
 	
-	public GraphWrapper populate(GraphWrapper graph)
-	{
-		//Find the specific node
-		/*List<Vertex> nodes = graph.getNodes();
-		Vertex testNode = null;
-		for(int i=0; i<nodes.size(); i++)
-		{
-			testNode = nodes.get(i);
-			String name = testNode.getProperty("GMLid"); 
-			if(name.equals("AntTests.ClassA"))
-				break;
-		}
-		testNode.addData("loc", "8.0");*/
-		
+	public void populate(GraphWrapper graph)
+	{	
 		// Get node names by GMLid
 		List<Vertex> nodes = graph.getNodes();
 		List<String> nodeNames =  new ArrayList<String>();
@@ -89,7 +77,6 @@ public class GraphPopulator
 		
 		//Check to see if string is empty before adding key,value
 		
-		return graph;
 	}
 
 }
