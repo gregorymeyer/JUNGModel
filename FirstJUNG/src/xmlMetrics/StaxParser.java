@@ -25,10 +25,9 @@ public class StaxParser
 {
 	//static final String SLOC 
 
-	public List<String> readMetrics(String metrics) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException 
+	public List<String> readMetrics(String metricFile, String nodeName, List<String> nodeMetrics) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException 
 	{
 		List<String> ret = new ArrayList<String>();
-		ret.add("8");
 		
 		// Standard of reading an XML file
 	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -37,7 +36,7 @@ public class StaxParser
 	    Document doc = null;
 	    XPathExpression expr = null;
 	    builder = factory.newDocumentBuilder();
-	    doc = builder.parse(metrics);
+	    doc = builder.parse(metricFile);
 	    
 	    // Create a XPathFactory
 	    XPathFactory xFactory = XPathFactory.newInstance();
@@ -45,17 +44,18 @@ public class StaxParser
 	    // Create a XPath object
 	    XPath xpath = xFactory.newXPath();
 
-	    // Compile the XPath expression
-	    expr = xpath.compile("//measurement[short-name='M']/value/text()");
-	    // Run the query and get a nodeset
-	    Object result = expr.evaluate(doc, XPathConstants.NODESET);
-	    
-	    // Cast the result to a DOM NodeList
-	    NodeList nodes = (NodeList) result;
-	    for (int i=0; i<nodes.getLength();i++)
+	    // Extract metrics
+	    Object result = null;
+	    for(int i=0; i<nodeMetrics.size(); i++)
 	    {
-	      System.out.println(nodes.item(i).getNodeValue());
+	    	// Compile the XPath expression
+	    	String xpathExpr = "//class[name='" + nodeName + "']/measurement[short-name='" + nodeMetrics.get(i) + "']/value/text()";
+		    expr = xpath.compile(xpathExpr);
+		    // Run the query
+		    result = expr.evaluate(doc, XPathConstants.STRING);
+		    ret.add((String)result);
 	    }
+	    
 			
 		return ret;
 	}
