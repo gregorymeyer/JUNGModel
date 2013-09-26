@@ -21,7 +21,6 @@ import xmlMetrics.StaxParser;
 public class CaptureOOMetrics {
 	
 	@Test
-	@Ignore
 	public void shouldReturnAllMetricsForANodeNamedByGMLid() throws NumberFormatException, XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		String nodeName = "AntTests.ClassA";
@@ -40,7 +39,6 @@ public class CaptureOOMetrics {
 	}
 	
 	@Test
-	@Ignore
 	public void shouldReturnEmptyStringForANonExistantNode() throws NumberFormatException, XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		String nodeName = "ThePlanets.Jupiter";
@@ -51,7 +49,6 @@ public class CaptureOOMetrics {
 	}
 	
 	@Test
-	@Ignore
 	public void shouldReturnEmptyStringForANonExistantMetricOfAnExistantNode() throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		List<String> nodeMetrics = new ArrayList<String>();
