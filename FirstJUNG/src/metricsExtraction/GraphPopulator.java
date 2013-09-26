@@ -1,4 +1,4 @@
-package xmlMetrics;
+package metricsExtraction;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,14 +18,12 @@ import graphML.Vertex;
 
 public class GraphPopulator 
 {
-	final String character_count = "CNCC";
-	final String word_count = "CNWC";
 	final String loc = "SLOC";
-	final String methods = "M";
 	final String public_methods = "PuM";
-	StaxParser staxParser;
+	final String protected_methods = "ProM"; // Dependency Finder analyses private methods as protected
+	MetricsReader metricsReader;
 	
-	public void populate(GraphWrapper graph)
+	public void populate(GraphWrapper graph, String metricsFile)
 	{	
 		// Get node names by GMLid
 		List<Vertex> nodes = graph.getNodes();
@@ -37,19 +35,17 @@ public class GraphPopulator
 		
 		// Get metrics for each node
 		List<String> metrics = new ArrayList<String>();
-		metrics.add(character_count);
-		metrics.add(word_count);
 		metrics.add(loc);
-		metrics.add(methods);
 		metrics.add(public_methods);
+		metrics.add(protected_methods);
 		
 		Map<String,List<String>> nodeMetrics = new HashMap<String,List<String>>(); //better option to a HashMap?
-		StaxParser staxParser =  new StaxParser();
+		MetricsReader metricsReader =  new MetricsReader();
 		for(int i=0; i<nodeNames.size(); i++)
 		{
 			try 
 			{
-				nodeMetrics.put(nodeNames.get(i),staxParser.readMetrics("OOMetrics.xml", nodeNames.get(i), metrics));
+				nodeMetrics.put(nodeNames.get(i),metricsReader.readMetrics(metricsFile, nodeNames.get(i), metrics));
 			} 
 			catch (XPathExpressionException | ParserConfigurationException
 					| SAXException | IOException e) 
@@ -74,9 +70,7 @@ public class GraphPopulator
 				
 			}
 		}
-		
 		//Check to see if string is empty before adding key,value
-		
 	}
 
 }
