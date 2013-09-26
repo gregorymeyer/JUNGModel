@@ -67,7 +67,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsIfItContainsAnEdgeLinkedToSpecificNode() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertTrue(graph.containsEdge("AntTests.ClassA"));	
 	}
@@ -75,7 +75,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsIfItContainsAnEdgeLinkedToTwoSpecificNodes() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertTrue(graph.containsEdge("AntTests.ClassA", "AntTests"));
 	}
@@ -134,22 +134,22 @@ public class CaptureGraphML {
 		GraphManager graphManager = new GraphManager();
 		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
-		graph.removePeriods();
+		graph.removeBadCharacters();
 		graph.convertToJson();
 		assertNull(10);
 	}
 	
 	@Test
-	public void shouldRemovePeriodsInGMLidsOfAllGraphNodes() throws Exception
+	public void shouldRemoveBadCharactersInGMLidsOfAllGraphNodes() throws Exception
 	{
 		GraphManager graphManager =  new GraphManager();
 		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph(); 
 		
-		graph.removePeriods();
+		graph.removeBadCharacters();
 		List<Vertex> nodes = graph.getNodes();
 		
 		assertFalse(nodes.get(0).getProperty("GMLid").contains("."));
+		assertFalse(nodes.get(0).getProperty("GMLid").contains("$"));
 	}
-	
 }

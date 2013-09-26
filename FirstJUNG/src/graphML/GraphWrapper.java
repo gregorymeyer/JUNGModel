@@ -203,21 +203,27 @@ public class GraphWrapper {
 		}
 	}
 
-	public void removePeriods() 
+	public void removeBadCharacters() 
 	{
-		// Removes all periods from node GMLids
 		List<Vertex> nodes = this.getNodes();
+		List<String> badCharacters = new ArrayList<String>();
+		badCharacters.add(".");
+		badCharacters.add("$");
+		
+		// Remove bad characters from all nodes
 		for(Vertex node : nodes)
 		{
 			String temp  = node.getProperty("GMLid");
-			String newGMLid = temp.replace(".", "");
-			// Overwrite the existing GMLid value
-			node.addData("GMLid", newGMLid);
+			for(String badChar : badCharacters)
+			{
+				if(temp.contains(badChar))
+				{
+					String newGMLid = temp.replace(badChar, "");
+					// Overwrite the existing GMLid value
+					node.addData("GMLid", newGMLid);
+				}
+				
+			}
 		}
 	}
-	
-	
-    
-    
-    
 }
