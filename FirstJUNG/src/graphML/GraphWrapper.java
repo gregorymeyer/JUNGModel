@@ -1,11 +1,18 @@
 package graphML;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+
+
 import javax.xml.bind.annotation.*;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.SparseMultigraph;
@@ -179,6 +186,21 @@ public class GraphWrapper {
 				ret = nodes.get(i);
 		}
 		return ret;
+	}
+	
+	public void convertToJson(){
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String nodeJson = gson.toJson(graph.getVertices());
+		String edgeJson = gson.toJson(graph.getEdges());
+		try{
+				FileWriter writer = new FileWriter("JSONfile.json");
+				writer.write("{\n\"nodes\": " + nodeJson + ",\n\"links\": " + edgeJson + "\n}");
+				writer.close();
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	
