@@ -45,7 +45,7 @@ public class CaptureGraphML {
 		GraphManager graphManager = new GraphManager();
 		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
-		assertEquals( 11, graph.getNodes().size());
+		assertEquals( 10, graph.getNodes().size());
 	}
 	
 	@Test
@@ -128,6 +128,15 @@ public class CaptureGraphML {
 		assertNull(graph.getNode("aNonExistantNode"));
 	}
 	
+	@Test
+	public void graphWrapperCanWriteObjectDataToJsonFile() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		graph.convertToJson();
+		assertNull(10);
+	}
 	
 
 }

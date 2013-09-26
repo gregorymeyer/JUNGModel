@@ -21,7 +21,6 @@ import xmlMetrics.StaxParser;
 public class CaptureOOMetrics {
 	
 	@Test
-	@Ignore
 	public void shouldReturnAllMetricsForANodeNamedByGMLid() throws NumberFormatException, XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		String nodeName = "AntTests.ClassA";
@@ -40,7 +39,6 @@ public class CaptureOOMetrics {
 	}
 	
 	@Test
-	@Ignore
 	public void shouldReturnEmptyStringForANonExistantNode() throws NumberFormatException, XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		String nodeName = "ThePlanets.Jupiter";
@@ -51,7 +49,6 @@ public class CaptureOOMetrics {
 	}
 	
 	@Test
-	@Ignore
 	public void shouldReturnEmptyStringForANonExistantMetricOfAnExistantNode() throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		List<String> nodeMetrics = new ArrayList<String>();
@@ -69,6 +66,9 @@ public class CaptureOOMetrics {
 		GraphPopulator graphPopulator = new GraphPopulator();
 		
 		graphPopulator.populate(graph);
+		
+		graph.convertToJson();
+		
 		assertEquals(6.0,Double.parseDouble(graph.getNode("AntTests.ClassA").getProperty("CNCC")),0.1);
 		assertEquals(2.0,Double.parseDouble(graph.getNode("AntTests.ClassA").getProperty("CNWC")),0.1);
 		assertEquals(8.0,Double.parseDouble(graph.getNode("AntTests.ClassA").getProperty("SLOC")),0.1);

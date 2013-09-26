@@ -49,7 +49,7 @@ public class GraphPopulator
 		{
 			try 
 			{
-				nodeMetrics.put(nodeNames.get(i),staxParser.readMetrics("MockMetrics.xml", nodeNames.get(i), metrics));
+				nodeMetrics.put(nodeNames.get(i),staxParser.readMetrics("OOMetrics.xml", nodeNames.get(i), metrics));
 			} 
 			catch (XPathExpressionException | ParserConfigurationException
 					| SAXException | IOException e) 
