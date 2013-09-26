@@ -134,9 +134,22 @@ public class CaptureGraphML {
 		GraphManager graphManager = new GraphManager();
 		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
+		graph.removePeriods();
 		graph.convertToJson();
 		assertNull(10);
 	}
 	
-
+	@Test
+	public void shouldRemovePeriodsInGMLidsOfAllGraphNodes() throws Exception
+	{
+		GraphManager graphManager =  new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphWrapper graph = graphContext.getGraph(); 
+		
+		graph.removePeriods();
+		List<Vertex> nodes = graph.getNodes();
+		
+		assertFalse(nodes.get(0).getProperty("GMLid").contains("."));
+	}
+	
 }

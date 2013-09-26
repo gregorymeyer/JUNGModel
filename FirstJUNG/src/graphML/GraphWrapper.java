@@ -202,6 +202,19 @@ public class GraphWrapper {
 			e.printStackTrace();
 		}
 	}
+
+	public void removePeriods() 
+	{
+		// Removes all periods from node GMLids
+		List<Vertex> nodes = this.getNodes();
+		for(Vertex node : nodes)
+		{
+			String temp  = node.getProperty("GMLid");
+			String newGMLid = temp.replace(".", "");
+			// Overwrite the existing GMLid value
+			node.addData("GMLid", newGMLid);
+		}
+	}
 	
 	
     
