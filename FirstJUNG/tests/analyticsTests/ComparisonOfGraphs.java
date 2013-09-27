@@ -1,11 +1,17 @@
 package analyticsTests;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import graphML.*;
 
 import org.junit.Test;
 
+import metricsExtraction.GraphPopulator;
+
 import analytics.GraphComparison;
+import analytics.NodeChange;
 
 public class ComparisonOfGraphs {
 	
@@ -29,21 +35,32 @@ public class ComparisonOfGraphs {
 		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/sorted.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
-		assertEquals( 7, graphComparison.nodeListDifference().size());
-		assertEquals( 19, graphComparison.edgeListDifference().size());
+		assertEquals( 7, graphComparison.addedNodes().size());
+		assertEquals( 19, graphComparison.addedEdges().size());
 	}
 	
 	@Test
-	public void canReturnListOfNodesWhichExistInNewGraphButNotInOldGraph() throws Exception {
+	public void canReturnListOfNodeChangesBetweenGraphVersions() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/JUnitold.graphml");
 		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/sorted.graphml");
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/JUnitnew.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
+		
+		//Integer oldSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
+		//Integer newSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
+		GraphPopulator graphPopulator = new GraphPopulator();
+		graphPopulator.populate(oldGraph, "C:/Users/Etai/workspace/JUnitoldOOMetrics.xml");
+		graphPopulator.populate(newGraph, "C:/Users/Etai/workspace/JUnitnewOOMetrics.xml");
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
-		assertTrue(graphComparison.isNodeListPresentInNew(graphComparison.nodeListDifference()));
-		//assertFalse(graphComparison.isNodeListUniqueToOld(graphComparison.nodeListDifference()));
+		
+		List<NodeChange> nodeChangeList = graphComparison.nodeChanges();
+		assertTrue(nodeChangeList.isEmpty());
+		//assertEquals();
+		
 	}
+
+	
 	
 	@Test
 	public void canReturnListOfNewNodesNotPresentInOldGraph() throws Exception {
@@ -84,5 +101,6 @@ public class ComparisonOfGraphs {
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 	}
+	
 
 }
