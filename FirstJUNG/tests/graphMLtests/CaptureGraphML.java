@@ -51,7 +51,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsSizeOfEdgesList() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertEquals( 22, graph.getEdges().size());
 	}
@@ -59,7 +59,7 @@ public class CaptureGraphML {
 	@Test
 	public void graphKnowsIfItContainsSpecificNode() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/formatUTF8.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		assertTrue(graph.containsNode("AntTests.ClassA"));	
 	}
