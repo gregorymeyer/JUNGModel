@@ -5,12 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+
 import graphML.*;
 
 public class GraphComparison {
 	
 	GraphWrapper newGraph;
 	GraphWrapper oldGraph;
+	List<NodeChange> nodeChanges = new ArrayList<>();
 	
 	public GraphComparison(GraphWrapper og, GraphWrapper ng){
 		this.newGraph = ng;
@@ -25,7 +27,7 @@ public class GraphComparison {
 		return (oldGraph.getEdges().size() < newGraph.getEdges().size());
 	}
 
-	public List<Vertex> nodeListDifference() {
+	public List<Vertex> addedNodes() {
 		//List<Edge> edgeDiff = new ArrayList<>();
 		List<Vertex> oList = oldGraph.getNodes();
 		List<Vertex> nList = newGraph.getNodes();
@@ -44,7 +46,7 @@ public class GraphComparison {
 		return nList;
 	}
 	
-	public List<Edge> edgeListDifference() {
+	public List<Edge> addedEdges() {
 		List<Edge> oList = oldGraph.getEdges();
 		List<Edge> nList = newGraph.getEdges();
 		
@@ -91,10 +93,50 @@ public class GraphComparison {
 		}
 		return isReplicated;
 	}
+
+	public List<NodeChange> nodeChanges() {
+		
+		List<Vertex> oList = oldGraph.getNodes();
+		List<Vertex> nList = newGraph.getNodes();
+		
+		if (nList.size() >= oList.size()){
+			for (int o = 0; o < oList.size(); o++)
+			{
+				for (int n = 0; n < nList.size(); n++){
+					if (nList.get(n).getProperty("GMLid").equals(oList.get(o).getProperty("GMLid")))
+					{
+						String gmlid = nList.get(n).getProperty("GMLid");
+						
+						Double slocDiff = Double.parseDouble(nList.get(n).getProperty("SLOC"))
+											- Double.parseDouble(oList.get(o).getProperty("SLOC"));
+						
+						Double pumDiff = Double.parseDouble(nList.get(n).getProperty("PuM"))
+										- Double.parseDouble(oList.get(o).getProperty("PuM"));
+						
+						Double promDiff = Double.parseDouble(nList.get(n).getProperty("ProM"))
+										- Double.parseDouble(oList.get(o).getProperty("ProM"));
+						
+						nodeChanges.add(new NodeChange(gmlid, slocDiff, pumDiff, promDiff));
+					}
+				}
+			}
+			List<Vertex> aList = addedNodes();
+			
+			for (int a = 0; a < aList.size(); a++){
+				
+				String gmlid = aList.get(a).getProperty("GMLid");
+				Double slocDiff = Double.parseDouble(aList.get(a).getProperty("SLOC"));
+				Double pumDiff = Double.parseDouble(aList.get(a).getProperty("PuM"));
+				Double promDiff = Double.parseDouble(aList.get(a).getProperty("ProM"));
+				
+				nodeChanges.add(new NodeChange(gmlid, slocDiff, pumDiff, promDiff));				
+			}
+			return nodeChanges;
+		}
+		else return null;	
+	}
 	
 	
-	
-	
-	
+		
 	
 }
