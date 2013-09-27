@@ -39,27 +39,29 @@ public class ComparisonOfGraphs {
 		assertEquals( 19, graphComparison.addedEdges().size());
 	}
 	
+
 	@Test
 	public void canReturnListOfNodeChangesBetweenGraphVersions() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/JUnitold.graphml");
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/oRover.graphml");
 		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/JUnitnew.graphml");
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/nRover.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		
 		//Integer oldSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
 		//Integer newSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
 		GraphPopulator graphPopulator = new GraphPopulator();
-		graphPopulator.populate(oldGraph, "C:/Users/Etai/workspace/JUnitoldOOMetrics.xml");
-		graphPopulator.populate(newGraph, "C:/Users/Etai/workspace/JUnitnewOOMetrics.xml");
+		graphPopulator.populate(oldGraph, "C:/Users/Etai/workspace/oRoverOOMetrics.xml");
+		graphPopulator.populate(newGraph, "C:/Users/Etai/workspace/nRoverOOMetrics.xml");
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
-		
+			
 		List<NodeChange> nodeChangeList = graphComparison.nodeChanges();
+	
 		assertTrue(nodeChangeList.isEmpty());
 		//assertEquals();
-		
+	
 	}
-
+/*
 	
 	
 	@Test
@@ -101,6 +103,6 @@ public class ComparisonOfGraphs {
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 	}
-	
+	*/
 
 }
