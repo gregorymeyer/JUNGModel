@@ -36,19 +36,6 @@ public class CaptureOOMetrics {
 	}
 	
 	@Test
-	@Ignore
-	public void shouldReturnAZeroDoubleForSLOCMetricOfANonExistantNode() throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
-	{
-		MetricsReader metricsReader = new MetricsReader();
-		List<String> metrics = new ArrayList<String>();
-		metrics.add("SLOC");
-		
-		List<String> extractedMetrics = metricsReader.readMetrics("MockMetrics.xml","ThePlanets.Jupiter",metrics);
-		
-		assertEquals(0.0,Double.parseDouble(extractedMetrics.get(0)),0.01);
-	}
-	
-	@Test
 	public void shouldReturnEmptyStringForANonExistantNode() throws NumberFormatException, XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
 		String nodeName = "ThePlanets.Jupiter";
@@ -71,15 +58,15 @@ public class CaptureOOMetrics {
 	public void shouldCorrectlyExtractAndAssignMetricsToGraph() throws Exception
 	{
 		GraphManager graphManager = new GraphManager();
-		GraphContext graphContext = graphManager.captureGraphMLFile("SortedGraphML.graphml");
+		GraphContext graphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit-4.11.graphml");
 		GraphWrapper graph = graphContext.getGraph();
 		GraphPopulator graphPopulator = new GraphPopulator();
 		
-		graphPopulator.populate(graph,"MockMetrics.xml");
+		graphPopulator.populate(graph,"C:/Users/JSM/Desktop/JUnit 4-11 OOMetrics.xml");
 		
-		assertEquals(76,Double.parseDouble(graph.getNode("marsExploration.Location").getProperty("SLOC")),0.1);
-		assertEquals(6,Double.parseDouble(graph.getNode("marsExploration.Location").getProperty("PuM")),0.1);
-		assertEquals(6,Double.parseDouble(graph.getNode("marsExploration.Location").getProperty("ProM")),0.1);
+		//assertEquals(76,Double.parseDouble(graph.getNode("junit.extensions.ActiveTestSuite").getProperty("SLOC")),0.1);
+		assertEquals(7,Double.parseDouble(graph.getNode("junit.extensions.ActiveTestSuite").getProperty("PuM")),0.1);
+		assertEquals(0,Double.parseDouble(graph.getNode("junit.extensions.ActiveTestSuite").getProperty("ProM")),0.1);
 	}
 
 }

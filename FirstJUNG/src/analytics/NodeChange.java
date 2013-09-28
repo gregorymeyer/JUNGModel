@@ -12,7 +12,6 @@ public class NodeChange {
 	
 	List<String> nodeGroup = new ArrayList<>();
 	
-	
 	public NodeChange(String gmlid, Double sloc, Double pum, Double prom){
 		this.GMLid = gmlid;
 		this.SLOC = sloc;

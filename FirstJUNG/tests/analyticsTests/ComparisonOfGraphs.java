@@ -42,16 +42,16 @@ public class ComparisonOfGraphs {
 	@Test
 	public void canReturnListOfNodeChangesBetweenGraphVersions() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/JUnitold.graphml");
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit 4-10.graphml");
 		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/JUnitnew.graphml");
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit-4.11.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		
 		//Integer oldSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
 		//Integer newSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
 		GraphPopulator graphPopulator = new GraphPopulator();
-		graphPopulator.populate(oldGraph, "C:/Users/Etai/workspace/JUnitoldOOMetrics.xml");
-		graphPopulator.populate(newGraph, "C:/Users/Etai/workspace/JUnitnewOOMetrics.xml");
+		graphPopulator.populate(oldGraph, "C:/Users/JSM/Desktop/JUnit 4-10 OOMetrics.xml");
+		graphPopulator.populate(newGraph, "C:/Users/JSM/Desktop/JUnit 4-11 OOMetrics.xml");
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 		
 		List<NodeChange> nodeChangeList = graphComparison.nodeChanges();

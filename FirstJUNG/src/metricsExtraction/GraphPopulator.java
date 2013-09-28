@@ -1,3 +1,13 @@
+/**
+ * GraphPopulator class
+ * The class populates a graph object with metadata extracted from the associated xml
+ * file
+ * 
+ * @author Greg Meyer & Etai Miller
+ * @see MetricsReader
+ * @version 0.1
+ */
+
 package metricsExtraction;
 
 import java.io.IOException;
@@ -23,6 +33,12 @@ public class GraphPopulator
 	final String protected_methods = "ProM"; // Dependency Finder analyses private methods as protected
 	MetricsReader metricsReader;
 	
+	/**
+	 * The function to populate a graph's nodes with metadata 
+	 * 
+	 * @param graph GraphWrapper to be populated
+	 * @param metricsFile String URI of XML file containing node metadata
+	 */
 	public void populate(GraphWrapper graph, String metricsFile)
 	{	
 		// Get node names by GMLid
@@ -66,6 +82,8 @@ public class GraphPopulator
 				for(int j=0; j<metrics.size(); j++)
 				{
 					nodes.get(i).addData(metrics.get(j),mets.get(j));
+					//System.out.println("Added " + metrics.get(j) + "(" 
+							//+ mets.get(j) + ") to " + nodes.get(i).getProperty("GMLid"));
 				}
 				
 			}

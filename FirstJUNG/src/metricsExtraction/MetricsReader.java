@@ -1,3 +1,12 @@
+/**
+ * MetricsReader class
+ * Class to extract OO metrics for a specific node from it's metadata file.
+ * 
+ * @author Greg Meyer & Etai Miller
+ * @see GraphPopulator
+ * @version 0.1
+ */
+
 package metricsExtraction;
 
 import java.io.FileInputStream;
@@ -23,8 +32,18 @@ import org.xml.sax.SAXException;
 
 public class MetricsReader 
 {
-	//static final String SLOC 
-
+	/**
+	 * The function extracts a list of metrics for a specific node from a given XML file
+	 * 
+	 * @param metricFile String URI of the XML file containing the node's metadata 
+	 * @param nodeName String name of the node for which metadata is extracted
+	 * @param nodeMetrics names of metrics to be extracted
+	 * @return extracted node metrics
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 * @throws XPathExpressionException
+	 */
 	public List<String> readMetrics(String metricFile, String nodeName, List<String> nodeMetrics) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException 
 	{
 		List<String> ret = new ArrayList<String>();
@@ -32,11 +51,12 @@ public class MetricsReader
 		// Standard of reading an XML file
 	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	    factory.setNamespaceAware(true);
-	    DocumentBuilder builder;
-	    Document doc = null;
+	    DocumentBuilder builder = factory.newDocumentBuilder();
+	    //Document doc = null;
+	    Document doc = builder.parse(metricFile); 
 	    XPathExpression expr = null;
-	    builder = factory.newDocumentBuilder();
-	    doc = builder.parse(metricFile);
+	    //builder = factory.newDocumentBuilder();
+	    //doc = builder.parse(metricFile);
 	    
 	    // Create a XPathFactory
 	    XPathFactory xFactory = XPathFactory.newInstance();
