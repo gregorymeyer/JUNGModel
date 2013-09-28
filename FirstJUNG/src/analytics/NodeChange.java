@@ -15,6 +15,7 @@ public class NodeChange {
 	private String GMLid = null;
 	private String nodeType;
 	private Boolean hasChangedSinceLastGraph;
+	private List<NodeChange> neighboursThatChanged;
 	
 	List<String> nodeGroup = new ArrayList<>();
 	
@@ -51,6 +52,11 @@ public class NodeChange {
 		else if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
 			return false;
 		else return true;
+	}
+	
+	public List<NodeChange> getChangedNeighbours() 
+	{
+		return this.neighboursThatChanged;
 	}
 	
 	public Boolean isNew(){
@@ -110,4 +116,10 @@ public class NodeChange {
 	{
 		return this.hasChangedSinceLastGraph;
 	}
+
+	public void setChangedNeighbours(List<NodeChange> changedNeighbours) 
+	{
+		this.neighboursThatChanged = changedNeighbours;	
+	}
+
 }

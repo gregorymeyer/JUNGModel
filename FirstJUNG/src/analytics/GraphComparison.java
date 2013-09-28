@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 
+
 import graphML.*;
 
 public class GraphComparison {
@@ -189,9 +190,11 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		for (int n = 0; n < nList.size(); n++){
 			nodeChanges.add(populateNodeChange(nList.get(n), true));				
 		}
+		// Find all the neighbours that also changed
+		findNeighboursThatChanged();
 		return nodeChanges;
 	}
-	
+
 
 	private List<NodeChange> performAlgOnOld(){
 		
@@ -219,9 +222,41 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		for (int o = 0; o < oList.size(); o++){
 			nodeChanges.add(populateNodeChange(oList.get(o), false));				
 		}
+		// Find all the neighbours that also changed
+		findNeighboursThatChanged();
 		return nodeChanges;
 	}
 	
+	private void findNeighboursThatChanged() 
+	{
+		List<Vertex> neighbours = new ArrayList<Vertex>();
+		
+		// Find each of the neighbours from the old graph
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.hasChanged() && !nodeChange.isNew())
+			{
+				neighbours = oldGraph.getNeighbours(oldGraph.getNode(nodeChange.getGMLid()));
+				nodeChange.setChangedNeighbours(getChangedNeighbours(neighbours));
+			}	
+		}
+	}
+	
+	private List<NodeChange> getChangedNeighbours(List<Vertex> neighbours) 
+	{
+		List<NodeChange> ret = new ArrayList<NodeChange>();
+		// If a neighbour has also changed, add to the local list
+		for(Vertex neighbour : neighbours)
+		{
+			for(NodeChange nodeChange : nodeChanges)
+			{
+				if(neighbour.getProperty("GMLid").equals(nodeChange.getGMLid()) && nodeChange.hasChanged())
+				{ret.add(nodeChange);}
+			}
+		}
+		return ret;
+	}
+
 	private Double stringToDoubleDiff(String oString, String nString){
 		Double diff = 0.0;
 		Double oVal = 0.0; 
