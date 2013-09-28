@@ -68,5 +68,20 @@ public class CaptureOOMetrics {
 		assertEquals(7,Double.parseDouble(graph.getNode("junit.extensions.ActiveTestSuite").getProperty("PuM")),0.1);
 		assertEquals(0,Double.parseDouble(graph.getNode("junit.extensions.ActiveTestSuite").getProperty("ProM")),0.1);
 	}
-
+	
+	@Test 
+	public void shouldCorrectlyAssignNodeType() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext graphContext = graphManager.captureGraphMLFile("testData/TWRover_v1.graphml");
+		GraphWrapper graph = graphContext.getGraph();
+		GraphPopulator graphPopulator = new GraphPopulator();
+		
+		graphPopulator.populate(graph, "testData/TWRover_v1.xml");
+	
+		assertEquals(NodeType.PACKAGENODE.toString(),graph.getNode("marsExploration").getProperty("NodeType"));
+		assertEquals(NodeType.CLASSNODE.toString(),graph.getNode("marsExploration.Plateau").getProperty("NodeType"));
+		assertEquals(NodeType.CLASSNODE.toString(),graph.getNode("marsExploration.Rover").getProperty("NodeType"));
+		assertEquals(NodeType.CLASSNODE.toString(),graph.getNode("marsExploration.Location").getProperty("NodeType"));
+	}
 }

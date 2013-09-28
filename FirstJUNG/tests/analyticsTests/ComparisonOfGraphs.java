@@ -6,6 +6,7 @@ import java.util.List;
 
 import graphML.*;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -16,6 +17,7 @@ import analytics.NodeChange;
 public class ComparisonOfGraphs {
 	
 	@Test
+	@Ignore
 	public void canDetermineIfNewGraphHasMoreNodesOrEdgesThanOldGraph() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
@@ -28,6 +30,7 @@ public class ComparisonOfGraphs {
 	}
 	
 	@Test
+	@Ignore
 	public void canDetermineDifferenceInNumberOfNodesOrEdgesBetweenGraphs() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
@@ -39,7 +42,6 @@ public class ComparisonOfGraphs {
 		assertEquals( 19, graphComparison.addedEdges().size());
 	}
 	
-
 	@Test
 	@Ignore
 	public void canReturnListOfNodeChangesBetweenGraphVersions() throws Exception {
@@ -64,12 +66,10 @@ public class ComparisonOfGraphs {
 	
 		assertTrue(nodeChangeList.isEmpty());
 		//assertEquals();
-	
 	}
-/*
-	
 	
 	@Test
+	@Ignore
 	public void canReturnListOfNewNodesNotPresentInOldGraph() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
@@ -80,6 +80,7 @@ public class ComparisonOfGraphs {
 	}
 	
 	@Test
+	@Ignore
 	public void canReturnListOfNodesWithChangedDependenciesInNewGraph() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
@@ -90,6 +91,7 @@ public class ComparisonOfGraphs {
 	}
 	
 	@Test
+	@Ignore
 	public void canReturnListOfNodesWithIncreasedDependenciesInNewGraph() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
@@ -100,6 +102,7 @@ public class ComparisonOfGraphs {
 	}
 	
 	@Test
+	@Ignore
 	public void canReturnListOfNodesWithDecreasedDependenciesInNewGraph() throws Exception {
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
@@ -108,6 +111,179 @@ public class ComparisonOfGraphs {
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 	}
-	*/
-
+	
+	
+	
+	@Test
+	public void shouldCorrectlyIdentifyIfAClassNodeHasChangedBetweenTwoGraphs() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v1.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange Plateau = null;
+		NodeChange Rover = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v1.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v2.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("marsExploration.Plateau"))
+				Plateau = nodeChange;
+			else if(nodeChange.getGMLid().equals("marsExploration.Rover"))
+				Rover = nodeChange;
+			//System.out.println(nodeChange.getGMLid() + " - " + nodeChange.getNodeType());
+		}
+		
+		assertTrue(Rover.hasChanged());
+		assertTrue(Plateau.hasChanged());
+	}
+	
+	@Test
+	public void shouldCorrectlyIdentifyIfAClassNodeHasNotChangedBetweenTwoGraphs() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v1.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange Location = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v1.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v2.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("marsExploration.Location"))
+				Location = nodeChange;
+		}
+		
+		assertFalse(Location.hasChanged());
+	}
+	
+	@Test
+	public void shouldCorrectlyIdentifyThatANewClassNodeHasChanged() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v1.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange Alien = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v1.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v2.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("marsExploration.Alien"))
+				Alien = nodeChange;
+		}
+		
+		assertTrue(Alien.hasChanged());
+	}
+	
+	@Test
+	public void shouldCorrectlyIdentifyThatTheSamePackageNodeHasNotChanged() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v1.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange MarsExploration = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v1.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v2.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("marsExploration"))
+				MarsExploration = nodeChange;
+		}
+		
+		assertFalse(MarsExploration.hasChanged());
+	}
+	
+	@Test
+	public void shouldCorrectlyIdentifyThatADeletedClassNodeHasChanged() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v3.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange Alien = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v2.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v3.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("marsExploration.Alien"))
+				Alien = nodeChange;
+		}
+		
+		assertTrue(Alien.hasChanged());	
+	}
+	
+	@Test
+	public void shouldCorrectlyIdentifyThatADeletedPackageNodeHasChanged() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v3.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v4.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange jupiterExploration = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v3.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v4.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("jupiterExploration"))
+				jupiterExploration = nodeChange;
+		}
+		
+		assertTrue(jupiterExploration.hasChanged());	
+	}
+	
+	@Test
+	public void shouldCorrectlyIdentifyThatAnAddedPackageNodeIsChanged() throws Exception
+	{
+		GraphManager graphManager = new GraphManager();
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphWrapper oldGraph = oldGraphContext.getGraph();
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v3.graphml");
+		GraphWrapper newGraph = newGraphContext.getGraph();
+		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
+		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange jupiterExploration = null;
+		
+		graphPopulator.populate(oldGraph, "testData/TWRover_v2.xml");
+		graphPopulator.populate(newGraph, "testData/TWRover_v3.xml");
+		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.getGMLid().equals("jupiterExploration"))
+				jupiterExploration = nodeChange;
+		}
+		
+		assertTrue(jupiterExploration.hasChanged());
+	}
 }

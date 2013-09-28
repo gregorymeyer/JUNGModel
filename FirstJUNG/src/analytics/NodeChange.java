@@ -13,36 +13,45 @@ public class NodeChange {
 	private Double PuM;
 	private Double ProM;
 	private String GMLid = null;
+	private String nodeType;
+	private Boolean hasChangedSinceLastGraph;
 	
 	List<String> nodeGroup = new ArrayList<>();
 	
-	public NodeChange(String gmlid, Double sloc, Double pum, Double prom){
+	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType){
 			
 			this.GMLid = gmlid;
-			this.SLOC = sloc;
-			this.PuM = pum;
-			this.ProM = prom;
-		/*	
-			if (SLOC == 0.0 & PuM == 0.0 & ProM==0.0){ isPackage=true; }
-			else {isClass = true;}
-		*/	
+			this.SLOC = slocDiff;
+			this.PuM = pumDiff;
+			this.ProM = promDiff;
+			this.nodeType = nodeType;
+			this.hasChangedSinceLastGraph = hasNodeChanged();
 		}
 	
-	public NodeChange(String gmlid, Double sloc, Double pum, Double prom, Boolean flag){
+
+	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType, Boolean flag){
 		
 		this.GMLid = gmlid;
-		this.SLOC = sloc;
-		this.PuM = pum;
-		this.ProM = prom;
-		/*
-		if (SLOC == 0.0 & PuM == 0 & ProM==0){ isPackage=true; }
-		else {isClass = true;}
-		*/	
+		this.SLOC = slocDiff;
+		this.PuM = pumDiff;
+		this.ProM = promDiff;
+		this.nodeType = nodeType;
+		
 		if (flag) {isNew = true;}
 		else if (!flag) {isDeleted = true;}
-		
+		this.hasChangedSinceLastGraph = hasNodeChanged();
 	}
-
+	
+	private Boolean hasNodeChanged() 
+	{
+		if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("CLASSNODE")))
+			return false;
+		else if(isNew | isDeleted)
+			return true;
+		else if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
+			return false;
+		else return true;
+	}
 	
 	public Boolean isNew(){
 		return isNew;
@@ -90,8 +99,15 @@ public class NodeChange {
 
 	public void setGMLid(String gMLid) {
 		GMLid = gMLid;
-	}	
+	}
 	
-	
+	public String getNodeType()
+	{
+		return this.nodeType;
+	}
 
+	public boolean hasChanged() 
+	{
+		return this.hasChangedSinceLastGraph;
+	}
 }

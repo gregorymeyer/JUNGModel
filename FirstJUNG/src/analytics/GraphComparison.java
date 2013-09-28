@@ -142,8 +142,9 @@ public class GraphComparison {
 		Double slocDiff = stringToDoubleDiff(oNode.getProperty("SLOC"), nNode.getProperty("SLOC"));
 		Double pumDiff = stringToDoubleDiff(oNode.getProperty("PuM"), nNode.getProperty("PuM"));
 		Double promDiff = stringToDoubleDiff(oNode.getProperty("ProM"), nNode.getProperty("ProM"));
+		String nodeType = oNode.getProperty("NodeType");
 		
-		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff);
+		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff,nodeType);
 	}
 	
 	
@@ -151,14 +152,12 @@ public class GraphComparison {
 private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		
 		String gmlid = node.getProperty("GMLid");
-		
 		Double slocDiff = stringToDouble(node.getProperty("SLOC"));
-		
 		Double pumDiff = stringToDouble(node.getProperty("PuM"));
-		
 		Double promDiff = stringToDouble(node.getProperty("ProM"));
+		String nodeType = node.getProperty("NodeType");
 		
-		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff, flag);
+		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff, nodeType, flag);
 	}
 	
 	private List<NodeChange> performAlgOnNew(){

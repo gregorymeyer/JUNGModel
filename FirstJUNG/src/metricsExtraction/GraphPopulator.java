@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 import graphML.GraphContext;
 import graphML.GraphManager;
 import graphML.GraphWrapper;
+import graphML.NodeType;
 import graphML.Vertex;
 
 public class GraphPopulator 
@@ -87,8 +88,21 @@ public class GraphPopulator
 				}
 				
 			}
+			
+			// Assign the NodeType
+			nodes.get(i).addData("NodeType", findNodeType(nodes.get(i),metrics).toString());
 		}
+		
 		//Check to see if string is empty before adding key,value
+	}
+
+	private NodeType findNodeType(Vertex node,List<String> metrics) 
+	{	
+		if(node.getProperty(metrics.get(0)).isEmpty() 
+				&& node.getProperty(metrics.get(1)).isEmpty() 
+				&& node.getProperty(metrics.get(2)).isEmpty())
+			return NodeType.PACKAGENODE;
+		else return NodeType.CLASSNODE;
 	}
 
 }
