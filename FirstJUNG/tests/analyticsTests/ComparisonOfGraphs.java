@@ -6,10 +6,10 @@ import java.util.List;
 
 import graphML.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import metricsExtraction.GraphPopulator;
-
 import analytics.GraphComparison;
 import analytics.NodeChange;
 
@@ -39,12 +39,16 @@ public class ComparisonOfGraphs {
 		assertEquals( 19, graphComparison.addedEdges().size());
 	}
 	
+
 	@Test
+	@Ignore
 	public void canReturnListOfNodeChangesBetweenGraphVersions() throws Exception {
 		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit 4-10.graphml");
+		//GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit 4-10.graphml");
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/oRover.graphml");
 		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit-4.11.graphml");
+		//GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/JSM/Desktop/JUnit-4.11.graphml");
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/nRover.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		
 		//Integer oldSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
@@ -52,14 +56,17 @@ public class ComparisonOfGraphs {
 		GraphPopulator graphPopulator = new GraphPopulator();
 		graphPopulator.populate(oldGraph, "C:/Users/JSM/Desktop/JUnit 4-10 OOMetrics.xml");
 		graphPopulator.populate(newGraph, "C:/Users/JSM/Desktop/JUnit 4-11 OOMetrics.xml");
+		graphPopulator.populate(oldGraph, "C:/Users/Etai/workspace/oRoverOOMetrics.xml");
+		graphPopulator.populate(newGraph, "C:/Users/Etai/workspace/nRoverOOMetrics.xml");
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
-		
+			
 		List<NodeChange> nodeChangeList = graphComparison.nodeChanges();
+	
 		assertTrue(nodeChangeList.isEmpty());
 		//assertEquals();
-		
+	
 	}
-
+/*
 	
 	
 	@Test
@@ -101,6 +108,6 @@ public class ComparisonOfGraphs {
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 	}
-	
+	*/
 
 }
