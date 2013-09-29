@@ -16,8 +16,12 @@ public class NodeChange {
 	private String nodeType;
 	private Boolean hasChangedSinceLastGraph;
 	private List<NodeChange> neighboursThatChanged;
+	private List<NodeChange> successors;
+	private List<NodeChange> predecessors;
 	
 	List<String> nodeGroup = new ArrayList<>();
+	
+	
 	
 	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType){
 			
@@ -120,6 +124,27 @@ public class NodeChange {
 	public void setChangedNeighbours(List<NodeChange> changedNeighbours) 
 	{
 		this.neighboursThatChanged = changedNeighbours;	
+	}
+
+
+	public void setSuccessors(List<NodeChange> successors) 
+	{
+		this.successors = successors;	
+	}
+
+	public List<NodeChange> getSuccessors() 
+	{
+		return this.successors;
+	}
+	
+	public void setPredecessors(List<NodeChange> predecessors) 
+	{
+		this.predecessors = predecessors;	
+	}
+
+	public List<NodeChange> getPredecessors() 
+	{
+		return this.predecessors;
 	}
 
 }

@@ -287,9 +287,9 @@ public class ComparisonOfGraphs {
 		
 		assertTrue(jupiterExploration.hasChanged());
 	}
-	
+
 	@Test
-	public void shouldCorrectlyIdentifyWhichNeighbouringNodesAlsoChangedBetweenGraphs() throws Exception
+	public void shouldCorrectlyIdentifySuccessorsOfChangedNodes() throws Exception
 	{
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
@@ -298,35 +298,30 @@ public class ComparisonOfGraphs {
 		GraphWrapper newGraph = newGraphContext.getGraph();
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 		GraphPopulator graphPopulator = new GraphPopulator();
+		NodeChange Location = null;
 		NodeChange Plateau = null;
 		NodeChange Rover = null;
-		NodeChange Location = null;
 		
 		graphPopulator.populate(oldGraph, "testData/TWRover_v2.xml");
 		graphPopulator.populate(newGraph, "testData/TWRover_v3.xml");
 		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
 		for(NodeChange nodeChange : nodeChanges)
 		{
-			if(nodeChange.getGMLid().equals("marsExploration.Plateau"))
-				Plateau = nodeChange;
-			else if(nodeChange.getGMLid().equals("marsExploration.Rover"))
-				Rover = nodeChange;
-			else if(nodeChange.getGMLid().equals("marsExploration.Location"))
+			if(nodeChange.getGMLid().equals("marsExploration.Location"))
 				Location = nodeChange;
+			else if (nodeChange.getGMLid().equals("marsExploration.Rover"))
+				Rover = nodeChange;
+			else if (nodeChange.getGMLid().equals("marsExploration.Plateau"))
+				Plateau = nodeChange;
 		}
-		List<NodeChange> changedNeighbours =  Rover.getChangedNeighbours();
-		for(NodeChange nodeChange : changedNeighbours)
-		{
-			System.out.println("Rover's changed neighbours are: " + nodeChange.getGMLid());
-		}
-	
-		assertTrue(changedNeighbours.contains(Plateau));
-		assertTrue(changedNeighbours.contains(Location));
-		//assertFalse(changedNeighbours.contains(Plateau));
+		List<NodeChange> successors = Plateau.getSuccessors();
+		
+		assertTrue(successors.contains(Location));
+		assertTrue(successors.contains(Rover));
 	}
 	
 	@Test
-	public void shouldCorrectlyIdentifyWhichDeletedNeighbouringNodesChangedBetweenGraphs() throws Exception
+	public void shouldCorrectlyIdentifyPredecessorsOfChangedNodes() throws Exception
 	{
 		GraphManager graphManager = new GraphManager();
 		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
@@ -336,6 +331,8 @@ public class ComparisonOfGraphs {
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 		GraphPopulator graphPopulator = new GraphPopulator();
 		NodeChange Location = null;
+		NodeChange Plateau = null;
+		NodeChange Rover = null;
 		NodeChange Alien = null;
 		
 		graphPopulator.populate(oldGraph, "testData/TWRover_v2.xml");
@@ -345,15 +342,20 @@ public class ComparisonOfGraphs {
 		{
 			if(nodeChange.getGMLid().equals("marsExploration.Location"))
 				Location = nodeChange;
+			else if (nodeChange.getGMLid().equals("marsExploration.Rover"))
+				Rover = nodeChange;
+			else if (nodeChange.getGMLid().equals("marsExploration.Plateau"))
+				Plateau = nodeChange;
 			else if (nodeChange.getGMLid().equals("marsExploration.Alien"))
 				Alien = nodeChange;
 		}
-		List<NodeChange> neighbours = Location.getChangedNeighbours();
+		List<NodeChange> predecessors = Location.getPredecessors();
 		
-		assertTrue(neighbours.contains(Alien));
+		assertTrue(predecessors.contains(Plateau));
+		assertTrue(predecessors.contains(Rover));
+		assertTrue(predecessors.contains(Alien));
 	}
 }
-
 
 
 
