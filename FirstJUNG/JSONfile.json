@@ -7,9 +7,9 @@
     }
   },
   {
-    "id": 3,
+    "id": 2,
     "data": {
-      "GMLid": "marsExplorationRover"
+      "GMLid": "marsExplorationPlateau"
     }
   },
   {
@@ -19,9 +19,9 @@
     }
   },
   {
-    "id": 2,
+    "id": 3,
     "data": {
-      "GMLid": "marsExplorationPlateau"
+      "GMLid": "marsExplorationRover"
     }
   }
 ],
@@ -34,30 +34,9 @@
     "data": {}
   },
   {
-    "id": 0,
-    "directed": true,
-    "source": "marsExploration",
-    "target": "marsExploration.Location",
-    "data": {}
-  },
-  {
-    "id": 8,
-    "directed": true,
-    "source": "marsExploration",
-    "target": "marsExploration.Rover",
-    "data": {}
-  },
-  {
-    "id": 6,
+    "id": 2,
     "directed": true,
     "source": "marsExploration.Plateau",
-    "target": "marsExploration.Rover",
-    "data": {}
-  },
-  {
-    "id": 3,
-    "directed": true,
-    "source": "marsExploration.Rover",
     "target": "marsExploration.Location",
     "data": {}
   },
@@ -69,28 +48,7 @@
     "data": {}
   },
   {
-    "id": 9,
-    "directed": true,
-    "source": "marsExploration.Rover",
-    "target": "marsExploration.Location",
-    "data": {}
-  },
-  {
-    "id": 2,
-    "directed": true,
-    "source": "marsExploration.Plateau",
-    "target": "marsExploration.Location",
-    "data": {}
-  },
-  {
     "id": 7,
-    "directed": true,
-    "source": "marsExploration.Location",
-    "target": "marsExploration.Plateau",
-    "data": {}
-  },
-  {
-    "id": 1,
     "directed": true,
     "source": "marsExploration.Location",
     "target": "marsExploration.Plateau",
@@ -101,6 +59,48 @@
     "directed": true,
     "source": "marsExploration",
     "target": "marsExploration.Plateau",
+    "data": {}
+  },
+  {
+    "id": 8,
+    "directed": true,
+    "source": "marsExploration",
+    "target": "marsExploration.Rover",
+    "data": {}
+  },
+  {
+    "id": 9,
+    "directed": true,
+    "source": "marsExploration.Rover",
+    "target": "marsExploration.Location",
+    "data": {}
+  },
+  {
+    "id": 1,
+    "directed": true,
+    "source": "marsExploration.Location",
+    "target": "marsExploration.Plateau",
+    "data": {}
+  },
+  {
+    "id": 3,
+    "directed": true,
+    "source": "marsExploration.Rover",
+    "target": "marsExploration.Location",
+    "data": {}
+  },
+  {
+    "id": 6,
+    "directed": true,
+    "source": "marsExploration.Plateau",
+    "target": "marsExploration.Rover",
+    "data": {}
+  },
+  {
+    "id": 0,
+    "directed": true,
+    "source": "marsExploration",
+    "target": "marsExploration.Location",
     "data": {}
   }
 ]

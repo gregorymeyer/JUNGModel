@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 
+
+
+
 import graphML.*;
 
 public class GraphComparison {
@@ -142,13 +145,18 @@ public class GraphComparison {
 		Double slocDiff = stringToDoubleDiff(oNode.getProperty("SLOC"), nNode.getProperty("SLOC"));
 		Double pumDiff = stringToDoubleDiff(oNode.getProperty("PuM"), nNode.getProperty("PuM"));
 		Double promDiff = stringToDoubleDiff(oNode.getProperty("ProM"), nNode.getProperty("ProM"));
+		String nodeType = oNode.getProperty("NodeType");
 		
+<<<<<<< HEAD
 		Metrics metrics = new Metrics(slocDiff, pumDiff, promDiff);
 		
 		List<String> sucs = sucPopulation(oNode, nNode);
 		List<String> pres = prePopulation(oNode, nNode);
 		
 		return new NodeChange(gmlid, metrics, sucs, pres);
+=======
+		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff,nodeType);
+>>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 	}
 	
 	
@@ -156,17 +164,27 @@ public class GraphComparison {
 private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		
 		String gmlid = node.getProperty("GMLid");
+<<<<<<< HEAD
 		
 		Double slocDiff = stringToDouble(node.getProperty("SLOC"));		
 		Double pumDiff = stringToDouble(node.getProperty("PuM"));	
+=======
+		Double slocDiff = stringToDouble(node.getProperty("SLOC"));
+		Double pumDiff = stringToDouble(node.getProperty("PuM"));
+>>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		Double promDiff = stringToDouble(node.getProperty("ProM"));
+		String nodeType = node.getProperty("NodeType");
 		
+<<<<<<< HEAD
 		Metrics metrics = new Metrics(slocDiff, pumDiff, promDiff);
 		
 		List<String> sucs = sucPopulation(node, flag);
 		List<String> pres = prePopulation(node, flag);
 		
 		return new NodeChange(gmlid, metrics, sucs, pres, flag);
+=======
+		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff, nodeType, flag);
+>>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 	}
 	
 	private List<NodeChange> performAlgOnNew(){
@@ -198,11 +216,16 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		for (int n = 0; n < nList.size(); n++){
 			nodeChanges.add(populateNodeChange(nList.get(n), true));				
 		}
+<<<<<<< HEAD
 		
 		///NEW FUNCTION TO APPEND LIST OF SUCCESSORS AND LIST OF PREDECESSORS
+=======
+		// Find all the neighbours that also changed
+		findNeighboursThatChanged();
+>>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		return nodeChanges;
 	}
-	
+
 
 	private List<NodeChange> performAlgOnOld(){
 		
@@ -230,9 +253,119 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		for (int o = 0; o < oList.size(); o++){
 			nodeChanges.add(populateNodeChange(oList.get(o), false));				
 		}
+		// Find all the neighbours that also changed
+		findNeighboursThatChanged();
 		return nodeChanges;
 	}
 	
+	private void findNeighboursThatChanged() 
+	{
+		findSuccessorsThatChanged();
+		findPredeccessorsThatChanged();
+		
+		//List<Vertex> neighbours = new ArrayList<Vertex>();
+		
+		/*// Find each of the neighbours from the old graph
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.hasChanged() && !nodeChange.isNew())
+			{
+				neighbours = oldGraph.getNeighbours(oldGraph.getNode(nodeChange.getGMLid()));
+				nodeChange.setChangedNeighbours(getChangedNeighbours(neighbours));
+			}	
+		}*/
+	}
+	
+	private void findPredeccessorsThatChanged() 
+	{
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			List<Vertex> oldPredecessors = new ArrayList<Vertex>();
+			List<Vertex> newPredecessors = new ArrayList<Vertex>();
+			List<Vertex> predecessors = new ArrayList<Vertex>();
+			{
+				if(nodeChange.hasChanged())
+				{
+					if(nodeChange.isNew())
+					{predecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));}
+					else if(nodeChange.isDeleted())
+					{predecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));}
+					else
+					{
+						oldPredecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));
+						newPredecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));
+						predecessors =  removeDuplicates(oldPredecessors,newPredecessors);
+					}
+					 
+					nodeChange.setPredecessors(findNodeChangeList(predecessors));
+				}
+			}
+		}
+	}
+
+	private void findSuccessorsThatChanged() 
+	{
+		List<Vertex> oldSuccessors = new ArrayList<Vertex>();
+		List<Vertex> newSuccessors = new ArrayList<Vertex>();
+		for(NodeChange nodeChange : nodeChanges)
+		{
+			if(nodeChange.hasChanged())
+			{
+				if(nodeChange.isNew())
+				{newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));}
+				else if(nodeChange.isDeleted())
+				{oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));}
+				else
+				{
+					oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));
+					newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));
+				}
+				 
+				List<Vertex> successors =  removeDuplicates(oldSuccessors,newSuccessors);
+				nodeChange.setSuccessors(findNodeChangeList(successors));
+			}
+		}
+	}
+
+	private List<NodeChange> findNodeChangeList(List<Vertex> nodes) 
+	{
+		List<NodeChange> ret = new ArrayList<>();
+		for(Vertex node : nodes)
+		{
+			for(NodeChange nodeChange : nodeChanges)
+			{
+				if(node.getProperty("GMLid").equals(nodeChange.getGMLid()))
+					ret.add(nodeChange);
+			}
+		}
+		return ret;
+	}
+
+	private List<Vertex> removeDuplicates(List<Vertex> old, List<Vertex> newOnes) 
+	{
+		for(Vertex node : newOnes)
+		{
+			if(!old.contains(node))
+				old.add(node);
+		}
+		return old;
+	}
+
+	private List<NodeChange> getChangedNeighbours(List<Vertex> neighbours) 
+	{
+		List<NodeChange> ret = new ArrayList<NodeChange>();
+		// If a neighbour has also changed, add to the local list
+		for(Vertex neighbour : neighbours)
+		{
+			for(NodeChange nodeChange : nodeChanges)
+			{
+				if(neighbour.getProperty("GMLid").equals(nodeChange.getGMLid()) && nodeChange.hasChanged())
+				{ret.add(nodeChange);}
+			}
+		}
+		return ret;
+	}
+
 	private Double stringToDoubleDiff(String oString, String nString){
 		Double diff = 0.0;
 		Double oVal = 0.0; 

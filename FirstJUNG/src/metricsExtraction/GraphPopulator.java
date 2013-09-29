@@ -1,3 +1,13 @@
+/**
+ * GraphPopulator class
+ * The class populates a graph object with metadata extracted from the associated xml
+ * file
+ * 
+ * @author Greg Meyer & Etai Miller
+ * @see MetricsReader
+ * @version 0.1
+ */
+
 package metricsExtraction;
 
 import java.io.IOException;
@@ -14,6 +24,7 @@ import org.xml.sax.SAXException;
 import graphML.GraphContext;
 import graphML.GraphManager;
 import graphML.GraphWrapper;
+import graphML.NodeType;
 import graphML.Vertex;
 
 public class GraphPopulator 
@@ -23,6 +34,12 @@ public class GraphPopulator
 	final String protected_methods = "ProM"; // Dependency Finder analyses private methods as protected
 	MetricsReader metricsReader;
 	
+	/**
+	 * The function to populate a graph's nodes with metadata 
+	 * 
+	 * @param graph GraphWrapper to be populated
+	 * @param metricsFile String URI of XML file containing node metadata
+	 */
 	public void populate(GraphWrapper graph, String metricsFile)
 	{	
 		// Get node names by GMLid
@@ -66,11 +83,26 @@ public class GraphPopulator
 				for(int j=0; j<metrics.size(); j++)
 				{
 					nodes.get(i).addData(metrics.get(j),mets.get(j));
+					//System.out.println("Added " + metrics.get(j) + "(" 
+							//+ mets.get(j) + ") to " + nodes.get(i).getProperty("GMLid"));
 				}
 				
 			}
+			
+			// Assign the NodeType
+			nodes.get(i).addData("NodeType", findNodeType(nodes.get(i),metrics).toString());
 		}
+		
 		//Check to see if string is empty before adding key,value
+	}
+
+	private NodeType findNodeType(Vertex node,List<String> metrics) 
+	{	
+		if(node.getProperty(metrics.get(0)).isEmpty() 
+				&& node.getProperty(metrics.get(1)).isEmpty() 
+				&& node.getProperty(metrics.get(2)).isEmpty())
+			return NodeType.PACKAGENODE;
+		else return NodeType.CLASSNODE;
 	}
 
 }
