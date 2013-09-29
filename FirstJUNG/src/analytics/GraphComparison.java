@@ -233,18 +233,6 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 	{
 		findSuccessorsThatChanged();
 		findPredeccessorsThatChanged();
-		
-		//List<Vertex> neighbours = new ArrayList<Vertex>();
-		
-		/*// Find each of the neighbours from the old graph
-		for(NodeChange nodeChange : nodeChanges)
-		{
-			if(nodeChange.hasChanged() && !nodeChange.isNew())
-			{
-				neighbours = oldGraph.getNeighbours(oldGraph.getNode(nodeChange.getGMLid()));
-				nodeChange.setChangedNeighbours(getChangedNeighbours(neighbours));
-			}	
-		}*/
 	}
 	
 	private void findPredeccessorsThatChanged() 
