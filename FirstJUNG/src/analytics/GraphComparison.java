@@ -147,7 +147,10 @@ public class GraphComparison {
 		Double promDiff = stringToDoubleDiff(oNode.getProperty("ProM"), nNode.getProperty("ProM"));
 		String nodeType = oNode.getProperty("NodeType");
 		
-		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff,nodeType);
+		Metrics metrics = new Metrics(slocDiff, pumDiff, promDiff);
+		
+		return new NodeChange(gmlid, metrics, nodeType);
+
 	}
 	
 	
@@ -155,12 +158,15 @@ public class GraphComparison {
 private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		
 		String gmlid = node.getProperty("GMLid");
-		Double slocDiff = stringToDouble(node.getProperty("SLOC"));
-		Double pumDiff = stringToDouble(node.getProperty("PuM"));
+		
+		Double slocDiff = stringToDouble(node.getProperty("SLOC"));		
+		Double pumDiff = stringToDouble(node.getProperty("PuM"));	
 		Double promDiff = stringToDouble(node.getProperty("ProM"));
 		String nodeType = node.getProperty("NodeType");
 		
-		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff, nodeType, flag);
+		Metrics metrics = new Metrics(slocDiff, pumDiff, promDiff);
+		
+		return new NodeChange(gmlid, metrics, nodeType, flag);
 	}
 	
 	private List<NodeChange> performAlgOnNew(){
@@ -192,7 +198,7 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		for (int n = 0; n < nList.size(); n++){
 			nodeChanges.add(populateNodeChange(nList.get(n), true));				
 		}
-		// Find all the neighbours that also changed
+		
 		findNeighboursThatChanged();
 		return nodeChanges;
 	}
@@ -341,6 +347,91 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		if (!oString.isEmpty()){ val = Double.parseDouble(oString);}
 		
 		return val;
+	}
+	
+	private List<String> sucPopulation(Vertex oNode, Vertex nNode){
+		
+		List<Vertex> oSucs = oldGraph.getSuccessors(oNode);
+		List<Vertex> nSucs = newGraph.getSuccessors(nNode);
+		List<String> sucs = new ArrayList<>();
+		
+		for (int i = 0; i < oSucs.size(); i++){
+			sucs.add(oSucs.get(i).getProperty("GMLid"));
+		}
+		
+		for (int i = 0; i < nSucs.size(); i++){
+			if (!sucs.contains(nSucs.get(i).getProperty("GMLid"))){
+				sucs.add(nSucs.get(i).getProperty("GMLid"));
+			}
+		}
+		return sucs;
+		
+	}
+	
+	private List<String> prePopulation(Vertex oNode, Vertex nNode){
+		
+		List<Vertex> oPreds = oldGraph.getPredecessors(oNode);
+		List<Vertex> nPreds = newGraph.getPredecessors(nNode);
+		List<String> preds = new ArrayList<>();
+		
+		for (int i = 0; i < oPreds.size(); i++){
+			preds.add(oPreds.get(i).getProperty("GMLid"));
+		}
+		
+		for (int i = 0; i < nPreds.size(); i++){
+			if (!preds.contains(nPreds.get(i).getProperty("GMLid"))){
+				preds.add(nPreds.get(i).getProperty("GMLid"));
+			}
+		}
+		return preds;
+	}
+	
+	private List<String> prePopulation(Vertex node, Boolean flag){
+		
+		List<String> preds = new ArrayList<>();
+		
+		if (flag){
+			List<Vertex> nPreds = newGraph.getPredecessors(node);
+			
+			for (int i = 0; i < nPreds.size(); i++){
+				preds.add(nPreds.get(i).getProperty("GMLid"));
+			}
+			return preds;
+		}
+		
+		else if (!flag){
+			List<Vertex> oPreds = oldGraph.getPredecessors(node);
+			
+			for (int i = 0; i < oPreds.size(); i++){
+				preds.add(oPreds.get(i).getProperty("GMLid"));
+			}
+			return preds;
+		}
+		return null;
+	}
+	
+	private List<String> sucPopulation(Vertex node, Boolean flag){
+		
+		List<String> sucs = new ArrayList<>();
+		
+		if (flag){
+			List<Vertex> nSucs = newGraph.getSuccessors(node);
+			
+			for (int i = 0; i < nSucs.size(); i++){
+				sucs.add(nSucs.get(i).getProperty("GMLid"));
+			}
+			return sucs;
+		}
+		
+		else if (!flag){
+			List<Vertex> oSucs = oldGraph.getSuccessors(node);
+			
+			for (int i = 0; i < oSucs.size(); i++){
+				sucs.add(oSucs.get(i).getProperty("GMLid"));
+			}
+			return sucs;
+		}
+		return null;
 	}
 	
 }

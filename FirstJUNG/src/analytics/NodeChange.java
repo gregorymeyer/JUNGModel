@@ -12,34 +12,34 @@ public class NodeChange {
 	private Double SLOC;
 	private Double PuM;
 	private Double ProM;
-	private String GMLid = null;
+
 	private String nodeType;
 	private Boolean hasChangedSinceLastGraph;
 	private List<NodeChange> neighboursThatChanged;
 	private List<NodeChange> successors;
 	private List<NodeChange> predecessors;
 	
-	List<String> nodeGroup = new ArrayList<>();
+	private String GMLid = null;	
+	Metrics metrics;
+	
+	public NodeChange(String gmlid ,Metrics m ){
+		
+	}
 	
 	
-	
-	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType){
+	public NodeChange(String gmlid, Metrics m, String nodeType){
 			
 			this.GMLid = gmlid;
-			this.SLOC = slocDiff;
-			this.PuM = pumDiff;
-			this.ProM = promDiff;
+			this.metrics = m;
 			this.nodeType = nodeType;
 			this.hasChangedSinceLastGraph = hasNodeChanged();
 		}
-	
 
-	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType, Boolean flag){
+	public NodeChange(String gmlid, Metrics m, String nodeType, Boolean flag){
 		
 		this.GMLid = gmlid;
-		this.SLOC = slocDiff;
-		this.PuM = pumDiff;
-		this.ProM = promDiff;
+		this.metrics = m;
+	
 		this.nodeType = nodeType;
 		
 		if (flag) {isNew = true;}
@@ -49,11 +49,11 @@ public class NodeChange {
 	
 	private Boolean hasNodeChanged() 
 	{
-		if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("CLASSNODE")))
+		if((metrics.getSLOC()==0) && (metrics.getPuM()==0) && (metrics.getProM()==0) && (this.nodeType.equals("CLASSNODE")))
 			return false;
 		else if(isNew | isDeleted)
 			return true;
-		else if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
+		else if((metrics.getSLOC()==0) && (metrics.getPuM()==0) && (metrics.getProM()==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
 			return false;
 		else return true;
 	}
@@ -80,27 +80,27 @@ public class NodeChange {
 	}
 	
 	public Double getSLOC() {
-		return SLOC;
+		return metrics.getSLOC();
 	}
 
 	public void setSLOC(Double sLOC) {
-		SLOC = sLOC;
+		metrics.setSLOC(sLOC);
 	}
 
 	public Double getPuM() {
-		return PuM;
+		return metrics.getPuM();
 	}
 
 	public void setPuM(Double puM) {
-		PuM = puM;
+		metrics.setPuM(puM);
 	}
 
 	public Double getProM() {
-		return ProM;
+		return metrics.getProM();
 	}
 
 	public void setProM(Double proM) {
-		ProM = proM;
+		metrics.setProM(proM);
 	}
 
 	public String getGMLid() {
