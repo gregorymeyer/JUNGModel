@@ -7,7 +7,6 @@ import java.util.List;
 
 import graphML.*;
 
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -57,21 +56,14 @@ public class ComparisonOfGraphs {
 		//Integer oldSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
 		//Integer newSLOC = Integer.parseInt(oldGraph.getNode("name").getProperty("SLOC"));
 		GraphPopulator graphPopulator = new GraphPopulator();
-		graphPopulator.populate(oldGraph, "C:/Users/JSM/Desktop/JUnit 4-10 OOMetrics.xml");
-		graphPopulator.populate(newGraph, "C:/Users/JSM/Desktop/JUnit 4-11 OOMetrics.xml");
 		graphPopulator.populate(oldGraph, "C:/Users/Etai/workspace/oRoverOOMetrics.xml");
 		graphPopulator.populate(newGraph, "C:/Users/Etai/workspace/nRoverOOMetrics.xml");
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 			
 		List<NodeChange> nodeChangeList = graphComparison.nodeChanges();
 	
-<<<<<<< HEAD
-		assertFalse(nodeChangeList.isEmpty());
-	
-=======
 		assertTrue(nodeChangeList.isEmpty());
-		//assertEquals();
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
+
 	}
 	
 	@Test
@@ -95,30 +87,6 @@ public class ComparisonOfGraphs {
 		GraphWrapper newGraph = newGraphContext.getGraph(); 
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 	}
-	
-	@Test
-	@Ignore
-	public void canReturnListOfNodesWithIncreasedDependenciesInNewGraph() throws Exception {
-		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
-		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/sorted.graphml");
-		GraphWrapper newGraph = newGraphContext.getGraph(); 
-		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
-	}
-	
-	@Test
-	@Ignore
-	public void canReturnListOfNodesWithDecreasedDependenciesInNewGraph() throws Exception {
-		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/myfile.graphml");
-		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("C:/Users/Etai/workspace/sorted.graphml");
-		GraphWrapper newGraph = newGraphContext.getGraph(); 
-		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
-	}
-	
-	
 	
 	@Test
 	public void shouldCorrectlyIdentifyIfAClassNodeHasChangedBetweenTwoGraphs() throws Exception
@@ -361,11 +329,6 @@ public class ComparisonOfGraphs {
 		assertTrue(predecessors.contains(Alien));
 	}
 }
-
-
-
-
-
 
 
 

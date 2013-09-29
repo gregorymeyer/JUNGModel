@@ -9,75 +9,39 @@ public class NodeChange {
 	Boolean isDeleted = false;
 	Boolean isClass = false;
 	Boolean isPackage = false;
-/*	
 	private Double SLOC;
 	private Double PuM;
 	private Double ProM;
-<<<<<<< HEAD
-*/
-=======
-	private String GMLid = null;
+
 	private String nodeType;
 	private Boolean hasChangedSinceLastGraph;
 	private List<NodeChange> neighboursThatChanged;
 	private List<NodeChange> successors;
 	private List<NodeChange> predecessors;
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 	
 	private String GMLid = null;	
 	Metrics metrics;
-	List<String> sucNodes = new ArrayList<>();
-	List<String> preNodes = new ArrayList<>();
 	
-<<<<<<< HEAD
-	public NodeChange(String gmlid ,Metrics m, List<String> sucs, List<String> pres){
-=======
+	public NodeChange(String gmlid ,Metrics m ){
+		
+	}
 	
 	
-	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType){
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
+	public NodeChange(String gmlid, Metrics m, String nodeType){
 			
 			this.GMLid = gmlid;
-<<<<<<< HEAD
 			this.metrics = m;
-			this.sucNodes = sucs;
-			this.preNodes = pres;
-		/*	
-			if (SLOC == 0.0 & PuM == 0.0 & ProM==0.0){ isPackage=true; }
-			else {isClass = true;}
-		*/	
-=======
-			this.SLOC = slocDiff;
-			this.PuM = pumDiff;
-			this.ProM = promDiff;
 			this.nodeType = nodeType;
 			this.hasChangedSinceLastGraph = hasNodeChanged();
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		}
-	
-<<<<<<< HEAD
-	public NodeChange(String gmlid, Metrics m, List<String> sucs, List<String> pres, Boolean flag){
-=======
 
-	public NodeChange(String gmlid, Double slocDiff, Double pumDiff, Double promDiff, String nodeType, Boolean flag){
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
+	public NodeChange(String gmlid, Metrics m, String nodeType, Boolean flag){
 		
 		this.GMLid = gmlid;
-<<<<<<< HEAD
 		this.metrics = m;
-		this.sucNodes = sucs;
-		this.preNodes = pres;
-		/*
-		if (SLOC == 0.0 & PuM == 0 & ProM==0){ isPackage=true; }
-		else {isClass = true;}
-		*/	
-=======
-		this.SLOC = slocDiff;
-		this.PuM = pumDiff;
-		this.ProM = promDiff;
+	
 		this.nodeType = nodeType;
 		
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		if (flag) {isNew = true;}
 		else if (!flag) {isDeleted = true;}
 		this.hasChangedSinceLastGraph = hasNodeChanged();
@@ -85,11 +49,11 @@ public class NodeChange {
 	
 	private Boolean hasNodeChanged() 
 	{
-		if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("CLASSNODE")))
+		if((metrics.getSLOC()==0) && (metrics.getPuM()==0) && (metrics.getProM()==0) && (this.nodeType.equals("CLASSNODE")))
 			return false;
 		else if(isNew | isDeleted)
 			return true;
-		else if((this.SLOC==0) && (this.ProM==0) && (this.PuM==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
+		else if((metrics.getSLOC()==0) && (metrics.getPuM()==0) && (metrics.getProM()==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
 			return false;
 		else return true;
 	}

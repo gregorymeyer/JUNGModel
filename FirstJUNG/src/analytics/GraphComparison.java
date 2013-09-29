@@ -147,16 +147,10 @@ public class GraphComparison {
 		Double promDiff = stringToDoubleDiff(oNode.getProperty("ProM"), nNode.getProperty("ProM"));
 		String nodeType = oNode.getProperty("NodeType");
 		
-<<<<<<< HEAD
 		Metrics metrics = new Metrics(slocDiff, pumDiff, promDiff);
 		
-		List<String> sucs = sucPopulation(oNode, nNode);
-		List<String> pres = prePopulation(oNode, nNode);
-		
-		return new NodeChange(gmlid, metrics, sucs, pres);
-=======
-		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff,nodeType);
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
+		return new NodeChange(gmlid, metrics, nodeType);
+
 	}
 	
 	
@@ -164,27 +158,15 @@ public class GraphComparison {
 private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		
 		String gmlid = node.getProperty("GMLid");
-<<<<<<< HEAD
 		
 		Double slocDiff = stringToDouble(node.getProperty("SLOC"));		
 		Double pumDiff = stringToDouble(node.getProperty("PuM"));	
-=======
-		Double slocDiff = stringToDouble(node.getProperty("SLOC"));
-		Double pumDiff = stringToDouble(node.getProperty("PuM"));
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		Double promDiff = stringToDouble(node.getProperty("ProM"));
 		String nodeType = node.getProperty("NodeType");
 		
-<<<<<<< HEAD
 		Metrics metrics = new Metrics(slocDiff, pumDiff, promDiff);
 		
-		List<String> sucs = sucPopulation(node, flag);
-		List<String> pres = prePopulation(node, flag);
-		
-		return new NodeChange(gmlid, metrics, sucs, pres, flag);
-=======
-		return new NodeChange(gmlid, slocDiff, pumDiff, promDiff, nodeType, flag);
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
+		return new NodeChange(gmlid, metrics, nodeType, flag);
 	}
 	
 	private List<NodeChange> performAlgOnNew(){
@@ -216,13 +198,8 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		for (int n = 0; n < nList.size(); n++){
 			nodeChanges.add(populateNodeChange(nList.get(n), true));				
 		}
-<<<<<<< HEAD
 		
-		///NEW FUNCTION TO APPEND LIST OF SUCCESSORS AND LIST OF PREDECESSORS
-=======
-		// Find all the neighbours that also changed
 		findNeighboursThatChanged();
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		return nodeChanges;
 	}
 
@@ -262,18 +239,6 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 	{
 		findSuccessorsThatChanged();
 		findPredeccessorsThatChanged();
-		
-		//List<Vertex> neighbours = new ArrayList<Vertex>();
-		
-		/*// Find each of the neighbours from the old graph
-		for(NodeChange nodeChange : nodeChanges)
-		{
-			if(nodeChange.hasChanged() && !nodeChange.isNew())
-			{
-				neighbours = oldGraph.getNeighbours(oldGraph.getNode(nodeChange.getGMLid()));
-				nodeChange.setChangedNeighbours(getChangedNeighbours(neighbours));
-			}	
-		}*/
 	}
 	
 	private void findPredeccessorsThatChanged() 
