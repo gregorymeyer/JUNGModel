@@ -57,8 +57,7 @@ public class ComparisonOfGraphs {
 			
 		List<NodeChange> nodeChangeList = graphComparison.nodeChanges();
 	
-		assertTrue(nodeChangeList.isEmpty());
-		//assertEquals();
+		assertFalse(nodeChangeList.isEmpty());
 	
 	}
 /*

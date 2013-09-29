@@ -9,31 +9,35 @@ public class NodeChange {
 	Boolean isDeleted = false;
 	Boolean isClass = false;
 	Boolean isPackage = false;
+/*	
 	private Double SLOC;
 	private Double PuM;
 	private Double ProM;
-	private String GMLid = null;
+*/
 	
-	List<String> nodeGroup = new ArrayList<>();
+	private String GMLid = null;	
+	Metrics metrics;
+	List<String> sucNodes = new ArrayList<>();
+	List<String> preNodes = new ArrayList<>();
 	
-	public NodeChange(String gmlid, Double sloc, Double pum, Double prom){
+	public NodeChange(String gmlid ,Metrics m, List<String> sucs, List<String> pres){
 			
 			this.GMLid = gmlid;
-			this.SLOC = sloc;
-			this.PuM = pum;
-			this.ProM = prom;
+			this.metrics = m;
+			this.sucNodes = sucs;
+			this.preNodes = pres;
 		/*	
 			if (SLOC == 0.0 & PuM == 0.0 & ProM==0.0){ isPackage=true; }
 			else {isClass = true;}
 		*/	
 		}
 	
-	public NodeChange(String gmlid, Double sloc, Double pum, Double prom, Boolean flag){
+	public NodeChange(String gmlid, Metrics m, List<String> sucs, List<String> pres, Boolean flag){
 		
 		this.GMLid = gmlid;
-		this.SLOC = sloc;
-		this.PuM = pum;
-		this.ProM = prom;
+		this.metrics = m;
+		this.sucNodes = sucs;
+		this.preNodes = pres;
 		/*
 		if (SLOC == 0.0 & PuM == 0 & ProM==0){ isPackage=true; }
 		else {isClass = true;}
@@ -61,27 +65,27 @@ public class NodeChange {
 	}
 	
 	public Double getSLOC() {
-		return SLOC;
+		return metrics.getSLOC();
 	}
 
 	public void setSLOC(Double sLOC) {
-		SLOC = sLOC;
+		metrics.setSLOC(sLOC);
 	}
 
 	public Double getPuM() {
-		return PuM;
+		return metrics.getPuM();
 	}
 
 	public void setPuM(Double puM) {
-		PuM = puM;
+		metrics.setPuM(puM);
 	}
 
 	public Double getProM() {
-		return ProM;
+		return metrics.getProM();
 	}
 
 	public void setProM(Double proM) {
-		ProM = proM;
+		metrics.setProM(proM);
 	}
 
 	public String getGMLid() {
