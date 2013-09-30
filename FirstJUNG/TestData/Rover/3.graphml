@@ -2,19 +2,19 @@
 <graphml>
 <graph edgedefault="directed">
 <node id="marsExploration"></node>
-<node id="marsExploration.Location_v4"></node>
-<node id="marsExploration.Plateau_v4"></node>
-<node id="marsExploration.Rover_v4"></node>
-<edge source="marsExploration" target="marsExploration.Location_v4"></edge>
-<edge source="marsExploration.Location_v4" target="marsExploration.Plateau_v4"></edge>
-<edge source="marsExploration.Plateau_v4" target="marsExploration.Location_v4"></edge>
-<edge source="marsExploration.Rover_v4" target="marsExploration.Location_v4"></edge>
-<edge source="marsExploration" target="marsExploration.Plateau_v4"></edge>
-<edge source="marsExploration.Plateau_v4" target="marsExploration.Location_v4"></edge>
-<edge source="marsExploration.Plateau_v4" target="marsExploration.Rover_v4"></edge>
-<edge source="marsExploration.Location_v4" target="marsExploration.Plateau_v4"></edge>
-<edge source="marsExploration" target="marsExploration.Rover_v4"></edge>
-<edge source="marsExploration.Rover_v4" target="marsExploration.Location_v4"></edge>
-<edge source="marsExploration.Plateau_v4" target="marsExploration.Rover_v4"></edge>
+<node id="marsExploration.Location"></node>
+<node id="marsExploration.Plateau"></node>
+<node id="marsExploration.Rover"></node>
+<edge source="marsExploration" target="marsExploration.Location"></edge>
+<edge source="marsExploration.Location" target="marsExploration.Plateau"></edge>
+<edge source="marsExploration.Plateau" target="marsExploration.Location"></edge>
+<edge source="marsExploration.Rover" target="marsExploration.Location"></edge>
+<edge source="marsExploration" target="marsExploration.Plateau"></edge>
+<edge source="marsExploration.Plateau" target="marsExploration.Location"></edge>
+<edge source="marsExploration.Plateau" target="marsExploration.Rover"></edge>
+<edge source="marsExploration.Location" target="marsExploration.Plateau"></edge>
+<edge source="marsExploration" target="marsExploration.Rover"></edge>
+<edge source="marsExploration.Rover" target="marsExploration.Location"></edge>
+<edge source="marsExploration.Plateau" target="marsExploration.Rover"></edge>
 </graph>
 </graphml>
