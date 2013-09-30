@@ -4,7 +4,8 @@ public class NodeSummary {
 
 	private final String GMLid;
 	private final int firstAppearance;
-	private Integer deletedAt = null;
+	private Integer lastAppearance = null;
+	private Integer changeCount = 0;
 
 	public NodeSummary(String gmLid, int firstAppear) {
 		this.GMLid = gmLid;
@@ -21,13 +22,22 @@ public class NodeSummary {
 		return firstAppearance;
 	}
 
-	public void deletedAt(Integer i) {
-		this.deletedAt = i;
-		
+	public void setLastAppearance(Integer i) {
+		this.lastAppearance = i;
 	}
 
-	public Integer getDeletedAt() {	
-		return deletedAt;
+	public Integer getLastAppearance() {	
+		return lastAppearance;
+	}
+
+	public Integer getChangeCount() 
+	{
+		return this.changeCount ;
+	}
+
+	public void incrementChangeCount() 
+	{
+		this.changeCount += 1;
 	}
 
 }

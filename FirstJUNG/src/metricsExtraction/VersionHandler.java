@@ -75,33 +75,72 @@ public class VersionHandler {
 						eventIndex = nodeChangeList.indexOf(changeList) + 1;
 					}
 					
-					else {eventIndex = nodeChangeList.indexOf(changeList); }
-					
+					else {eventIndex = nodeChangeList.indexOf(changeList); }		
 					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(), 
 													eventIndex);
-					
-					nodeSummaryList.add(populateNodeSummary(nodeSummary));
-					
+					populateNodeSummary(nodeSummary);
+					nodeSummaryList.add(nodeSummary);
 				}
 			}
 		}
-		
 	}
 
-	private NodeSummary populateNodeSummary(NodeSummary nodeSummary) {
-		//Thought about using integer-indexed "for" loop starting from first
-		//appearance but....meh
-			for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
-				for (NodeChange nodeChange: nodeChangeList.get(i)){
-					if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
-							&& nodeChange.isDeleted()){
-						
-						nodeSummary.deletedAt(i);
-					}
+	private void populateNodeSummary(NodeSummary nodeSummary) {
+		findDeletedAt(nodeSummary);
+		findChangeCount(nodeSummary);
+	}
+
+	private void findChangeCount(NodeSummary nodeSummary) 
+	{
+		// If the node has a finite end appearance  
+		if(nodeSummary.getLastAppearance() != null)
+		{
+			Integer startPoint;
+			if(nodeSummary.getFirstAppearance() !=0){startPoint = nodeSummary.getFirstAppearance()-1;}
+			else startPoint = nodeSummary.getFirstAppearance();
+			
+			for(int i = startPoint; i<= nodeSummary.getLastAppearance(); i++)
+			{
+				for(NodeChange nodeChange : nodeChangeList.get(i))
+				{
+					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
+							nodeChange.hasChanged())
+						nodeSummary.incrementChangeCount();
 				}
 			}
-		
-		return nodeSummary;	
+			
+		}
+		// If the node exists until the last version
+		else
+		{
+			Integer startPoint;
+			if(nodeSummary.getFirstAppearance() !=0){startPoint = nodeSummary.getFirstAppearance()-1;}
+			else startPoint = nodeSummary.getFirstAppearance();
+			
+			for(int i = startPoint; i< nodeChangeList.size(); i++)
+			{
+				for(NodeChange nodeChange : nodeChangeList.get(i))
+				{
+					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
+							nodeChange.hasChanged())
+						nodeSummary.incrementChangeCount();
+				}
+			}
+		}
+	}
+
+	private void findDeletedAt(NodeSummary nodeSummary) 
+	{
+		// Last version that it was seen in
+		for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
+			for (NodeChange nodeChange: nodeChangeList.get(i)){
+				if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
+						&& nodeChange.isDeleted()){
+					
+					nodeSummary.setLastAppearance(i);
+				}
+			}
+		}
 	}
 
 	private boolean nodeSummaryExists(NodeChange nodeChange) {
