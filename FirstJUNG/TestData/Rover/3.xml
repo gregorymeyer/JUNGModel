@@ -67,7 +67,7 @@
                 <nb-data-points>3</nb-data-points>
             </measurement>
             <class>
-                <name>marsExploration.Location_v4</name>
+                <name>marsExploration.Location</name>
                 <measurement>
                     <short-name>PuM</short-name>
                     <long-name>Public Methods</long-name>
@@ -104,7 +104,7 @@
                     <value>4.0</value>
                 </measurement>
                 <method>
-                    <name>marsExploration.Location_v4.Location_v4(int, int)</name>
+                    <name>marsExploration.Location.Location(int, int)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -112,7 +112,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.Location_v4(int, int, java.lang.String, marsExploration.Plateau_v4)</name>
+                    <name>marsExploration.Location.Location(int, int, java.lang.String, marsExploration.Plateau)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -120,7 +120,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.equals(marsExploration.Location_v4)</name>
+                    <name>marsExploration.Location.equals(marsExploration.Location)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -128,7 +128,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.move()</name>
+                    <name>marsExploration.Location.move()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -136,7 +136,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.moveEast()</name>
+                    <name>marsExploration.Location.moveEast()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -144,7 +144,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.moveNorth()</name>
+                    <name>marsExploration.Location.moveNorth()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -152,7 +152,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.moveSouth()</name>
+                    <name>marsExploration.Location.moveSouth()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -160,7 +160,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.moveWest()</name>
+                    <name>marsExploration.Location.moveWest()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -168,7 +168,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.negativeCoordsCheck(int, int)</name>
+                    <name>marsExploration.Location.negativeCoordsCheck(int, int)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -176,7 +176,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.rotateLeft()</name>
+                    <name>marsExploration.Location.rotateLeft()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -184,7 +184,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.rotateRight()</name>
+                    <name>marsExploration.Location.rotateRight()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -192,7 +192,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Location_v4.withinBoundsCheck(marsExploration.Plateau_v4)</name>
+                    <name>marsExploration.Location.withinBoundsCheck(marsExploration.Plateau)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -201,7 +201,7 @@
                 </method>
             </class>
             <class>
-                <name>marsExploration.Plateau_v4</name>
+                <name>marsExploration.Plateau</name>
                 <measurement>
                     <short-name>PuM</short-name>
                     <long-name>Public Methods</long-name>
@@ -238,7 +238,7 @@
                     <value>2.0</value>
                 </measurement>
                 <method>
-                    <name>marsExploration.Plateau_v4.Plateau_v4(java.lang.String)</name>
+                    <name>marsExploration.Plateau.Plateau(java.lang.String)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -246,7 +246,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.createBoundary(java.util.List)</name>
+                    <name>marsExploration.Plateau.createBoundary(java.util.List)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -254,7 +254,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.createRovers(java.util.List)</name>
+                    <name>marsExploration.Plateau.createRovers(java.util.List)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -262,7 +262,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.dispatchRovers()</name>
+                    <name>marsExploration.Plateau.dispatchRovers()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -270,7 +270,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.getBoundry()</name>
+                    <name>marsExploration.Plateau.getBoundry()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -278,7 +278,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.getRovers()</name>
+                    <name>marsExploration.Plateau.getRovers()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -286,7 +286,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.newMethod1()</name>
+                    <name>marsExploration.Plateau.newMethod1()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -294,7 +294,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Plateau_v4.retrieveNavigationDetails(java.lang.String)</name>
+                    <name>marsExploration.Plateau.retrieveNavigationDetails(java.lang.String)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -303,7 +303,7 @@
                 </method>
             </class>
             <class>
-                <name>marsExploration.Rover_v4</name>
+                <name>marsExploration.Rover</name>
                 <measurement>
                     <short-name>PuM</short-name>
                     <long-name>Public Methods</long-name>
@@ -340,7 +340,7 @@
                     <value>2.0</value>
                 </measurement>
                 <method>
-                    <name>marsExploration.Rover_v4.Rover_v4(marsExploration.Location_v4, java.lang.String)</name>
+                    <name>marsExploration.Rover.Rover(marsExploration.Location, java.lang.String)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -348,7 +348,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Rover_v4.followInstructions()</name>
+                    <name>marsExploration.Rover.followInstructions()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -356,7 +356,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Rover_v4.isAt(marsExploration.Location_v4)</name>
+                    <name>marsExploration.Rover.isAt(marsExploration.Location)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -364,7 +364,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Rover_v4.newMethod1()</name>
+                    <name>marsExploration.Rover.newMethod1()</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>
@@ -372,7 +372,7 @@
                     </measurement>
                 </method>
                 <method>
-                    <name>marsExploration.Rover_v4.newMethod2(java.lang.String)</name>
+                    <name>marsExploration.Rover.newMethod2(java.lang.String)</name>
                     <measurement>
                         <short-name>SLOC</short-name>
                         <long-name>Single Lines of Code</long-name>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import analytics.GraphComparison;
 import analytics.NodeChange;
+import analytics.NodeSummary;
 
 
 public class VersionHandler {
@@ -18,6 +19,7 @@ public class VersionHandler {
 	List<String> xmlList;
 	List<GraphWrapper> graphList = new ArrayList<>();
 	List< List<NodeChange>> nodeChangeList = new ArrayList<>();
+	List<NodeSummary> nodeSummaryList = new ArrayList<>();
 
 	public Boolean createGraphsFromFolder(String folderName) throws Exception {
 		
@@ -62,6 +64,64 @@ public class VersionHandler {
 									.nodeChanges());
 		}
 		
+	}
+
+	public void createAndPopulateNodeSummaryList() {
+		for (List<NodeChange> changeList: nodeChangeList){
+			for (NodeChange nodeChange: changeList){
+				if (!nodeSummaryExists(nodeChange)){
+					
+					int eventIndex;
+					if (nodeChange.isNew()){
+						eventIndex = nodeChangeList.indexOf(changeList) + 1;
+					}
+					
+					else {eventIndex = nodeChangeList.indexOf(changeList); }
+					
+					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(), 
+													eventIndex);
+					
+					nodeSummaryList.add(populateNodeSummary(nodeSummary));
+					
+				}
+			}
+		}
+		
+	}
+
+	private NodeSummary populateNodeSummary(NodeSummary nodeSummary) {
+		//Thought about using integer-indexed "for" loop starting from first
+		//appearance but....meh
+			for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
+				for (NodeChange nodeChange: nodeChangeList.get(i)){
+					if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
+							&& nodeChange.isDeleted()){
+						
+						nodeSummary.deletedAt(i);
+					}
+				}
+			}
+		
+		return nodeSummary;	
+	}
+
+	private boolean nodeSummaryExists(NodeChange nodeChange) {
+		for (NodeSummary nodeSummary: nodeSummaryList){
+			if (nodeSummary.getGMLid().equals(nodeChange.getGMLid())){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public NodeSummary getNodeSummary(String gmlid) {
+		
+		for (NodeSummary nodeSummary: nodeSummaryList){
+			if (nodeSummary.getGMLid().equals(gmlid)){
+				return nodeSummary;
+			}
+		}
+		return null;
 	}
 
 }
