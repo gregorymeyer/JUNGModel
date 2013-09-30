@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml>
+<graph edgedefault="directed">
+<node id="junit.awtui"></node>
+<node id="junit.awtui.AboutDialog"></node>
+<node id="junit.awtui.AboutDialog$1"></node>
+<node id="junit.awtui.AboutDialog$2"></node>
+<node id="junit.awtui.Logo"></node>
+<node id="junit.awtui.ProgressBar"></node>
+<node id="junit.awtui.TestRunner"></node>
+<node id="junit.awtui.TestRunner$1"></node>
+<node id="junit.awtui.TestRunner$10"></node>
+<node id="junit.awtui.TestRunner$2"></node>
+<node id="junit.awtui.TestRunner$3"></node>
+<node id="junit.awtui.TestRunner$4"></node>
+<node id="junit.awtui.TestRunner$5"></node>
+<node id="junit.awtui.TestRunner$6"></node>
+<node id="junit.awtui.TestRunner$7"></node>
+<node id="junit.awtui.TestRunner$8"></node>
+<node id="junit.awtui.TestRunner$9"></node>
+<node id="junit.extensions"></node>
+<node id="junit.extensions.ActiveTestSuite"></node>
+<node id="junit.extensions.ActiveTestSuite$1"></node>
+<node id="junit.extensions.ExceptionTestCase"></node>
+<node id="junit.extensions.RepeatedTest"></node>
+<node id="junit.extensions.TestDecorator"></node>
+<node id="junit.extensions.TestSetup"></node>
+<node id="junit.extensions.TestSetup$1"></node>
+<node id="junit.framework"></node>
+<node id="junit.framework.Assert"></node>
+<node id="junit.framework.AssertionFailedError"></node>
+<node id="junit.framework.Protectable"></node>
+<node id="junit.framework.Test"></node>
+<node id="junit.framework.TestCase"></node>
+<node id="junit.framework.TestFailure"></node>
+<node id="junit.framework.TestListener"></node>
+<node id="junit.framework.TestResult"></node>
+<node id="junit.framework.TestResult$1"></node>
+<node id="junit.framework.TestSuite"></node>
+<node id="junit.framework.TestSuite$1"></node>
+<node id="junit.runner"></node>
+<node id="junit.runner.BaseTestRunner"></node>
+<node id="junit.runner.ClassPathTestCollector"></node>
+<node id="junit.runner.FailureDetailView"></node>
+<node id="junit.runner.LoadingTestCollector"></node>
+<node id="junit.runner.ReloadingTestSuiteLoader"></node>
+<node id="junit.runner.SimpleTestCollector"></node>
+<node id="junit.runner.Sorter"></node>
+<node id="junit.runner.Sorter$Swapper"></node>
+<node id="junit.runner.StandardTestSuiteLoader"></node>
+<node id="junit.runner.TestCaseClassLoader"></node>
+<node id="junit.runner.TestCollector"></node>
+<node id="junit.runner.TestSuiteLoader"></node>
+<node id="junit.runner.Version"></node>
+<node id="junit.swingui"></node>
+<node id="junit.swingui.AboutDialog"></node>
+<node id="junit.swingui.AboutDialog$1"></node>
+<node id="junit.swingui.AboutDialog$2"></node>
+<node id="junit.swingui.CounterPanel"></node>
+<node id="junit.swingui.DefaultFailureDetailView"></node>
+<node id="junit.swingui.FailureRunView"></node>
+<node id="junit.swingui.FailureRunView$1"></node>
+<node id="junit.swingui.FailureRunView$2"></node>
+<node id="junit.swingui.FailureRunView$FailureListCellRenderer"></node>
+<node id="junit.swingui.ProgressBar"></node>
+<node id="junit.swingui.StatusLine"></node>
+<node id="junit.swingui.TestHierarchyRunView"></node>
+<node id="junit.swingui.TestHierarchyRunView$1"></node>
+<node id="junit.swingui.TestRunContext"></node>
+<node id="junit.swingui.TestRunView"></node>
+<node id="junit.swingui.TestRunner"></node>
+<node id="junit.swingui.TestRunner$1"></node>
+<node id="junit.swingui.TestRunner$10"></node>
+<node id="junit.swingui.TestRunner$11"></node>
+<node id="junit.swingui.TestRunner$12"></node>
+<node id="junit.swingui.TestRunner$13"></node>
+<node id="junit.swingui.TestRunner$14"></node>
+<node id="junit.swingui.TestRunner$15"></node>
+<node id="junit.swingui.TestRunner$16"></node>
+<node id="junit.swingui.TestRunner$17"></node>
+<node id="junit.swingui.TestRunner$18"></node>
+<node id="junit.swingui.TestRunner$19"></node>
+<node id="junit.swingui.TestRunner$2"></node>
+<node id="junit.swingui.TestRunner$20"></node>
+<node id="junit.swingui.TestRunner$21"></node>
+<node id="junit.swingui.TestRunner$3"></node>
+<node id="junit.swingui.TestRunner$4"></node>
+<node id="junit.swingui.TestRunner$5"></node>
+<node id="junit.swingui.TestRunner$6"></node>
+<node id="junit.swingui.TestRunner$7"></node>
+<node id="junit.swingui.TestRunner$8"></node>
+<node id="junit.swingui.TestRunner$9"></node>
+<node id="junit.swingui.TestSelector"></node>
+<node id="junit.swingui.TestSelector$1"></node>
+<node id="junit.swingui.TestSelector$2"></node>
+<node id="junit.swingui.TestSelector$3"></node>
+<node id="junit.swingui.TestSelector$4"></node>
+<node id="junit.swingui.TestSelector$DoubleClickListener"></node>
+<node id="junit.swingui.TestSelector$KeySelectListener"></node>
+<node id="junit.swingui.TestSelector$ParallelSwapper"></node>
+<node id="junit.swingui.TestSelector$TestCellRenderer"></node>
+<node id="junit.swingui.TestSuitePanel"></node>
+<node id="junit.swingui.TestSuitePanel$1"></node>
+<node id="junit.swingui.TestSuitePanel$TestTreeCellRenderer"></node>
+<node id="junit.swingui.TestTreeModel"></node>
+<node id="junit.textui"></node>
+<node id="junit.textui.TestRunner"></node>
+<node id="junit.ui"></node>
+<node id="junit.ui.TestRunner"></node>
+<edge source="junit.awtui" target="junit.awtui.AboutDialog"></edge>
+<edge source="junit.awtui.AboutDialog$1" target="junit.awtui.AboutDialog"></edge>
+<edge source="junit.awtui.AboutDialog$2" target="junit.awtui.AboutDialog"></edge>
+<edge source="junit.awtui" target="junit.awtui.AboutDialog$1"></edge>
+<edge source="junit.awtui.AboutDialog$1" target="junit.awtui.AboutDialog"></edge>
+<edge source="junit.awtui" target="junit.awtui.AboutDialog$2"></edge>
+<edge source="junit.awtui.AboutDialog$2" target="junit.awtui.AboutDialog"></edge>
+<edge source="junit.awtui" target="junit.awtui.Logo"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.Logo"></edge>
+<edge source="junit.awtui" target="junit.awtui.ProgressBar"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.ProgressBar"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.awtui.ProgressBar"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.Logo"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.ProgressBar"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.TestRunner$1"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.TestRunner$10"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.TestRunner$2"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.TestCase"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.TestResult"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.awtui.TestRunner$1" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$4" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$5" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$6" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$7" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$8" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.ui.TestRunner" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$1"></edge>
+<edge source="junit.awtui.TestRunner$1" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.TestRunner$1"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$10"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.awtui.ProgressBar"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.framework.Test"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.framework.TestListener"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.framework.TestResult"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.TestRunner$10"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$2"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.awtui.TestRunner$2"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$3"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$4"></edge>
+<edge source="junit.awtui.TestRunner$4" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$5"></edge>
+<edge source="junit.awtui.TestRunner$5" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$6"></edge>
+<edge source="junit.awtui.TestRunner$6" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$7"></edge>
+<edge source="junit.awtui.TestRunner$7" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$8"></edge>
+<edge source="junit.awtui.TestRunner$8" target="junit.awtui.TestRunner"></edge>
+<edge source="junit.awtui" target="junit.awtui.TestRunner$9"></edge>
+<edge source="junit.extensions" target="junit.extensions.ActiveTestSuite"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.extensions.ActiveTestSuite$1"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.framework.TestSuite"></edge>
+<edge source="junit.extensions.ActiveTestSuite$1" target="junit.extensions.ActiveTestSuite"></edge>
+<edge source="junit.extensions" target="junit.extensions.ActiveTestSuite$1"></edge>
+<edge source="junit.extensions.ActiveTestSuite$1" target="junit.extensions.ActiveTestSuite"></edge>
+<edge source="junit.extensions.ActiveTestSuite$1" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.ActiveTestSuite$1" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.extensions.ActiveTestSuite$1"></edge>
+<edge source="junit.extensions" target="junit.extensions.ExceptionTestCase"></edge>
+<edge source="junit.extensions.ExceptionTestCase" target="junit.framework.TestCase"></edge>
+<edge source="junit.extensions" target="junit.extensions.RepeatedTest"></edge>
+<edge source="junit.extensions.RepeatedTest" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions.RepeatedTest" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.RepeatedTest" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions.TestDecorator" target="junit.framework.Assert"></edge>
+<edge source="junit.extensions.TestDecorator" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.TestDecorator" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.RepeatedTest" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions" target="junit.extensions.TestSetup"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.extensions.TestSetup$1"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.framework.Protectable"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.extensions.TestSetup"></edge>
+<edge source="junit.extensions" target="junit.extensions.TestSetup$1"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.extensions.TestDecorator"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.extensions.TestSetup"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.framework.Protectable"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.extensions.TestSetup$1"></edge>
+<edge source="junit.framework" target="junit.framework.Assert"></edge>
+<edge source="junit.extensions.TestDecorator" target="junit.framework.Assert"></edge>
+<edge source="junit.framework.TestCase" target="junit.framework.Assert"></edge>
+<edge source="junit.framework" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.framework.TestListener" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.framework" target="junit.framework.Protectable"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.framework.Protectable"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.framework.Protectable"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.Protectable"></edge>
+<edge source="junit.framework.TestResult$1" target="junit.framework.Protectable"></edge>
+<edge source="junit.framework" target="junit.framework.Test"></edge>
+<edge source="junit.framework.Test" target="junit.framework.TestResult"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.ActiveTestSuite$1" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.RepeatedTest" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.TestDecorator" target="junit.framework.Test"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestCase" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestFailure" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestListener" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestSuite" target="junit.framework.Test"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunContext" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunView" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestSuitePanel$1" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestTreeModel" target="junit.framework.Test"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.framework" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework.TestCase" target="junit.framework.Assert"></edge>
+<edge source="junit.framework.TestCase" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestCase" target="junit.framework.TestResult"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.TestCase"></edge>
+<edge source="junit.extensions.ExceptionTestCase" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework.TestResult$1" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework.TestSuite$1" target="junit.framework.TestCase"></edge>
+<edge source="junit.swingui.FailureRunView$1" target="junit.framework.TestCase"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework" target="junit.framework.TestFailure"></edge>
+<edge source="junit.framework.TestFailure" target="junit.framework.Test"></edge>
+<edge source="junit.runner.FailureDetailView" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.DefaultFailureDetailView" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestFailure"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.TestFailure"></edge>
+<edge source="junit.framework" target="junit.framework.TestListener"></edge>
+<edge source="junit.framework.TestListener" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.framework.TestListener" target="junit.framework.Test"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.framework.TestListener"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.TestListener"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.framework.TestListener"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.framework.TestListener"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestListener"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.framework.TestListener"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.TestListener"></edge>
+<edge source="junit.framework" target="junit.framework.TestResult"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.Protectable"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.TestListener"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.TestResult$1"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.framework.TestResult"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.ActiveTestSuite$1" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.RepeatedTest" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.TestDecorator" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.TestSetup" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.TestSetup$1" target="junit.framework.TestResult"></edge>
+<edge source="junit.framework.Test" target="junit.framework.TestResult"></edge>
+<edge source="junit.framework.TestCase" target="junit.framework.TestResult"></edge>
+<edge source="junit.framework.TestSuite" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunView" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.framework.TestResult"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.TestResult"></edge>
+<edge source="junit.framework" target="junit.framework.TestResult$1"></edge>
+<edge source="junit.framework.TestResult$1" target="junit.framework.Protectable"></edge>
+<edge source="junit.framework.TestResult$1" target="junit.framework.TestCase"></edge>
+<edge source="junit.framework.TestResult" target="junit.framework.TestResult$1"></edge>
+<edge source="junit.framework" target="junit.framework.TestSuite"></edge>
+<edge source="junit.framework.TestSuite" target="junit.framework.Test"></edge>
+<edge source="junit.framework.TestSuite" target="junit.framework.TestResult"></edge>
+<edge source="junit.extensions.ActiveTestSuite" target="junit.framework.TestSuite"></edge>
+<edge source="junit.framework" target="junit.framework.TestSuite$1"></edge>
+<edge source="junit.framework.TestSuite$1" target="junit.framework.TestCase"></edge>
+<edge source="junit.runner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.framework.TestListener"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.runner.ReloadingTestSuiteLoader"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.runner.StandardTestSuiteLoader"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.awtui.TestRunner$10" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.textui.TestRunner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.runner" target="junit.runner.ClassPathTestCollector"></edge>
+<edge source="junit.runner.ClassPathTestCollector" target="junit.runner.TestCollector"></edge>
+<edge source="junit.runner.LoadingTestCollector" target="junit.runner.ClassPathTestCollector"></edge>
+<edge source="junit.runner.SimpleTestCollector" target="junit.runner.ClassPathTestCollector"></edge>
+<edge source="junit.runner" target="junit.runner.FailureDetailView"></edge>
+<edge source="junit.runner.FailureDetailView" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.DefaultFailureDetailView" target="junit.runner.FailureDetailView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.FailureDetailView"></edge>
+<edge source="junit.runner" target="junit.runner.LoadingTestCollector"></edge>
+<edge source="junit.runner.LoadingTestCollector" target="junit.runner.ClassPathTestCollector"></edge>
+<edge source="junit.runner.LoadingTestCollector" target="junit.runner.TestCaseClassLoader"></edge>
+<edge source="junit.runner" target="junit.runner.ReloadingTestSuiteLoader"></edge>
+<edge source="junit.runner.ReloadingTestSuiteLoader" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.runner.ReloadingTestSuiteLoader"></edge>
+<edge source="junit.runner" target="junit.runner.SimpleTestCollector"></edge>
+<edge source="junit.runner.SimpleTestCollector" target="junit.runner.ClassPathTestCollector"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.SimpleTestCollector"></edge>
+<edge source="junit.runner" target="junit.runner.Sorter"></edge>
+<edge source="junit.runner" target="junit.runner.Sorter$Swapper"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.runner.Sorter$Swapper"></edge>
+<edge source="junit.swingui.TestSelector$ParallelSwapper" target="junit.runner.Sorter$Swapper"></edge>
+<edge source="junit.runner" target="junit.runner.StandardTestSuiteLoader"></edge>
+<edge source="junit.runner.StandardTestSuiteLoader" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.runner.StandardTestSuiteLoader"></edge>
+<edge source="junit.textui.TestRunner" target="junit.runner.StandardTestSuiteLoader"></edge>
+<edge source="junit.runner" target="junit.runner.TestCaseClassLoader"></edge>
+<edge source="junit.runner.LoadingTestCollector" target="junit.runner.TestCaseClassLoader"></edge>
+<edge source="junit.runner" target="junit.runner.TestCollector"></edge>
+<edge source="junit.runner.ClassPathTestCollector" target="junit.runner.TestCollector"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.TestCollector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.runner.TestCollector"></edge>
+<edge source="junit.runner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.awtui.TestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.runner.BaseTestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.runner.ReloadingTestSuiteLoader" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.runner.StandardTestSuiteLoader" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.textui.TestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.runner" target="junit.runner.Version"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.Version"></edge>
+<edge source="junit.swingui" target="junit.swingui.AboutDialog"></edge>
+<edge source="junit.swingui.AboutDialog$1" target="junit.swingui.AboutDialog"></edge>
+<edge source="junit.swingui.AboutDialog$2" target="junit.swingui.AboutDialog"></edge>
+<edge source="junit.swingui" target="junit.swingui.AboutDialog$1"></edge>
+<edge source="junit.swingui.AboutDialog$1" target="junit.swingui.AboutDialog"></edge>
+<edge source="junit.swingui" target="junit.swingui.AboutDialog$2"></edge>
+<edge source="junit.swingui.AboutDialog$2" target="junit.swingui.AboutDialog"></edge>
+<edge source="junit.swingui" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.CounterPanel" target="junit.swingui.StatusLine"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui" target="junit.swingui.DefaultFailureDetailView"></edge>
+<edge source="junit.swingui.DefaultFailureDetailView" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.DefaultFailureDetailView" target="junit.runner.FailureDetailView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.DefaultFailureDetailView"></edge>
+<edge source="junit.swingui" target="junit.swingui.FailureRunView"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.FailureRunView$2"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.FailureRunView$FailureListCellRenderer"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.FailureRunView$2" target="junit.swingui.FailureRunView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.FailureRunView"></edge>
+<edge source="junit.swingui" target="junit.swingui.FailureRunView$1"></edge>
+<edge source="junit.swingui.FailureRunView$1" target="junit.framework.TestCase"></edge>
+<edge source="junit.swingui" target="junit.swingui.FailureRunView$2"></edge>
+<edge source="junit.swingui.FailureRunView$2" target="junit.swingui.FailureRunView"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.FailureRunView$2"></edge>
+<edge source="junit.swingui" target="junit.swingui.FailureRunView$FailureListCellRenderer"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.FailureRunView$FailureListCellRenderer"></edge>
+<edge source="junit.swingui" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui" target="junit.swingui.StatusLine"></edge>
+<edge source="junit.swingui.CounterPanel" target="junit.swingui.StatusLine"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.StatusLine"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestHierarchyRunView"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.framework.TestListener"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestHierarchyRunView$1"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestSuitePanel"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.swingui.TestHierarchyRunView$1" target="junit.swingui.TestHierarchyRunView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestHierarchyRunView"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestHierarchyRunView$1"></edge>
+<edge source="junit.swingui.TestHierarchyRunView$1" target="junit.swingui.TestHierarchyRunView"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestHierarchyRunView$1"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui.TestRunContext" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestRunView" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunView" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.FailureRunView" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestCase"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestFailure"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestListener"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.FailureDetailView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.SimpleTestCollector"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.TestCollector"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.runner.Version"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.DefaultFailureDetailView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.FailureRunView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.StatusLine"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestHierarchyRunView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunContext"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$10"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$11"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$12"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$13"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$14"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$2"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$20"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$21"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$3"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$4"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$5"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$6"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$7"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$9"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$10" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$11" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$12" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$13" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$14" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$15" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$16" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$5" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$6" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$7" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$8" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner$9" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$1"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$1" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$10"></edge>
+<edge source="junit.swingui.TestRunner$10" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$10"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$11"></edge>
+<edge source="junit.swingui.TestRunner$11" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$11"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$12"></edge>
+<edge source="junit.swingui.TestRunner$12" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$12"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$13"></edge>
+<edge source="junit.swingui.TestRunner$13" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$13"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$14"></edge>
+<edge source="junit.swingui.TestRunner$14" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$14"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$15"></edge>
+<edge source="junit.swingui.TestRunner$15" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$16"></edge>
+<edge source="junit.swingui.TestRunner$16" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$17"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.swingui.TestRunner$17" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$18"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$19"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$2"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$2" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$2"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$20"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui.TestRunner$20" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$20"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$21"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$21"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$3"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.swingui.CounterPanel"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.swingui.ProgressBar"></edge>
+<edge source="junit.swingui.TestRunner$3" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$3"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$4"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.framework.TestResult"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.swingui.TestRunView"></edge>
+<edge source="junit.swingui.TestRunner$4" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$4"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$5"></edge>
+<edge source="junit.swingui.TestRunner$5" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$5"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$6"></edge>
+<edge source="junit.swingui.TestRunner$6" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$6"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$7"></edge>
+<edge source="junit.swingui.TestRunner$7" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$7"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$8"></edge>
+<edge source="junit.swingui.TestRunner$8" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestRunner$9"></edge>
+<edge source="junit.swingui.TestRunner$9" target="junit.swingui.TestRunner"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestRunner$9"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.runner.Sorter$Swapper"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.runner.TestCollector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$1"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$2"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$3"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$4"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$DoubleClickListener"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$KeySelectListener"></edge>
+<edge source="junit.swingui.TestRunner" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$1" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$2" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$3" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$4" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$DoubleClickListener" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$KeySelectListener" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector$ParallelSwapper" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$1"></edge>
+<edge source="junit.swingui.TestSelector$1" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$1"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$2"></edge>
+<edge source="junit.swingui.TestSelector$2" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$2"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$3"></edge>
+<edge source="junit.swingui.TestSelector$3" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$3"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$4"></edge>
+<edge source="junit.swingui.TestSelector$4" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$4"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$DoubleClickListener"></edge>
+<edge source="junit.swingui.TestSelector$DoubleClickListener" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$DoubleClickListener"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$KeySelectListener"></edge>
+<edge source="junit.swingui.TestSelector$KeySelectListener" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui.TestSelector" target="junit.swingui.TestSelector$KeySelectListener"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$ParallelSwapper"></edge>
+<edge source="junit.swingui.TestSelector$ParallelSwapper" target="junit.runner.Sorter$Swapper"></edge>
+<edge source="junit.swingui.TestSelector$ParallelSwapper" target="junit.swingui.TestSelector"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSelector$TestCellRenderer"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSuitePanel"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.framework.TestListener"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.swingui.TestSuitePanel$1"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.swingui.TestSuitePanel$TestTreeCellRenderer"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestSuitePanel"></edge>
+<edge source="junit.swingui.TestSuitePanel$1" target="junit.swingui.TestSuitePanel"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSuitePanel$1"></edge>
+<edge source="junit.swingui.TestSuitePanel$1" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestSuitePanel$1" target="junit.swingui.TestSuitePanel"></edge>
+<edge source="junit.swingui.TestSuitePanel$1" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.swingui.TestSuitePanel$1"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestSuitePanel$TestTreeCellRenderer"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.swingui.TestSuitePanel$TestTreeCellRenderer"></edge>
+<edge source="junit.swingui" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.swingui.TestTreeModel" target="junit.framework.Test"></edge>
+<edge source="junit.swingui.TestHierarchyRunView" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.swingui.TestSuitePanel" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.swingui.TestSuitePanel$1" target="junit.swingui.TestTreeModel"></edge>
+<edge source="junit.textui" target="junit.textui.TestRunner"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.AssertionFailedError"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.Test"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.TestFailure"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.TestListener"></edge>
+<edge source="junit.textui.TestRunner" target="junit.framework.TestResult"></edge>
+<edge source="junit.textui.TestRunner" target="junit.runner.BaseTestRunner"></edge>
+<edge source="junit.textui.TestRunner" target="junit.runner.StandardTestSuiteLoader"></edge>
+<edge source="junit.textui.TestRunner" target="junit.runner.TestSuiteLoader"></edge>
+<edge source="junit.ui" target="junit.ui.TestRunner"></edge>
+<edge source="junit.ui.TestRunner" target="junit.awtui.TestRunner"></edge>
+</graph>
+</graphml>

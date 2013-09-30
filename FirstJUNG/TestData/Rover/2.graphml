@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml>
+<graph edgedefault="directed">
+<node id="jupiterExploration"></node>
+<node id="jupiterExploration.TreeLife"></node>
+<node id="marsExploration"></node>
+<node id="marsExploration.Location_v3"></node>
+<node id="marsExploration.Plateau_v3"></node>
+<node id="marsExploration.Rover_v3"></node>
+<edge source="jupiterExploration" target="jupiterExploration.TreeLife"></edge>
+<edge source="marsExploration" target="marsExploration.Location_v3"></edge>
+<edge source="marsExploration.Location_v3" target="marsExploration.Plateau_v3"></edge>
+<edge source="marsExploration.Plateau_v3" target="marsExploration.Location_v3"></edge>
+<edge source="marsExploration.Rover_v3" target="marsExploration.Location_v3"></edge>
+<edge source="marsExploration" target="marsExploration.Plateau_v3"></edge>
+<edge source="marsExploration.Plateau_v3" target="marsExploration.Location_v3"></edge>
+<edge source="marsExploration.Plateau_v3" target="marsExploration.Rover_v3"></edge>
+<edge source="marsExploration.Location_v3" target="marsExploration.Plateau_v3"></edge>
+<edge source="marsExploration" target="marsExploration.Rover_v3"></edge>
+<edge source="marsExploration.Rover_v3" target="marsExploration.Location_v3"></edge>
+<edge source="marsExploration.Plateau_v3" target="marsExploration.Rover_v3"></edge>
+</graph>
+</graphml>
