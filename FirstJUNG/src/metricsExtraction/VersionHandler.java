@@ -1,4 +1,4 @@
-package metricsExtractionTests;
+package metricsExtraction;
 
 import graphML.GraphContext;
 import graphML.GraphManager;
@@ -7,8 +7,6 @@ import graphML.GraphWrapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import metricsExtraction.GraphPopulator;
 
 public class VersionHandler {
 	
@@ -20,13 +18,8 @@ public class VersionHandler {
 		
 		final File folder = new File(folderName);
 		//getFilesFromFolder(folder);
-		
 		int versionSize = folder.listFiles().length/2;
-		
 		createAndPopulateGraphList(versionSize, folderName);
-		
-		
-
 		return !graphList.isEmpty();
 	}
 	
