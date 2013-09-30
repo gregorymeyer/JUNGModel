@@ -26,7 +26,6 @@ public class NodeChange {
 		
 	}
 	
-	
 	public NodeChange(String gmlid, Metrics m, String nodeType){
 			
 			this.GMLid = gmlid;
