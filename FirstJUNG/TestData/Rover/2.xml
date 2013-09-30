@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE metrics SYSTEM "http://depfind.sourceforge.net/dtd/metrics.dtd">
+
+<metrics>
+    <project>
+        <name>Project</name>
+        <measurement>
+            <short-name>G</short-name>
+            <long-name>Groups</long-name>
+            <value>2.0</value>
+        </measurement>
+        <measurement>
+            <short-name>P</short-name>
+            <long-name>Packages</long-name>
+            <value>2</value>
+            <members>
+                <member>marsExploration</member>
+                <member>jupiterExploration</member>
+            </members>
+        </measurement>
+        <measurement>
+            <short-name>C</short-name>
+            <long-name>Classes</long-name>
+            <value>4.0</value>
+            <minimum>1.0</minimum>
+            <median>3.0</median>
+            <average>2.0</average>
+            <standard-deviation>1.0</standard-deviation>
+            <maximum>3.0</maximum>
+            <sum>4.0</sum>
+            <nb-data-points>2</nb-data-points>
+        </measurement>
+        <measurement>
+            <short-name>SLOC</short-name>
+            <long-name>Single Lines of Code</long-name>
+            <value>169.0</value>
+            <minimum>15.0</minimum>
+            <median>154.0</median>
+            <average>84.5</average>
+            <standard-deviation>69.5</standard-deviation>
+            <maximum>154.0</maximum>
+            <sum>169.0</sum>
+            <nb-data-points>2</nb-data-points>
+        </measurement>
+        <group>
+            <name>jupiterExploration</name>
+            <measurement>
+                <short-name>C</short-name>
+                <long-name>Classes</long-name>
+                <value>1.0</value>
+            </measurement>
+            <measurement>
+                <short-name>PuC</short-name>
+                <long-name>Public Classes</long-name>
+                <value>1.0</value>
+            </measurement>
+            <measurement>
+                <short-name>SLOC</short-name>
+                <long-name>Single Lines of Code</long-name>
+                <value>15.0</value>
+                <minimum>15.0</minimum>
+                <median>15.0</median>
+                <average>15.0</average>
+                <standard-deviation>0.0</standard-deviation>
+                <maximum>15.0</maximum>
+                <sum>15.0</sum>
+                <nb-data-points>1</nb-data-points>
+            </measurement>
+            <class>
+                <name>jupiterExploration.TreeLife</name>
+                <measurement>
+                    <short-name>PuM</short-name>
+                    <long-name>Public Methods</long-name>
+                    <value>4.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProM</short-name>
+                    <long-name>Protected Methods</long-name>
+                    <value>1.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriM</short-name>
+                    <long-name>Private Methods</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>A</short-name>
+                    <long-name>Attributes</long-name>
+                    <value>3.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PuA</short-name>
+                    <long-name>Public Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProA</short-name>
+                    <long-name>Protected Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriA</short-name>
+                    <long-name>Private Attributes</long-name>
+                    <value>3.0</value>
+                </measurement>
+                <method>
+                    <name>jupiterExploration.TreeLife.TreeLife()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>1.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>jupiterExploration.TreeLife.TreeLife(int, int)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>3.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>jupiterExploration.TreeLife.addForest(java.util.List)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>2.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>jupiterExploration.TreeLife.howManyTrees()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>1.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>jupiterExploration.TreeLife.lookAtTrees()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+            </class>
+        </group>
+        <group>
+            <name>marsExploration</name>
+            <measurement>
+                <short-name>C</short-name>
+                <long-name>Classes</long-name>
+                <value>3.0</value>
+            </measurement>
+            <measurement>
+                <short-name>PuC</short-name>
+                <long-name>Public Classes</long-name>
+                <value>3.0</value>
+            </measurement>
+            <measurement>
+                <short-name>SLOC</short-name>
+                <long-name>Single Lines of Code</long-name>
+                <value>154.0</value>
+                <minimum>27.0</minimum>
+                <median>44.0</median>
+                <average>51.333333333333336</average>
+                <standard-deviation>23.442601296689656</standard-deviation>
+                <maximum>83.0</maximum>
+                <sum>154.0</sum>
+                <nb-data-points>3</nb-data-points>
+            </measurement>
+            <class>
+                <name>marsExploration.Location_v3</name>
+                <measurement>
+                    <short-name>PuM</short-name>
+                    <long-name>Public Methods</long-name>
+                    <value>7.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProM</short-name>
+                    <long-name>Protected Methods</long-name>
+                    <value>6.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriM</short-name>
+                    <long-name>Private Methods</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>A</short-name>
+                    <long-name>Attributes</long-name>
+                    <value>4.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PuA</short-name>
+                    <long-name>Public Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProA</short-name>
+                    <long-name>Protected Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriA</short-name>
+                    <long-name>Private Attributes</long-name>
+                    <value>4.0</value>
+                </measurement>
+                <method>
+                    <name>marsExploration.Location_v3.Location_v3(int, int)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.Location_v3(int, int, java.lang.String, marsExploration.Plateau_v3)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>6.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.anAdditionalMethod()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>2.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.equals(marsExploration.Location_v3)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>3.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.move()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>10.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.moveEast()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>5.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.moveNorth()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>5.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.moveSouth()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>5.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.moveWest()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>5.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.negativeCoordsCheck(int, int)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>7.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.rotateLeft()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>10.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.rotateRight()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>10.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Location_v3.withinBoundsCheck(marsExploration.Plateau_v3)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>6.0</value>
+                    </measurement>
+                </method>
+            </class>
+            <class>
+                <name>marsExploration.Plateau_v3</name>
+                <measurement>
+                    <short-name>PuM</short-name>
+                    <long-name>Public Methods</long-name>
+                    <value>6.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProM</short-name>
+                    <long-name>Protected Methods</long-name>
+                    <value>3.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriM</short-name>
+                    <long-name>Private Methods</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>A</short-name>
+                    <long-name>Attributes</long-name>
+                    <value>2.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PuA</short-name>
+                    <long-name>Public Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProA</short-name>
+                    <long-name>Protected Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriA</short-name>
+                    <long-name>Private Attributes</long-name>
+                    <value>2.0</value>
+                </measurement>
+                <method>
+                    <name>marsExploration.Plateau_v3.Plateau_v3(java.lang.String)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>5.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.aNewMethod()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>2.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.createBoundary(java.util.List)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.createRovers(java.util.List)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>11.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.dispatchRovers()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.getBoundry()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>1.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.getRovers()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>1.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.newMethod1()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Plateau_v3.retrieveNavigationDetails(java.lang.String)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>9.0</value>
+                    </measurement>
+                </method>
+            </class>
+            <class>
+                <name>marsExploration.Rover_v3</name>
+                <measurement>
+                    <short-name>PuM</short-name>
+                    <long-name>Public Methods</long-name>
+                    <value>5.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProM</short-name>
+                    <long-name>Protected Methods</long-name>
+                    <value>1.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriM</short-name>
+                    <long-name>Private Methods</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>A</short-name>
+                    <long-name>Attributes</long-name>
+                    <value>2.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PuA</short-name>
+                    <long-name>Public Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>ProA</short-name>
+                    <long-name>Protected Attributes</long-name>
+                    <value>0.0</value>
+                </measurement>
+                <measurement>
+                    <short-name>PriA</short-name>
+                    <long-name>Private Attributes</long-name>
+                    <value>2.0</value>
+                </measurement>
+                <method>
+                    <name>marsExploration.Rover_v3.Rover_v3(marsExploration.Location_v3, java.lang.String)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Rover_v3.anotherMethod()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>1.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Rover_v3.followInstructions()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>10.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Rover_v3.isAt(marsExploration.Location_v3)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>2.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Rover_v3.newMethod1()</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>4.0</value>
+                    </measurement>
+                </method>
+                <method>
+                    <name>marsExploration.Rover_v3.newMethod2(java.lang.String)</name>
+                    <measurement>
+                        <short-name>SLOC</short-name>
+                        <long-name>Single Lines of Code</long-name>
+                        <value>3.0</value>
+                    </measurement>
+                </method>
+            </class>
+        </group>
+    </project>
+</metrics>

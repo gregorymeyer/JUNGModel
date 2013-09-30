@@ -77,6 +77,7 @@ public class CaptureOOMetrics {
 		GraphWrapper graph = graphContext.getGraph();
 		GraphPopulator graphPopulator = new GraphPopulator();
 		
+		
 		graphPopulator.populate(graph, "testData/TWRover_v1.xml");
 	
 		assertEquals(NodeType.PACKAGENODE.toString(),graph.getNode("marsExploration").getProperty("NodeType"));
