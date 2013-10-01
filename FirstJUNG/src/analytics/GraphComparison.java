@@ -249,21 +249,18 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 			List<Vertex> newPredecessors = new ArrayList<Vertex>();
 			List<Vertex> predecessors = new ArrayList<Vertex>();
 			{
-				if(nodeChange.hasChanged())
+				if(nodeChange.isNew())
+				{predecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));}
+				else if(nodeChange.isDeleted())
+				{predecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));}
+				else
 				{
-					if(nodeChange.isNew())
-					{predecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));}
-					else if(nodeChange.isDeleted())
-					{predecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));}
-					else
-					{
-						oldPredecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));
-						newPredecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));
-						predecessors =  removeDuplicates(oldPredecessors,newPredecessors);
-					}
-					 
-					nodeChange.setPredecessors(findNodeChangeList(predecessors));
+					oldPredecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));
+					newPredecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));
+					predecessors =  removeDuplicates(oldPredecessors,newPredecessors);
 				}
+				 
+				nodeChange.setPredecessors(findNodeChangeList(predecessors));
 			}
 		}
 	}
@@ -274,21 +271,18 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		List<Vertex> newSuccessors = new ArrayList<Vertex>();
 		for(NodeChange nodeChange : nodeChanges)
 		{
-			if(nodeChange.hasChanged())
+			if(nodeChange.isNew())
+			{newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));}
+			else if(nodeChange.isDeleted())
+			{oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));}
+			else
 			{
-				if(nodeChange.isNew())
-				{newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));}
-				else if(nodeChange.isDeleted())
-				{oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));}
-				else
-				{
-					oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));
-					newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));
-				}
-				 
-				List<Vertex> successors =  removeDuplicates(oldSuccessors,newSuccessors);
-				nodeChange.setSuccessors(findNodeChangeList(successors));
+				oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));
+				newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));
 			}
+			 
+			List<Vertex> successors =  removeDuplicates(oldSuccessors,newSuccessors);
+			nodeChange.setSuccessors(findNodeChangeList(successors));
 		}
 	}
 

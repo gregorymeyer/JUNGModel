@@ -3,7 +3,7 @@ package analytics;
 public class NodeSummary {
 
 	private final String GMLid;
-	private final int firstAppearance;
+	private int firstAppearance = 0;
 	private Integer lastAppearance = null;
 	private Integer changeCount = 0;
 
@@ -17,7 +17,6 @@ public class NodeSummary {
 	}
 
 	public int getFirstAppearance() {
-		
 		// TODO Auto-generated method stub
 		return firstAppearance;
 	}

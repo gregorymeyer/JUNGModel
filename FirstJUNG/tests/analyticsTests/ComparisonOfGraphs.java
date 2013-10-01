@@ -265,9 +265,9 @@ public class ComparisonOfGraphs {
 	public void shouldCorrectlyIdentifySuccessorsOfChangedNodes() throws Exception
 	{
 		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/Rover/1.graphml");
 		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v3.graphml");
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/Rover/2.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph();
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 		GraphPopulator graphPopulator = new GraphPopulator();
@@ -275,8 +275,8 @@ public class ComparisonOfGraphs {
 		NodeChange Plateau = null;
 		NodeChange Rover = null;
 		
-		graphPopulator.populate(oldGraph, "testData/TWRover_v2.xml");
-		graphPopulator.populate(newGraph, "testData/TWRover_v3.xml");
+		graphPopulator.populate(oldGraph, "testData/Rover/1.xml");
+		graphPopulator.populate(newGraph, "testData/Rover/2.xml");
 		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
 		for(NodeChange nodeChange : nodeChanges)
 		{
@@ -297,9 +297,9 @@ public class ComparisonOfGraphs {
 	public void shouldCorrectlyIdentifyPredecessorsOfChangedNodes() throws Exception
 	{
 		GraphManager graphManager = new GraphManager();
-		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v2.graphml");
+		GraphContext oldGraphContext = graphManager.captureGraphMLFile("testData/Rover/1.graphml");
 		GraphWrapper oldGraph = oldGraphContext.getGraph();
-		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/TWRover_v3.graphml");
+		GraphContext newGraphContext = graphManager.captureGraphMLFile("testData/Rover/2.graphml");
 		GraphWrapper newGraph = newGraphContext.getGraph();
 		GraphComparison graphComparison = new GraphComparison(oldGraph,newGraph);
 		GraphPopulator graphPopulator = new GraphPopulator();
@@ -308,8 +308,8 @@ public class ComparisonOfGraphs {
 		NodeChange Rover = null;
 		NodeChange Alien = null;
 		
-		graphPopulator.populate(oldGraph, "testData/TWRover_v2.xml");
-		graphPopulator.populate(newGraph, "testData/TWRover_v3.xml");
+		graphPopulator.populate(oldGraph, "testData/Rover/1.xml");
+		graphPopulator.populate(newGraph, "testData/Rover/2.xml");
 		List<NodeChange> nodeChanges = graphComparison.nodeChanges();
 		for(NodeChange nodeChange : nodeChanges)
 		{

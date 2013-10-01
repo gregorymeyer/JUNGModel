@@ -2,7 +2,6 @@ package metricsExtractionTests;
 
 import static org.junit.Assert.*;
 import metricsExtraction.VersionHandler;
-
 import metricsExtraction.VersionHandler;
 
 import org.junit.Test;
@@ -21,7 +20,18 @@ public class CaptureVersionsFromFolder {
 		versionHandler.createGraphsFromFolder("TestData/Rover");
 		versionHandler.createNodeChangeList();
 		int comparisonSize = 3;
-		assertEquals( comparisonSize, versionHandler.getNodeChangeList().size());
+		assertEquals(comparisonSize, versionHandler.getNodeChangeList().size());
+	}
+	
+	@Test
+	public void shouldBeAbleToReturnAListOfEdgeSummaries() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		assertFalse(versionHandler.getEdgeSummaryList().isEmpty());
 	}
 
 }
