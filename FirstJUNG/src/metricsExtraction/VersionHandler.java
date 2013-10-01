@@ -7,6 +7,8 @@ import graphML.GraphWrapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import analytics.EdgeSummary;
 import analytics.GraphComparison;
 import analytics.NodeChange;
 import analytics.NodeSummary;
@@ -19,6 +21,7 @@ public class VersionHandler {
 	List<GraphWrapper> graphList = new ArrayList<>();
 	List< List<NodeChange>> nodeChangeList = new ArrayList<>();
 	List<NodeSummary> nodeSummaryList = new ArrayList<>();
+	private List<EdgeSummary> edgeSummaryList = new ArrayList<>();
 
 	public Boolean createGraphsFromFolder(String folderName) throws Exception {
 		
@@ -70,12 +73,10 @@ public class VersionHandler {
 			for (NodeChange nodeChange: changeList){
 				if (!nodeSummaryExists(nodeChange)){
 					
-					int eventIndex;
+					int eventIndex = 0;
 					if (nodeChange.isNew()){
 						eventIndex = nodeChangeList.indexOf(changeList) + 1;
-					}
-					
-					else {eventIndex = nodeChangeList.indexOf(changeList); }		
+					}	
 					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(), 
 													eventIndex);
 					populateNodeSummary(nodeSummary);
@@ -86,7 +87,7 @@ public class VersionHandler {
 	}
 
 	private void populateNodeSummary(NodeSummary nodeSummary) {
-		findDeletedAt(nodeSummary);
+		findLastAppearance(nodeSummary);
 		findChangeCount(nodeSummary);
 	}
 
@@ -128,8 +129,64 @@ public class VersionHandler {
 			}
 		}
 	}
+	
+	private void findSourceTargetChangeCount(EdgeSummary edgeSummary) 
+	{
+		// If the node has a finite end appearance  
+		if(edgeSummary.getLastAppearance() != null)
+		{
+			Integer startPoint = 0;
+			if(edgeSummary.getFirstAppearance() !=0){startPoint = edgeSummary.getFirstAppearance()-1;}
+			
+			for(int i = startPoint; i<= edgeSummary.getLastAppearance(); i++)
+			{
+				for(NodeChange nodeChange : nodeChangeList.get(i))
+				{
+					for(NodeChange successor: nodeChange.getSuccessors()){
+						if(edgeSummary.getSourceGMLid().equals(nodeChange.getGMLid()) 
+								&& successor.getGMLid().equals(edgeSummary.getTargetGMLid()))
+						{	
+							if (nodeChange.hasChanged()){
+								edgeSummary.incrementSourceChangeCount();
+								if(successor.hasChanged()){
+									edgeSummary.incrementTargetChangeCount();
+								}
+							}
+						}
+					}
+					
+				}
+			}
+			
+		}
+		// If the node exists until the last version
+		else
+		{
+			Integer startPoint = 0;
+			if(edgeSummary.getFirstAppearance() !=0){startPoint = edgeSummary.getFirstAppearance()-1;}
+			
+			for(int i = startPoint; i< nodeChangeList.size(); i++)
+			{
+				for(NodeChange nodeChange : nodeChangeList.get(i))
+				{
+					for(NodeChange successor: nodeChange.getSuccessors()){
+						if(edgeSummary.getSourceGMLid().equals(nodeChange.getGMLid()) 
+								&& successor.getGMLid().equals(edgeSummary.getTargetGMLid()))
+						{	
+							if (nodeChange.hasChanged()){
+								edgeSummary.incrementSourceChangeCount();
+								if(successor.hasChanged()){
+									edgeSummary.incrementTargetChangeCount();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 
-	private void findDeletedAt(NodeSummary nodeSummary) 
+	private void findLastAppearance(NodeSummary nodeSummary) 
 	{
 		// Last version that it was seen in
 		for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
@@ -142,6 +199,24 @@ public class VersionHandler {
 			}
 		}
 	}
+	
+	private void findLastAppearance(EdgeSummary edgeSummary) 
+	{
+		// Last version that it was seen in
+		for (int i = edgeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
+			for (NodeChange nodeChange: nodeChangeList.get(i)){
+				for (NodeChange successor: nodeChange.getSuccessors()){
+					if (successor.getGMLid().equals(edgeSummary.getTargetGMLid())
+							&& nodeChange.getGMLid().equals(edgeSummary.getSourceGMLid())
+							&& (successor.isDeleted() | nodeChange.isDeleted())){
+		
+						edgeSummary.setLastAppearance(i);
+					}
+				}			
+			}
+		}
+	}
+
 
 	private boolean nodeSummaryExists(NodeChange nodeChange) {
 		for (NodeSummary nodeSummary: nodeSummaryList){
@@ -158,6 +233,102 @@ public class VersionHandler {
 			if (nodeSummary.getGMLid().equals(gmlid)){
 				return nodeSummary;
 			}
+		}
+		return null;
+	}
+
+	public void createAndPopulateEdgeSummaryList() 
+	{
+		for(List<NodeChange> changeList : nodeChangeList)
+		{
+			for(NodeChange nodeChange : changeList)
+			{
+				if(isClassNode(nodeChange))
+					createEdgeSummary(nodeChange,nodeChangeList.indexOf(changeList));
+			}	
+		}
+	}
+	
+	private void createEdgeSummary(NodeChange nodeChange, int comparisonNumber) 
+	{
+		for(NodeChange successorNodeChange : nodeChange.getSuccessors())
+		{
+			if(isClassNode(successorNodeChange ))
+			{
+				if(!edgeSummaryExists(nodeChange,successorNodeChange))
+				{
+					int eventIndex = 0;
+					if (nodeChange.isNew() | successorNodeChange.isNew())
+					{
+						eventIndex = comparisonNumber + 1;
+					}
+					EdgeSummary edgeSummary = new EdgeSummary(nodeChange.getGMLid(), 
+							successorNodeChange.getGMLid(),eventIndex);
+					
+					populateEdgeSummary(edgeSummary);
+					edgeSummaryList.add(edgeSummary);
+				}
+			}
+		}	
+	}
+
+	private boolean isClassNode(NodeChange nodeChange) 
+	{
+		if(nodeChange.getNodeType().equals("CLASSNODE"))
+			return true;
+		return false;
+	}
+
+	private void populateEdgeSummary(EdgeSummary edgeSummary)
+	{
+		findLastAppearance(edgeSummary);
+		findSourceTargetChangeCount(edgeSummary);
+	}
+/*
+	private void findSourceChangeCount(EdgeSummary edgeSummary) {
+		for
+			for(NodeChange successorNodeChange : nodeChange.getSuccessors())
+			{
+				if(isClassNode(successorNodeChange ))
+				{
+					if(!edgeSummaryExists(nodeChange,successorNodeChange))
+					{
+						int eventIndex = 0;
+						if (nodeChange.isNew() | successorNodeChange.isNew())
+						{
+							eventIndex = comparisonNumber + 1;
+						}
+						EdgeSummary edgeSummary = new EdgeSummary(nodeChange.getGMLid(), 
+								successorNodeChange.getGMLid(),eventIndex);
+						
+						populateEdgeSummary(edgeSummary);
+						edgeSummaryList.add(edgeSummary);
+					}
+				}
+			}	
+		
+	}
+*/
+	private boolean edgeSummaryExists(NodeChange nodeChange, NodeChange successorNodeChange) 
+	{
+		for(EdgeSummary edgeSummary : edgeSummaryList)
+		{
+			if(edgeSummary.getSourceGMLid().equals(nodeChange.getGMLid()) && 
+					edgeSummary.getTargetGMLid().equals(successorNodeChange.getGMLid()))
+				return true;
+		}
+		return false;
+	}
+
+	public List<EdgeSummary> getEdgeSummaryList() 
+	{
+		return this.edgeSummaryList;
+	}
+
+	public EdgeSummary getEdgeSummary(String source,String target) {
+		for (EdgeSummary edgeSummary: edgeSummaryList){
+			if(edgeSummary.getSourceGMLid().equals(source) && edgeSummary.getTargetGMLid().equals(target))
+				return edgeSummary;
 		}
 		return null;
 	}
