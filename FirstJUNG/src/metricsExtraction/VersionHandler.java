@@ -7,6 +7,7 @@ import graphML.GraphWrapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import analytics.GraphComparison;
 import analytics.NodeChange;
 import analytics.NodeSummary;
@@ -85,25 +86,8 @@ public class VersionHandler {
 		}
 	}
 
-<<<<<<< HEAD
-	private NodeSummary populateNodeSummary(NodeSummary nodeSummary) {
-		//Thought about using integer-indexed "for" loop starting from first
-		//appearance but....meh
-		Integer startPoint;
-		//If node is not there from beginning then go back 1 version to translate to correct NodeChange
-		//comparison version to get data.
-		if (nodeSummary.getFirstAppearance() != 0){startPoint = nodeSummary.getFirstAppearance() - 1;}
-		else {startPoint = nodeSummary.getFirstAppearance();}
-			for (int i = startPoint; i < nodeChangeList.size(); i++){
-				for (NodeChange nodeChange: nodeChangeList.get(i)){
-					if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
-							&& nodeChange.isDeleted()){
-						
-						nodeSummary.deletedAt(i);
-					}
-=======
 	private void populateNodeSummary(NodeSummary nodeSummary) {
-		findDeletedAt(nodeSummary);
+		findLastAppearance(nodeSummary);
 		findChangeCount(nodeSummary);
 	}
 
@@ -123,7 +107,6 @@ public class VersionHandler {
 					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
 							nodeChange.hasChanged())
 						nodeSummary.incrementChangeCount();
->>>>>>> refs/heads/master
 				}
 			}
 			
@@ -145,9 +128,11 @@ public class VersionHandler {
 				}
 			}
 		}
+		
 	}
 
-	private void findDeletedAt(NodeSummary nodeSummary) 
+	
+	private void findLastAppearance(NodeSummary nodeSummary) 
 	{
 		// Last version that it was seen in
 		for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
