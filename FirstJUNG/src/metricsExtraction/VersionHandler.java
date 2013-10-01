@@ -92,7 +92,12 @@ public class VersionHandler {
 	private NodeSummary populateNodeSummary(NodeSummary nodeSummary) {
 		//Thought about using integer-indexed "for" loop starting from first
 		//appearance but....meh
-			for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
+		Integer startPoint;
+		//If node is not there from beginning then go back 1 version to translate to correct NodeChange
+		//comparison version to get data.
+		if (nodeSummary.getFirstAppearance() != 0){startPoint = nodeSummary.getFirstAppearance() - 1;}
+		else {startPoint = nodeSummary.getFirstAppearance();}
+			for (int i = startPoint; i < nodeChangeList.size(); i++){
 				for (NodeChange nodeChange: nodeChangeList.get(i)){
 					if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
 							&& nodeChange.isDeleted()){

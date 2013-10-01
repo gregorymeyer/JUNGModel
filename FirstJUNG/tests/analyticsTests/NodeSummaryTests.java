@@ -35,7 +35,7 @@ public class NodeSummaryTests {
 		NodeSummary treeLifeSummary = versionHandler.getNodeSummary("jupiterExploration.TreeLife");
 		
 		assertEquals(new Integer(1) , alienSummary.getDeletedAt());
-		//assertEquals(2, treeLifeSummary.getDeletedAt());
+		assertEquals(new Integer(2), treeLifeSummary.getDeletedAt());
 	}
 	
 	@Test
@@ -53,6 +53,7 @@ public class NodeSummaryTests {
 		versionHandler.createAndPopulateNodeSummaryList();
 		
 		NodeSummary locationSummary = versionHandler.getNodeSummary("marsExploration.Location");
+		
 		assertNull(locationSummary.getDeletedAt());
 		
 	}
