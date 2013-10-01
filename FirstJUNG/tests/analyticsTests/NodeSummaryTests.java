@@ -34,8 +34,13 @@ public class NodeSummaryTests {
 		NodeSummary alienSummary = versionHandler.getNodeSummary("marsExploration.Alien");
 		NodeSummary treeLifeSummary = versionHandler.getNodeSummary("jupiterExploration.TreeLife");
 		
+<<<<<<< HEAD
+		assertEquals(new Integer(1) , alienSummary.getDeletedAt());
+		assertEquals(new Integer(2), treeLifeSummary.getDeletedAt());
+=======
 		assertEquals(new Integer(1) , alienSummary.getLastAppearance());
 		assertEquals(new Integer(2), treeLifeSummary.getLastAppearance());
+>>>>>>> refs/heads/master
 	}
 	
 	@Test
@@ -53,8 +58,13 @@ public class NodeSummaryTests {
 		versionHandler.createAndPopulateNodeSummaryList();
 		
 		NodeSummary locationSummary = versionHandler.getNodeSummary("marsExploration.Location");
+<<<<<<< HEAD
+		
+		assertNull(locationSummary.getDeletedAt());
+=======
 		NodeSummary roverSummary = versionHandler.getNodeSummary("marsExploration.Rover");
 		NodeSummary plateauSummary = versionHandler.getNodeSummary("marsExploration.Plateau");
+>>>>>>> refs/heads/master
 		
 		assertNull(locationSummary.getLastAppearance());
 		assertNull(roverSummary.getLastAppearance());
