@@ -17,7 +17,6 @@ public class NodeSummary {
 	}
 
 	public int getFirstAppearance() {
-		
 		// TODO Auto-generated method stub
 		return firstAppearance;
 	}
