@@ -1,6 +1,7 @@
 package metricsExtractionTests;
 
 import static org.junit.Assert.*;
+import metricsExtraction.VersionHandler;
 
 import metricsExtraction.VersionHandler;
 
