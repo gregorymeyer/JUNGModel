@@ -33,9 +33,8 @@ public class NodeSummaryTests {
 		
 		NodeSummary alienSummary = versionHandler.getNodeSummary("marsExploration.Alien");
 		NodeSummary treeLifeSummary = versionHandler.getNodeSummary("jupiterExploration.TreeLife");
-		assertEquals(new Integer(1) , alienSummary.getLastAppearance());
-		assertEquals(new Integer(2), treeLifeSummary.getLastAppearance());
-		assertEquals(new Integer(1) , alienSummary.getLastAppearance());
+		
+		assertEquals(new Integer(1), alienSummary.getLastAppearance());
 		assertEquals(new Integer(2), treeLifeSummary.getLastAppearance());
 	}
 	

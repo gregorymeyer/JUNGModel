@@ -8,6 +8,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import analytics.EdgeSummary;
 import analytics.GraphComparison;
 import analytics.NodeChange;
@@ -86,6 +87,7 @@ public class VersionHandler {
 		}
 	}
 
+
 	private void populateNodeSummary(NodeSummary nodeSummary) {
 		findLastAppearance(nodeSummary);
 		findChangeCount(nodeSummary);
@@ -128,6 +130,7 @@ public class VersionHandler {
 				}
 			}
 		}
+		
 	}
 	
 	private void findSourceTargetChangeCount(EdgeSummary edgeSummary) 
@@ -186,7 +189,8 @@ public class VersionHandler {
 		}
 	}
 
-	private void findLastAppearance(NodeSummary nodeSummary) 
+	
+	private void findLastAppearance(NodeSummary nodeSummary)  
 	{
 		// Last version that it was seen in
 		for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
