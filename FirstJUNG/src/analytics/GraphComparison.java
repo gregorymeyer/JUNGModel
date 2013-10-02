@@ -265,7 +265,7 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		}
 	}
 
-	private void findSuccessorsThatChanged() 
+	private void findSuccessorsThatChanged() // change name 
 	{
 		List<Vertex> oldSuccessors = new ArrayList<Vertex>();
 		List<Vertex> newSuccessors = new ArrayList<Vertex>();
@@ -300,14 +300,19 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		return ret;
 	}
 
-	private List<Vertex> removeDuplicates(List<Vertex> old, List<Vertex> newOnes) 
+	private List<Vertex> removeDuplicates(List<Vertex> oldOnes, List<Vertex> newOnes) 
 	{
-		for(Vertex node : newOnes)
+		List<Vertex> temp = new ArrayList<Vertex>(oldOnes);
+		for(Vertex newNode : newOnes)
 		{
-			if(!old.contains(node))
-				old.add(node);
+			for(Vertex oldNode : oldOnes)
+			{
+				if(oldNode.getProperty("GMLid").equals(newNode.getProperty("GMLid")))
+					temp.remove(oldNode);
+			}
 		}
-		return old;
+		newOnes.addAll(temp);
+		return newOnes;
 	}
 
 	private List<NodeChange> getChangedNeighbours(List<Vertex> neighbours) 

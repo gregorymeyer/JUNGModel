@@ -19,7 +19,6 @@ public class EdgeSummaryTests {
 		
 		EdgeSummary plateauToRoverSummary = versionHandler.getEdgeSummary("marsExploration.Plateau", "marsExploration.Rover");
 		assertEquals(new Integer(2), plateauToRoverSummary.getSourceChangeCount());
-		
 	}
 	
 	@Test
@@ -31,7 +30,6 @@ public class EdgeSummaryTests {
 		
 		EdgeSummary plateauToRoverSummary = versionHandler.getEdgeSummary("marsExploration.Plateau", "marsExploration.Rover");
 		assertEquals(new Integer(2), plateauToRoverSummary.getTargetChangeCount());
-		
 	}
 	
 	@Test
@@ -45,8 +43,6 @@ public class EdgeSummaryTests {
 		EdgeSummary roverToLocationSummary = versionHandler.getEdgeSummary("marsExploration.Rover", "marsExploration.Location");
 		assertEquals(1, alienToLocationSummary.getFirstAppearance());
 		assertEquals(0, roverToLocationSummary.getFirstAppearance());
-
-		
 	}
 	
 	@Test

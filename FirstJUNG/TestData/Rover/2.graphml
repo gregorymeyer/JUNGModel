@@ -10,14 +10,9 @@
 <edge source="jupiterExploration" target="jupiterExploration.TreeLife"></edge>
 <edge source="marsExploration" target="marsExploration.Location"></edge>
 <edge source="marsExploration.Location" target="marsExploration.Plateau"></edge>
-<edge source="marsExploration.Plateau" target="marsExploration.Location"></edge>
-<edge source="marsExploration.Rover" target="marsExploration.Location"></edge>
 <edge source="marsExploration" target="marsExploration.Plateau"></edge>
 <edge source="marsExploration.Plateau" target="marsExploration.Location"></edge>
 <edge source="marsExploration.Plateau" target="marsExploration.Rover"></edge>
-<edge source="marsExploration.Location" target="marsExploration.Plateau"></edge>
 <edge source="marsExploration" target="marsExploration.Rover"></edge>
-<edge source="marsExploration.Rover" target="marsExploration.Location"></edge>
-<edge source="marsExploration.Plateau" target="marsExploration.Rover"></edge>
-</graph>
+<edge source="marsExploration.Rover" target="marsExploration.Location"></edge>marsExploration.PlateaumarsExploration.RovermarsExploration.LocationmarsExploration.Plateau</graph>
 </graphml>
