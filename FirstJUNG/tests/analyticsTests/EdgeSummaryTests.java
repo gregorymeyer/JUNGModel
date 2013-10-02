@@ -18,7 +18,7 @@ public class EdgeSummaryTests {
 		versionHandler.createAndPopulateEdgeSummaryList();
 		
 		EdgeSummary plateauToRoverSummary = versionHandler.getEdgeSummary("marsExploration.Plateau", "marsExploration.Rover");
-		assertEquals(new Integer(2), plateauToRoverSummary.getSourceChangeCount());
+		assertEquals(new Integer(3), plateauToRoverSummary.getSourceChangeCount());
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class EdgeSummaryTests {
 		versionHandler.createAndPopulateEdgeSummaryList();
 		
 		EdgeSummary plateauToRoverSummary = versionHandler.getEdgeSummary("marsExploration.Plateau", "marsExploration.Rover");
-		assertEquals(new Integer(2), plateauToRoverSummary.getTargetChangeCount());
+		assertEquals(new Integer(3), plateauToRoverSummary.getSourceAndTargetChangeCount());
 	}
 	
 	@Test
@@ -69,6 +69,35 @@ public class EdgeSummaryTests {
 		EdgeSummary locationToPlateauSummary = versionHandler.getEdgeSummary("marsExploration.Location", "marsExploration.Plateau");
 		assertNull(locationToPlateauSummary.getLastAppearance());
 		assertEquals(new Integer(1), alienToLocationSummary.getLastAppearance());
+	}
+	
+	@Test
+	public void shouldKnowNumberOfTimesThatASourceAndTargetBothChange() throws Exception{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		EdgeSummary alienToLocationSummary = versionHandler.getEdgeSummary("marsExploration.Alien", "marsExploration.Location");
+		EdgeSummary locationToPlateauSummary = versionHandler.getEdgeSummary("marsExploration.Location", "marsExploration.Plateau");
+		assertEquals(new Integer (2),locationToPlateauSummary.getSourceAndTargetChangeCount());
+		assertEquals(new Integer(1), alienToLocationSummary.getSourceAndTargetChangeCount());
+	}
+	
+	@Test
+	public void shouldKnowTheProbabilityThatTargetWillChangeIfSourceChanges() throws Exception{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		EdgeSummary alienToLocationSummary = versionHandler.getEdgeSummary("marsExploration.Alien", "marsExploration.Location");
+		EdgeSummary locationToPlateauSummary = versionHandler.getEdgeSummary("marsExploration.Location", "marsExploration.Plateau");
+		EdgeSummary roverToLocationSummary = versionHandler.getEdgeSummary("marsExploration.Rover", "marsExploration.Location");
+		assertEquals(new Double(1.0),locationToPlateauSummary.getChangePropagationProb());
+		assertEquals(new Double(2.0/3.0), roverToLocationSummary.getChangePropagationProb());
+		assertEquals(new Double(0.5), alienToLocationSummary.getChangePropagationProb());
+		
 	}
 	
 }

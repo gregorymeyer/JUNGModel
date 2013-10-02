@@ -150,9 +150,11 @@ public class VersionHandler {
 								&& successor.getGMLid().equals(edgeSummary.getTargetGMLid()))
 						{	
 							if (nodeChange.hasChanged()){
-								edgeSummary.incrementSourceChangeCount();
+								//edgeSummary.incrementSourceChangeCount();
+								edgeSummary.addVersionToSourceChanges(i);
 								if(successor.hasChanged()){
-									edgeSummary.incrementTargetChangeCount();
+									//edgeSummary.incrementTargetChangeCount();
+									edgeSummary.addVersionToSourceAndTargetChanges(i);
 								}
 							}
 						}
@@ -177,9 +179,11 @@ public class VersionHandler {
 								&& successor.getGMLid().equals(edgeSummary.getTargetGMLid()))
 						{	
 							if (nodeChange.hasChanged()){
-								edgeSummary.incrementSourceChangeCount();
+								//edgeSummary.incrementSourceChangeCount();
+								edgeSummary.addVersionToSourceChanges(i);
 								if(successor.hasChanged()){
-									edgeSummary.incrementTargetChangeCount();
+									//edgeSummary.incrementTargetChangeCount();
+									edgeSummary.addVersionToSourceAndTargetChanges(i);
 								}
 							}
 						}

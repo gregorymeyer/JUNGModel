@@ -1,5 +1,8 @@
 package analytics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EdgeSummary 
 {
 
@@ -9,7 +12,9 @@ public class EdgeSummary
 	private Integer lastAppearance = null;
 	private Integer sourceChangeCount;
 	private Integer targetChangeCount;
-
+	private List<Integer> sourceChangeList = new ArrayList<>();
+	private List<Integer> sourceAndTargetChangeList = new ArrayList<>();
+	
 	public EdgeSummary(String source, String target, int firstAppear) 
 	{
 		this.sourceGMLid = source;
@@ -30,7 +35,7 @@ public class EdgeSummary
 	}
 
 	public Integer getSourceChangeCount() {
-		return this.sourceChangeCount;
+		return this.sourceChangeList.size();
 	}
 
 	public int getFirstAppearance() {	
@@ -45,18 +50,20 @@ public class EdgeSummary
 		return lastAppearance;
 	}
 
-	public void incrementSourceChangeCount() {
-		this.sourceChangeCount +=1;
-		
+	public Integer getSourceAndTargetChangeCount() {
+		return this.sourceAndTargetChangeList.size();
 	}
 
-	public void incrementTargetChangeCount() {
-		this.targetChangeCount +=1;
-		
+	public void addVersionToSourceChanges(int i) {
+		sourceChangeList.add(i);
 	}
 
-	public Integer getTargetChangeCount() {
-		return this.targetChangeCount;
+	public void addVersionToSourceAndTargetChanges(int i) {
+		sourceAndTargetChangeList.add(i);
+	}
+
+	public Double getChangePropagationProb() {
+		return((double)(sourceAndTargetChangeList.size())/(double)(sourceChangeList.size()));
 	}
 
 }
