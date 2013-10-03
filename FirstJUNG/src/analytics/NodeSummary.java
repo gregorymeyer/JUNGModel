@@ -1,11 +1,14 @@
 package analytics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NodeSummary {
 
 	private final String GMLid;
 	private int firstAppearance = 0;
 	private Integer lastAppearance = null;
-	private Integer changeCount = 0;
+	private List<Integer> changeVersionsList = new ArrayList<>();
 
 	public NodeSummary(String gmLid, int firstAppear) {
 		this.GMLid = gmLid;
@@ -31,12 +34,16 @@ public class NodeSummary {
 
 	public Integer getChangeCount() 
 	{
-		return this.changeCount ;
+		return this.changeVersionsList.size();
 	}
 
-	public void incrementChangeCount() 
+	public void addVersionToChangeList(int i) 
 	{
-		this.changeCount += 1;
+		changeVersionsList.add(i);
+	}
+
+	public List<Integer> getChangeVersionsList() {
+		return this.changeVersionsList;
 	}
 
 }

@@ -108,7 +108,7 @@ public class VersionHandler {
 				{
 					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
 							nodeChange.hasChanged())
-						nodeSummary.incrementChangeCount();
+						nodeSummary.addVersionToChangeList(i);
 				}
 			}
 			
@@ -126,7 +126,7 @@ public class VersionHandler {
 				{
 					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
 							nodeChange.hasChanged())
-						nodeSummary.incrementChangeCount();
+						nodeSummary.addVersionToChangeList(i);
 				}
 			}
 		}

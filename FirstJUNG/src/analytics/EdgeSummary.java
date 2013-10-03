@@ -66,4 +66,12 @@ public class EdgeSummary
 		return((double)(sourceAndTargetChangeList.size())/(double)(sourceChangeList.size()));
 	}
 
+	public List<Integer> getSourceChangeList() {
+		return this.sourceChangeList;
+	}
+
+	public List<Integer> getSourceAndTargetChangeList() {
+		return this.sourceAndTargetChangeList;
+	}
+
 }

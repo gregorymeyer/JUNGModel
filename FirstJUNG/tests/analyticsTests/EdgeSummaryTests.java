@@ -100,4 +100,26 @@ public class EdgeSummaryTests {
 		
 	}
 	
+	@Test
+	public void shouldBeAbleToReturnListContainingVersionThatSourceHasChanged() throws Exception{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		EdgeSummary plateauToRoverSummary = versionHandler.getEdgeSummary("marsExploration.Plateau", "marsExploration.Rover");
+		assertFalse(plateauToRoverSummary.getSourceChangeList().isEmpty());
+	}
+	
+	@Test
+	public void shouldBeAbleToReturnListContainingVersionThatSourceAndTargetHaveChanged() throws Exception{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		EdgeSummary plateauToRoverSummary = versionHandler.getEdgeSummary("marsExploration.Plateau", "marsExploration.Rover");
+		assertFalse(plateauToRoverSummary.getSourceAndTargetChangeList().isEmpty());
+	}
+	
 }

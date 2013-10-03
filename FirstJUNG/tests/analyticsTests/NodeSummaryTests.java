@@ -25,7 +25,7 @@ public class NodeSummaryTests {
 	}
 	
 	@Test
-	public void canCorrectlyIdentifyVersionOfDeletionForNode() throws Exception{
+	public void canCorrectlyIdentifyVersionOfLastAppearanceForNode() throws Exception{
 		VersionHandler versionHandler = new VersionHandler();
 		versionHandler.createGraphsFromFolder("TestData/Rover");
 		versionHandler.createNodeChangeList();
@@ -36,13 +36,6 @@ public class NodeSummaryTests {
 		
 		assertEquals(new Integer(1), alienSummary.getLastAppearance());
 		assertEquals(new Integer(2), treeLifeSummary.getLastAppearance());
-	}
-	
-	@Test
-	public void canCorrectlyIdentifyNumberOfTimesNodeHasChanged() throws Exception{
-		VersionHandler versionHandler = new VersionHandler();
-		versionHandler.createGraphsFromFolder("TestData/Rover");
-		versionHandler.createNodeChangeList();
 	}
 	
 	@Test
@@ -60,6 +53,23 @@ public class NodeSummaryTests {
 		assertNull(locationSummary.getLastAppearance());
 		assertNull(roverSummary.getLastAppearance());
 		assertNull(plateauSummary.getLastAppearance());
+	}
+	
+	@Test
+	public void shouldKnowTheVersionsInWhichTheNodeChanges() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		
+		NodeSummary locationSummary = versionHandler.getNodeSummary("marsExploration.Location");
+		NodeSummary alienSummary = versionHandler.getNodeSummary("marsExploration.Alien");
+		NodeSummary treeLifeSummary = versionHandler.getNodeSummary("jupiterExploration.TreeLife");
+		
+		assertTrue(locationSummary.getChangeVersionsList().contains(2));
+		assertTrue(alienSummary.getChangeVersionsList().contains(1));
+		assertFalse(treeLifeSummary.getChangeVersionsList().contains(0));
 	}
 	
 	@Test
