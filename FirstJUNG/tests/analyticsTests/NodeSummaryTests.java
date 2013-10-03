@@ -2,6 +2,7 @@ package analyticsTests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import analytics.NodeSummary;
@@ -87,5 +88,36 @@ public class NodeSummaryTests {
 		assertEquals(new Integer(2), locationSummary.getChangeCount());
 		assertEquals(new Integer(2), alienSummary.getChangeCount());
 		assertEquals(new Integer(2), treeLifeSummary.getChangeCount());
+	}
+	
+	@Test
+	public void shouldBeAbleToReturnAListOfProbabilitiesForEachGraphVersion() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		
+		//NodeSummary locationSummary = versionHandler.getNodeSummary("marsExploration.Location");
+		NodeSummary alienSummary = versionHandler.getNodeSummary("marsExploration.Alien");
+		
+		assertTrue(alienSummary.getVersionProbabilities().contains(0.0));
+		assertEquals(4,alienSummary.getVersionProbabilities().size());
+	}
+	
+	@Test
+	public void shouldBeAbleToReturnAListOfCorrectProbabilitiesForEachGraphVersion() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		
+		NodeSummary locationSummary = versionHandler.getNodeSummary("marsExploration.Location");
+		NodeSummary alienSummary = versionHandler.getNodeSummary("marsExploration.Alien");
+		
+		assertTrue(alienSummary.getVersionProbabilities().contains(0.0));
+		assertEquals(1.0, alienSummary.getVersionProbabilities().get(1), 0.1);
+		assertEquals(0.3, locationSummary.getVersionProbabilities().get(2), 0.1);
 	}
 }

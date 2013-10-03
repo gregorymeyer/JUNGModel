@@ -79,14 +79,14 @@ public class VersionHandler {
 						eventIndex = nodeChangeList.indexOf(changeList) + 1;
 					}	
 					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(), 
-													eventIndex);
+													eventIndex,graphList.size());
 					populateNodeSummary(nodeSummary);
+					nodeSummary.calculateVersionProbList();
 					nodeSummaryList.add(nodeSummary);
 				}
 			}
 		}
 	}
-
 
 	private void populateNodeSummary(NodeSummary nodeSummary) {
 		findLastAppearance(nodeSummary);
@@ -95,6 +95,7 @@ public class VersionHandler {
 
 	private void findChangeCount(NodeSummary nodeSummary) 
 	{
+		
 		// If the node has a finite end appearance  
 		if(nodeSummary.getLastAppearance() != null)
 		{
@@ -108,7 +109,7 @@ public class VersionHandler {
 				{
 					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
 							nodeChange.hasChanged())
-						nodeSummary.addVersionToChangeList(i);
+						nodeSummary.addVersionToChangeList(i+1);
 				}
 			}
 			
@@ -126,7 +127,7 @@ public class VersionHandler {
 				{
 					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
 							nodeChange.hasChanged())
-						nodeSummary.addVersionToChangeList(i);
+						nodeSummary.addVersionToChangeList(i+1);
 				}
 			}
 		}
@@ -151,10 +152,10 @@ public class VersionHandler {
 						{	
 							if (nodeChange.hasChanged()){
 								//edgeSummary.incrementSourceChangeCount();
-								edgeSummary.addVersionToSourceChanges(i);
+								edgeSummary.addVersionToSourceChanges(i+1);
 								if(successor.hasChanged()){
 									//edgeSummary.incrementTargetChangeCount();
-									edgeSummary.addVersionToSourceAndTargetChanges(i);
+									edgeSummary.addVersionToSourceAndTargetChanges(i+1);
 								}
 							}
 						}
@@ -180,10 +181,10 @@ public class VersionHandler {
 						{	
 							if (nodeChange.hasChanged()){
 								//edgeSummary.incrementSourceChangeCount();
-								edgeSummary.addVersionToSourceChanges(i);
+								edgeSummary.addVersionToSourceChanges(i+1);
 								if(successor.hasChanged()){
 									//edgeSummary.incrementTargetChangeCount();
-									edgeSummary.addVersionToSourceAndTargetChanges(i);
+									edgeSummary.addVersionToSourceAndTargetChanges(i+1);
 								}
 							}
 						}
