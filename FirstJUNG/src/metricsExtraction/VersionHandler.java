@@ -347,4 +347,9 @@ public class VersionHandler {
 		
 	}
 
+	public List<NodeSummary> getNodeSummaryList() 
+	{
+		return this.nodeSummaryList;
+	}
+
 }
