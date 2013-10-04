@@ -5,33 +5,30 @@ import java.util.List;
 
 public class EdgeSummary 
 {
-
-	private String sourceGMLid;
-	private String targetGMLid;
+	private Integer weight = 1;
+	private String source;
+	private String target;
 	private int firstAppearance;
 	private Integer lastAppearance = null;
-	private Integer sourceChangeCount;
-	private Integer targetChangeCount;
 	private List<Integer> sourceChangeList = new ArrayList<>();
 	private List<Integer> sourceAndTargetChangeList = new ArrayList<>();
 	
 	public EdgeSummary(String source, String target, int firstAppear) 
 	{
-		this.sourceGMLid = source;
-		this.targetGMLid = target;
+		this.source = source;
+		this.target = target;
 		this.firstAppearance = firstAppear;
-		this.sourceChangeCount = 0;
-		this.targetChangeCount = 0;
+
 	}
 
 	public String getSourceGMLid() 
 	{
-		return this.sourceGMLid;
+		return this.source;
 	}
 
 	public String getTargetGMLid() 
 	{
-		return this.targetGMLid;
+		return this.target;
 	}
 
 	public Integer getSourceChangeCount() {
