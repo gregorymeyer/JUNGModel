@@ -11,8 +11,11 @@ import graphML.GraphManager;
 import graphML.GraphWrapper;
 import graphML.JSONFormat;
 import graphML.Vertex;
+import metricsExtraction.VersionHandler;
 
 import org.junit.Test;
+
+import analytics.EdgeSummary;
 
 public class JSONFormatTests 
 {
@@ -27,6 +30,23 @@ public class JSONFormatTests
 		
 		assertFalse(graph.getNode("marsExplorationRover").getProperty("GMLid").contains("."));
 		assertFalse(graph.getNode("marsExplorationPlateau").getProperty("GMLid").contains("$"));
+	}
+	
+	@Test
+	public void shouldRemoveAllBadCharactersFromSourceAndTargetInEdgeSummary() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		List<EdgeSummary> edgeSummaries = versionHandler.getEdgeSummaryList();
+		for(EdgeSummary edgeSum : edgeSummaries) JSONFormat.removeBadCharsInSorTar(edgeSum);
+		
+		assertFalse(edgeSummaries.get(0).getSourceGMLid().contains("."));
+		assertFalse(edgeSummaries.get(0).getTargetGMLid().contains("."));
+		assertFalse(edgeSummaries.get(1).getSourceGMLid().contains("."));
+		assertFalse(edgeSummaries.get(1).getTargetGMLid().contains("."));
 	}
 
 }

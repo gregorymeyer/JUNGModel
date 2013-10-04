@@ -71,4 +71,11 @@ public class EdgeSummary
 		return this.sourceAndTargetChangeList;
 	}
 
+	public void updateSorTar(EdgeSummary edgeSum) 
+	{
+		// Update source and target
+		this.source = edgeSum.source;
+		this.target = edgeSum.target;
+	}
+
 }
