@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import analytics.EdgeSummary;
+import analytics.NodeSummary;
 
 public class JSONFormat 
 {
@@ -19,7 +20,24 @@ public class JSONFormat
 			node.addData("GMLid", removeBadChars(node.getProperty("GMLid")));
 		}
 	}
+
+	public static void removeBadCharsInSorTar(EdgeSummary edgeSum) 
+	{
+		String newSource = removeBadChars(edgeSum.getSourceGMLid());
+		String newTarget = removeBadChars(edgeSum.getTargetGMLid());
+		EdgeSummary newEdgeSum = new EdgeSummary(newSource,newTarget,edgeSum.getFirstAppearance());
+		// Overwrite existing source & target
+		edgeSum.updateSorTar(newEdgeSum);
+	}
 	
+	public static void removeBadCharsInGMLids(NodeSummary nodeSum) 
+	{
+		String newGMLid = removeBadChars(nodeSum.getGMLid());
+		int dummyInt = 0;
+		NodeSummary newNodeSum = new NodeSummary(newGMLid,dummyInt,dummyInt);
+		// Overwrite existing GMLid
+		nodeSum.updateGMLid(newNodeSum);
+	}
 	private static String removeBadChars(String string)
 	{
 		populateBadChacaters();
@@ -32,15 +50,6 @@ public class JSONFormat
 			}
 		}
 		return newString;
-	}
-
-	public static void removeBadCharsInSorTar(EdgeSummary edgeSum) 
-	{
-		String newSource = removeBadChars(edgeSum.getSourceGMLid());
-		String newTarget = removeBadChars(edgeSum.getTargetGMLid());
-		EdgeSummary newEdgeSum = new EdgeSummary(newSource,newTarget,edgeSum.getFirstAppearance());
-		// Overwrite existing source & target
-		edgeSum.updateSorTar(newEdgeSum);
 	}
 	
 	private static void populateBadChacaters() 

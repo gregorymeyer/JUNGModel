@@ -16,6 +16,7 @@ import metricsExtraction.VersionHandler;
 import org.junit.Test;
 
 import analytics.EdgeSummary;
+import analytics.NodeSummary;
 
 public class JSONFormatTests 
 {
@@ -49,4 +50,22 @@ public class JSONFormatTests
 		assertFalse(edgeSummaries.get(1).getTargetGMLid().contains("."));
 	}
 
+	@Test
+	public void shouldRemoveAllBadCharactersInGMLidsOfNodeSummary() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		
+		List<NodeSummary> nodeSummaries = versionHandler.getNodeSummaryList();
+		for(NodeSummary nodeSum : nodeSummaries) JSONFormat.removeBadCharsInGMLids(nodeSum);
+		
+		assertFalse(nodeSummaries.get(0).getGMLid().contains("."));
+		assertFalse(nodeSummaries.get(1).getGMLid().contains("."));
+		assertFalse(nodeSummaries.get(2).getGMLid().contains("."));
+		assertFalse(nodeSummaries.get(3).getGMLid().contains("."));
+		assertFalse(nodeSummaries.get(4).getGMLid().contains("."));
+		assertFalse(nodeSummaries.get(5).getGMLid().contains("."));
+	}
 }

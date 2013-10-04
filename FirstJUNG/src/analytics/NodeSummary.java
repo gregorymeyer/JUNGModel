@@ -5,7 +5,7 @@ import java.util.List;
 
 public class NodeSummary {
 
-	private final String GMLid;
+	private String GMLid;
 	private int firstAppearance = 0;
 	private Integer lastAppearance = null;
 	private List<Integer> changeVersionsList = new ArrayList<>();
@@ -102,6 +102,11 @@ public class NodeSummary {
 	public List<Double> getVersionProbabilities() 
 	{
 		return this.versionProbList;
+	}
+
+	public void updateGMLid(NodeSummary nodeSum) 
+	{
+		this.GMLid = nodeSum.GMLid;
 	}
 
 }

@@ -340,4 +340,9 @@ public class VersionHandler {
 			return completed;
 		}
 
+	public List<NodeSummary> getNodeSummaryList() 
+	{
+		return this.nodeSummaryList;
+	}
+
 }
