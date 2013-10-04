@@ -33,5 +33,17 @@ public class CaptureVersionsFromFolder {
 		
 		assertFalse(versionHandler.getEdgeSummaryList().isEmpty());
 	}
+	
+	@Test
+	public void shouldBeAbleToOutputNodeSummaryAndEdgeSummaryListsToJSON() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		assertTrue(versionHandler.convertToJson());
+	}
 
 }

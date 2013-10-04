@@ -5,8 +5,13 @@ import graphML.GraphManager;
 import graphML.GraphWrapper;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 import analytics.EdgeSummary;
@@ -317,5 +322,22 @@ public class VersionHandler {
 		}
 		return null;
 	}
+	
+	public Boolean convertToJson(){
+			Boolean completed = false;
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String nodeSummJson = gson.toJson(nodeSummaryList);
+			String edgeSummJson = gson.toJson(edgeSummaryList);
+			try{
+					FileWriter writer = new FileWriter("JSONfiles/Rover.json");
+					writer.write("{\n\"nodes\": " + nodeSummJson + ",\n\"links\": " + edgeSummJson + "\n}");
+					writer.close();
+					completed = true;
+			}
+			catch (IOException e){
+				e.printStackTrace();
+			}
+			return completed;
+		}
 
 }
