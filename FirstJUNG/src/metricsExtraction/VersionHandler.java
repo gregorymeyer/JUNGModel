@@ -332,6 +332,10 @@ public class VersionHandler {
 				JSONFormat.removeBadCharsInSorTar(edgeSummary);
 			}
 			
+			for(NodeSummary nodeSummary: nodeSummaryList){
+				JSONFormat.removeBadCharsInGMLids(nodeSummary);
+			}
+			
 			String nodeSummJson = gson.toJson(nodeSummaryList);
 			String edgeSummJson = gson.toJson(edgeSummaryList);
 			try{
