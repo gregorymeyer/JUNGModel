@@ -330,10 +330,16 @@ public class VersionHandler {
 			
 			for(EdgeSummary edgeSummary : edgeSummaryList){
 				JSONFormat.removeBadCharsInSorTar(edgeSummary);
+				if(edgeSummary.getLastAppearance() == null){
+					edgeSummary.setLastAppearance(graphList.size());
+				}
 			}
 			
 			for(NodeSummary nodeSummary: nodeSummaryList){
 				JSONFormat.removeBadCharsInGMLids(nodeSummary);
+				if(nodeSummary.getLastAppearance() == null){
+					nodeSummary.setLastAppearance(graphList.size());
+				}
 			}
 			
 			String nodeSummJson = gson.toJson(nodeSummaryList);
