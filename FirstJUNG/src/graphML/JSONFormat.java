@@ -9,6 +9,7 @@ import analytics.NodeSummary;
 public class JSONFormat 
 {
 	private static List<String> badCharacters =  new ArrayList<String>();
+	//private static Character[] badCharacters =  new Character[10];
 	
 	public static void removeGMLidBadChars(GraphWrapper graph) 
 	{	
@@ -42,13 +43,7 @@ public class JSONFormat
 	{
 		populateBadChacaters();
 		String newString = string;
-		for(String badChar : badCharacters)
-		{
-			if(string.contains(badChar))
-			{
-				newString = string.replace(badChar, "");
-			}
-		}
+		newString = string.replaceAll("\\p{Punct}", "");
 		return newString;
 	}
 	
