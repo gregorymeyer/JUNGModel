@@ -3,6 +3,7 @@ package metricsExtraction;
 import graphML.GraphContext;
 import graphML.GraphManager;
 import graphML.GraphWrapper;
+import graphML.JSONFormat;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -326,6 +327,21 @@ public class VersionHandler {
 	public Boolean convertToJson(){
 			Boolean completed = false;
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			
+			for(EdgeSummary edgeSummary : edgeSummaryList){
+				JSONFormat.removeBadCharsInSorTar(edgeSummary);
+				if(edgeSummary.getLastAppearance() == null){
+					edgeSummary.setLastAppearance(graphList.size());
+				}
+			}
+			
+			for(NodeSummary nodeSummary: nodeSummaryList){
+				JSONFormat.removeBadCharsInGMLids(nodeSummary);
+				if(nodeSummary.getLastAppearance() == null){
+					nodeSummary.setLastAppearance(graphList.size());
+				}
+			}
+			
 			String nodeSummJson = gson.toJson(nodeSummaryList);
 			String edgeSummJson = gson.toJson(edgeSummaryList);
 			try{
@@ -338,7 +354,8 @@ public class VersionHandler {
 				e.printStackTrace();
 			}
 			return completed;
-		}
+		
+	}
 
 	public List<NodeSummary> getNodeSummaryList() 
 	{

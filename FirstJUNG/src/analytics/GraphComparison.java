@@ -267,21 +267,26 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 
 	private void findSuccessorsThatChanged() // change name 
 	{
-		List<Vertex> oldSuccessors = new ArrayList<Vertex>();
-		List<Vertex> newSuccessors = new ArrayList<Vertex>();
+		List<Vertex> oldSuccessors = new ArrayList<>();
+		List<Vertex> newSuccessors = new ArrayList<>();
+		List<Vertex> successors = new ArrayList<>();
 		for(NodeChange nodeChange : nodeChanges)
 		{
 			if(nodeChange.isNew())
-			{newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));}
+			{
+				successors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));
+			}
 			else if(nodeChange.isDeleted())
-			{oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));}
+			{
+				successors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));
+			}
 			else
 			{
 				oldSuccessors = oldGraph.getSuccessors(oldGraph.getNode(nodeChange.getGMLid()));
 				newSuccessors = newGraph.getSuccessors(newGraph.getNode(nodeChange.getGMLid()));
+				successors =  removeDuplicates(oldSuccessors,newSuccessors);
 			}
 			 
-			List<Vertex> successors =  removeDuplicates(oldSuccessors,newSuccessors);
 			nodeChange.setSuccessors(findNodeChangeList(successors));
 		}
 	}
