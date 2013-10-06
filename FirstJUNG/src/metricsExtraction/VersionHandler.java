@@ -216,14 +216,14 @@ public class VersionHandler {
 	
 	private void findLastAppearance(EdgeSummary edgeSummary) 
 	{
-		// Last version that it was seen in
+		// Last version that it was seen in, default is set to null
 		for (int i = edgeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
 			for (NodeChange nodeChange: nodeChangeList.get(i)){
 				for (NodeChange successor: nodeChange.getSuccessors()){
 					if (successor.getGMLid().equals(edgeSummary.getTargetGMLid())
 							&& nodeChange.getGMLid().equals(edgeSummary.getSourceGMLid())
 							&& (successor.isDeleted() | nodeChange.isDeleted())){
-		
+						// If either has been deleted
 						edgeSummary.setLastAppearance(i);
 					}
 				}			
