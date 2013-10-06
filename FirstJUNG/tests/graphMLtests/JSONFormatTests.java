@@ -57,6 +57,7 @@ public class JSONFormatTests
 		versionHandler.createGraphsFromFolder("TestData/Rover");
 		versionHandler.createNodeChangeList();
 		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createAndPopulateEdgeSummaryList();
 		versionHandler.convertToJson();
 		
 		List<NodeSummary> nodeSummaries = versionHandler.getNodeSummaryList();
