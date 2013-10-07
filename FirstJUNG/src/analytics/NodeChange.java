@@ -50,7 +50,7 @@ public class NodeChange {
 	{
 		if((metrics.getSLOC()==0) && (metrics.getPuM()==0) && (metrics.getProM()==0) && (this.nodeType.equals("CLASSNODE")))
 			return false;
-		else if(isNew | isDeleted)
+		else if(isNew || isDeleted)
 			return true;
 		else if((metrics.getSLOC()==0) && (metrics.getPuM()==0) && (metrics.getProM()==0) && (this.nodeType.equals("PACKAGENODE")) && !(isNew | isDeleted))
 			return false;

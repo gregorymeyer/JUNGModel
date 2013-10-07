@@ -50,6 +50,7 @@ public class MetricsReader
 		
 		// Standard of reading an XML file
 	    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	    factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 	    factory.setNamespaceAware(true);
 	    DocumentBuilder builder = factory.newDocumentBuilder();
 	    //Document doc = null;

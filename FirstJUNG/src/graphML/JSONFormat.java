@@ -42,9 +42,10 @@ public class JSONFormat
 	private static String removeBadChars(String string)
 	{
 		populateBadChacaters();
-		String newString = string;
-		newString = string.replaceAll("\\p{Punct}", "");
-		return newString;
+		String temp = string;
+		temp = string.replaceAll("\\p{Punct}", "");
+		//String newString = temp.replaceAll("\\p{Digit}", "");
+		return temp;
 	}
 	
 	private static void populateBadChacaters() 
