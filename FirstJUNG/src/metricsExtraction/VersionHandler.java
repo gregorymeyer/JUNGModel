@@ -337,9 +337,10 @@ public class VersionHandler {
 					versionOfAppearance = comparisonNumber + 1;
 						
 					EdgeSummary edgeSummary = new EdgeSummary(nodeComparison.getGMLid(), 
-							successorNodeComparison.getGMLid(),versionOfAppearance);
+							successorNodeComparison.getGMLid(),versionOfAppearance, graphList.size());
 					
 					populateEdgeSummary(edgeSummary);
+					edgeSummary.calculateVersionProbList();
 					edgeSummaryList.add(edgeSummary);
 				}
 			}
@@ -403,7 +404,7 @@ public class VersionHandler {
 			String nodeSummJson = gson.toJson(nodeSummaryList);
 			String edgeSummJson = gson.toJson(edgeSummaryList);
 			try{
-					FileWriter writer = new FileWriter("JSONfiles/Rover.json");
+					FileWriter writer = new FileWriter("JSONfiles/JUnit.json");
 					writer.write("{\n\"nodes\": " + nodeSummJson + ",\n\"links\": " + edgeSummJson + "\n}");
 					writer.close();
 					completed = true;

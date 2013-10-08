@@ -26,7 +26,8 @@ public class JSONFormat
 	{
 		String newSource = removeBadChars(edgeSum.getSourceGMLid());
 		String newTarget = removeBadChars(edgeSum.getTargetGMLid());
-		EdgeSummary newEdgeSum = new EdgeSummary(newSource,newTarget,edgeSum.getFirstAppearance());
+		int dummyInt = 0;
+		EdgeSummary newEdgeSum = new EdgeSummary(newSource,newTarget,dummyInt,dummyInt);
 		// Overwrite existing source & target
 		edgeSum.updateSorTar(newEdgeSum);
 	}

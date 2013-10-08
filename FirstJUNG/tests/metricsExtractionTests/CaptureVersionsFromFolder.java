@@ -38,7 +38,7 @@ public class CaptureVersionsFromFolder {
 	public void shouldBeAbleToOutputNodeSummaryAndEdgeSummaryListsToJSON() throws Exception
 	{
 		VersionHandler versionHandler = new VersionHandler();
-		versionHandler.createGraphsFromFolder("TestData/Rover");
+		versionHandler.createGraphsFromFolder("TestData/JUnit");
 		versionHandler.createNodeChangeList();
 		versionHandler.createAndPopulateNodeSummaryList();
 		versionHandler.createAndPopulateEdgeSummaryList();

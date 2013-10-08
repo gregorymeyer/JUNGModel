@@ -12,14 +12,72 @@ public class EdgeSummary
 	private Integer lastAppearance = null;
 	private List<Integer> sourceChangeList = new ArrayList<>();
 	private List<Integer> sourceAndTargetChangeList = new ArrayList<>();
+	private List<Double> versionProbList;
+	private final Double initProb = 1.0;
 	
-	public EdgeSummary(String source, String target, int firstAppear) 
+	public EdgeSummary(String source, String target, int firstAppear, int totalVersions) 
 	{
 		this.source = source;
 		this.target = target;
 		this.firstAppearance = firstAppear;
+		initVersionProbList(totalVersions);
 
 	}
+	
+	private void initVersionProbList(int totalVersions) 
+	{
+		this.versionProbList = new ArrayList<Double>(totalVersions);
+		for(int i = 0; i<totalVersions; i++)
+			versionProbList.add(0.0);
+	}
+	
+	public void calculateVersionProbList() 
+	{
+		// set initial prob to 1
+		versionProbList.set(this.firstAppearance, initProb);
+		
+		Integer endPoint = this.lastAppearance;
+		
+		if(this.lastAppearance == null)
+			 endPoint = this.versionProbList.size();
+		
+		if(endPoint > this.firstAppearance)
+		{	//Special case
+			if((endPoint - this.firstAppearance) == 1)
+			{ 
+					this.versionProbList.set(endPoint,1.0);
+			}
+			
+			// Create probs for all versions
+			else {
+				for(int i = this.firstAppearance+1; i<= endPoint; i++)
+				{
+					versionProbList.set(i, calculateProb(i));
+				}
+			}
+		}
+		
+	}
+
+	private Double calculateProb(int currentVersion) 
+	{
+		int sourceChangeCount = 0;
+		int srcTarChangeCount = 0;
+		//Count source changes up until currentVersion
+		for(Integer version : sourceChangeList){
+			if(version <= currentVersion)
+				sourceChangeCount++;
+		}
+		//Count srcTar changes up until currentVersion
+		for(Integer version : sourceAndTargetChangeList){
+			if(version <= currentVersion)
+				srcTarChangeCount++;
+		}
+		if(sourceChangeCount == 0){return 0.0;}
+		
+		return (double)(srcTarChangeCount)/(double)(sourceChangeCount);		
+	}
+	
 
 	public String getSourceGMLid() 
 	{
@@ -76,6 +134,10 @@ public class EdgeSummary
 		// Update source and target
 		this.source = edgeSum.source;
 		this.target = edgeSum.target;
+	}
+	
+	public int getVersionsSize(){
+		return this.versionProbList.size();
 	}
 
 }
