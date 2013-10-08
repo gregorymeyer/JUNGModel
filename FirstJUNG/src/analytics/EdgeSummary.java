@@ -14,6 +14,7 @@ public class EdgeSummary
 	private List<Integer> sourceAndTargetChangeList = new ArrayList<>();
 	private List<Double> versionProbList;
 	private final Double initProb = 1.0;
+	private List<Integer> targetChangeList = new ArrayList<>();
 	
 	public EdgeSummary(String source, String target, int firstAppear, int totalVersions) 
 	{
@@ -35,7 +36,6 @@ public class EdgeSummary
 	{
 		// set initial prob to 1
 		versionProbList.set(this.firstAppearance, initProb);
-		
 		Integer endPoint = this.lastAppearance;
 		
 		if(this.lastAppearance == null)
@@ -61,21 +61,21 @@ public class EdgeSummary
 
 	private Double calculateProb(int currentVersion) 
 	{
-		int sourceChangeCount = 0;
+		int targetChangeCount = 0;
 		int srcTarChangeCount = 0;
-		//Count source changes up until currentVersion
-		for(Integer version : sourceChangeList){
+		//Count target changes up until currentVersion
+		for(Integer version : targetChangeList){
 			if(version <= currentVersion)
-				sourceChangeCount++;
+				targetChangeCount++;
 		}
 		//Count srcTar changes up until currentVersion
 		for(Integer version : sourceAndTargetChangeList){
 			if(version <= currentVersion)
 				srcTarChangeCount++;
 		}
-		if(sourceChangeCount == 0){return 0.0;}
+		if(targetChangeCount == 0){return 0.0;}
 		
-		return (double)(srcTarChangeCount)/(double)(sourceChangeCount);		
+		return (double)(srcTarChangeCount)/(double)(targetChangeCount);		
 	}
 	
 
@@ -109,8 +109,9 @@ public class EdgeSummary
 		return this.sourceAndTargetChangeList.size();
 	}
 
-	public void addVersionToSourceChanges(int i) {
-		sourceChangeList.add(i);
+	public void addVersionToTargetChanges(int i) 
+	{
+		targetChangeList.add(i);
 	}
 
 	public void addVersionToSourceAndTargetChanges(int i) {

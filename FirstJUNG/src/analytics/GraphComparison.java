@@ -199,7 +199,7 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 			nodeChanges.add(populateNodeChange(nList.get(n), true));				
 		}
 		
-		findNeighboursThatChanged();
+		findNeighbours();
 		return nodeChanges;
 	}
 
@@ -231,17 +231,17 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 			nodeChanges.add(populateNodeChange(oList.get(o), false));				
 		}
 		// Find all the neighbours that also changed
-		findNeighboursThatChanged();
+		findNeighbours();
 		return nodeChanges;
 	}
 	
-	private void findNeighboursThatChanged() 
+	private void findNeighbours() 
 	{
-		findSuccessorsThatChanged();
-		findPredeccessorsThatChanged();
+		findSuccessors();
+		findPredeccessors();
 	}
 	
-	private void findPredeccessorsThatChanged() 
+	private void findPredeccessors() 
 	{
 		for(NodeChange nodeChange : nodeChanges)
 		{
@@ -250,9 +250,13 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 			List<Vertex> predecessors = new ArrayList<Vertex>();
 			{
 				if(nodeChange.isNew())
-				{predecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));}
+				{
+					predecessors = newGraph.getPredecessors(newGraph.getNode(nodeChange.getGMLid()));
+				}
 				else if(nodeChange.isDeleted())
-				{predecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));}
+				{
+					predecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));
+				}
 				else
 				{
 					oldPredecessors = oldGraph.getPredecessors(oldGraph.getNode(nodeChange.getGMLid()));
@@ -265,7 +269,7 @@ private NodeChange populateNodeChange(Vertex node, Boolean flag){
 		}
 	}
 
-	private void findSuccessorsThatChanged() // change name 
+	private void findSuccessors() // change name 
 	{
 		List<Vertex> oldSuccessors = new ArrayList<>();
 		List<Vertex> newSuccessors = new ArrayList<>();

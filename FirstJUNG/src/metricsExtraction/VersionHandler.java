@@ -146,9 +146,6 @@ public class VersionHandler {
 	
 	private void findSourceTargetChangeCount(EdgeSummary edgeSummary) 
 	{
-		// If the node has a finite end appearance  
-		if(edgeSummary.getLastAppearance() != null)
-		{
 			Integer startPoint = 0;
 			if(edgeSummary.getFirstAppearance() !=0){startPoint = edgeSummary.getFirstAppearance()-1;}
 			
@@ -156,18 +153,16 @@ public class VersionHandler {
 			{
 				for(NodeChange nodeChange : nodeChangeList.get(i))
 				{
-					for(NodeChange successor: nodeChange.getSuccessors()){
-						if(edgeSummary.getSourceGMLid().equals(nodeChange.getGMLid()) 
-								&& successor.getGMLid().equals(edgeSummary.getTargetGMLid()))
+					for(NodeChange predecessor: nodeChange.getPredecessors()){
+						if(edgeSummary.getSourceGMLid().equals(predecessor.getGMLid()) 
+								&& nodeChange.getGMLid().equals(edgeSummary.getTargetGMLid()))
 						{	
 							// Deletions not counted as changes
 							if (nodeChange.hasChanged() && !nodeChange.isDeleted())
 							{
-								//edgeSummary.incrementSourceChangeCount();
-								edgeSummary.addVersionToSourceChanges(i+1);
-								if(successor.hasChanged() && !successor.isDeleted())
+								edgeSummary.addVersionToTargetChanges(i+1);
+								if(predecessor.hasChanged() && !predecessor.isDeleted())
 								{
-									//edgeSummary.incrementTargetChangeCount();
 									edgeSummary.addVersionToSourceAndTargetChanges(i+1);
 								}
 							}
@@ -175,36 +170,7 @@ public class VersionHandler {
 					}
 					
 				}
-			}
-			
-		}
-		// If the node exists until the last version
-		else
-		{
-			Integer startPoint = 0;
-			if(edgeSummary.getFirstAppearance() !=0){startPoint = edgeSummary.getFirstAppearance()-1;}
-			
-			for(int i = startPoint; i< nodeChangeList.size(); i++)
-			{
-				for(NodeChange nodeChange : nodeChangeList.get(i))
-				{
-					for(NodeChange successor: nodeChange.getSuccessors()){
-						if(edgeSummary.getSourceGMLid().equals(nodeChange.getGMLid()) 
-								&& successor.getGMLid().equals(edgeSummary.getTargetGMLid()))
-						{	
-							if (nodeChange.hasChanged()){
-								//edgeSummary.incrementSourceChangeCount();
-								edgeSummary.addVersionToSourceChanges(i+1);
-								if(successor.hasChanged()){
-									//edgeSummary.incrementTargetChangeCount();
-									edgeSummary.addVersionToSourceAndTargetChanges(i+1);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+			}	
 	}
 
 	
@@ -245,9 +211,9 @@ public class VersionHandler {
 		{
 			for (NodeChange nodeChange: nodeChangeList.get(i))
 			{
-				for (NodeChange successor: nodeChange.getSuccessors()){
-					if (successor.getGMLid().equals(edgeSummary.getTargetGMLid())
-							&& nodeChange.getGMLid().equals(edgeSummary.getSourceGMLid()))
+				for (NodeChange predecessor: nodeChange.getPredecessors()){
+					if (predecessor.getGMLid().equals(edgeSummary.getSourceGMLid())
+							&& nodeChange.getGMLid().equals(edgeSummary.getTargetGMLid()))
 					{
 						isLinkPresent = true;
 					}
@@ -270,12 +236,12 @@ public class VersionHandler {
 		Boolean doesDisappear = false;
 		for (int i = edgeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
 			for (NodeChange nodeChange: nodeChangeList.get(i)){
-				for (NodeChange successor: nodeChange.getSuccessors()){
-					if (successor.getGMLid().equals(edgeSummary.getTargetGMLid())
-							&& nodeChange.getGMLid().equals(edgeSummary.getSourceGMLid()))
+				for (NodeChange predecessor: nodeChange.getPredecessors()){
+					if (predecessor.getGMLid().equals(edgeSummary.getSourceGMLid())
+							&& nodeChange.getGMLid().equals(edgeSummary.getTargetGMLid()))
 					{
 						// Check if either has been deleted
-						if((successor.isDeleted() || nodeChange.isDeleted()))
+						if((predecessor.isDeleted() || nodeChange.isDeleted()))
 						{
 							//end the relationship
 							edgeSummary.setLastAppearance(i);
@@ -323,22 +289,23 @@ public class VersionHandler {
 	
 	private void createEdgeSummary(NodeChange nodeComparison, int comparisonNumber) 
 	{
-		for(NodeChange successorNodeComparison : nodeComparison.getSuccessors())
+		for(NodeChange predecessorNodeComparison : nodeComparison.getPredecessors())
 		{
-			if(isClassNode(successorNodeComparison))
+			if(isClassNode(predecessorNodeComparison))
 			{
-				if(!edgeSummaryExists(nodeComparison,successorNodeComparison))
+				if(!edgeSummaryExists(nodeComparison,predecessorNodeComparison))
 				{
 					int versionOfAppearance = 0;
 					// Neither are new
-					if(!nodeComparison.isNew() && !successorNodeComparison.isNew())
+					if(!nodeComparison.isNew() && !predecessorNodeComparison.isNew())
 					  versionOfAppearance = comparisonNumber;
 					// Either is new
-					else if(nodeComparison.isNew() || successorNodeComparison.isNew())
+					else if(nodeComparison.isNew() || predecessorNodeComparison.isNew())
 					versionOfAppearance = comparisonNumber + 1;
 						
-					EdgeSummary edgeSummary = new EdgeSummary(nodeComparison.getGMLid(), 
-							successorNodeComparison.getGMLid(),versionOfAppearance, graphList.size());
+					EdgeSummary edgeSummary = new EdgeSummary(predecessorNodeComparison.getGMLid(),
+							nodeComparison.getGMLid(),
+							versionOfAppearance, graphList.size());
 					
 					populateEdgeSummary(edgeSummary);
 					edgeSummary.calculateVersionProbList();
@@ -361,12 +328,12 @@ public class VersionHandler {
 		findSourceTargetChangeCount(edgeSummary);
 	}
 	
-	private boolean edgeSummaryExists(NodeChange nodeChange, NodeChange successorNodeChange) 
+	private boolean edgeSummaryExists(NodeChange nodeChange, NodeChange predecessorNodeChange) 
 	{
 		for(EdgeSummary edgeSummary : edgeSummaryList)
 		{
-			if(edgeSummary.getSourceGMLid().equals(nodeChange.getGMLid()) && 
-					edgeSummary.getTargetGMLid().equals(successorNodeChange.getGMLid()))
+			if(edgeSummary.getSourceGMLid().equals(predecessorNodeChange.getGMLid()) && 
+					edgeSummary.getTargetGMLid().equals(nodeChange.getGMLid()))
 				return true;
 		}
 		return false;
