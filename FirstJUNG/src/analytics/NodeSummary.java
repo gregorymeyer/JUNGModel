@@ -6,15 +6,17 @@ import java.util.List;
 public class NodeSummary {
 
 	private String GMLid;
+	private String nodeType;
 	private int firstAppearance = 0;
 	private Integer lastAppearance = null;
 	private List<Integer> changeVersionsList = new ArrayList<>();
 	private List<Double> versionProbList;
 	private final Double initProb = 1.0;
 
-	public NodeSummary(String gmLid, int firstAppear, int totalVersions) {
+	public NodeSummary(String gmLid, String nodeType, int firstAppear, int totalVersions) {
 		this.GMLid = gmLid;
 		this.firstAppearance = firstAppear;
+		this.nodeType = nodeType;
 		initVersionProbList(totalVersions);
 	}
 
@@ -70,6 +72,11 @@ public class NodeSummary {
 
 	public String getGMLid() {
 		return GMLid;
+	}
+	
+	public String getNodeType()
+	{
+		return this.nodeType;
 	}
 
 	public int getFirstAppearance() {

@@ -88,7 +88,8 @@ public class VersionHandler {
 					if (nodeChange.isNew()){
 						eventIndex = nodeChangeList.indexOf(changeList) + 1;
 					}	
-					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(), 
+					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(),
+													nodeChange.getNodeType(),
 													eventIndex,graphList.size());
 					populateNodeSummary(nodeSummary);
 					nodeSummary.calculateVersionProbList();

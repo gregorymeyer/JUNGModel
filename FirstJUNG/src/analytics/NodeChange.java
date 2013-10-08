@@ -22,9 +22,7 @@ public class NodeChange {
 	private String GMLid = null;	
 	Metrics metrics;
 	
-	public NodeChange(String gmlid ,Metrics m ){
-		
-	}
+	public NodeChange(String gmlid ,Metrics m ){}
 	
 	public NodeChange(String gmlid, Metrics m, String nodeType){
 			

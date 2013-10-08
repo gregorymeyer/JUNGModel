@@ -34,9 +34,11 @@ public class JSONFormat
 	
 	public static void removeBadCharsInGMLids(NodeSummary nodeSum) 
 	{
+		// Create a dummy NodeSummary 
 		String newGMLid = removeBadChars(nodeSum.getGMLid());
 		int dummyInt = 0;
-		NodeSummary newNodeSum = new NodeSummary(newGMLid,dummyInt,dummyInt);
+		String dummy = "dummy";
+		NodeSummary newNodeSum = new NodeSummary(newGMLid,dummy,dummyInt,dummyInt);
 		// Overwrite existing GMLid
 		nodeSum.updateGMLid(newNodeSum);
 	}

@@ -4,7 +4,14 @@ import static org.junit.Assert.*;
 import metricsExtraction.VersionHandler;
 
 
+
+
+
+
+
 import org.junit.Test;
+
+import analytics.NodeSummary;
 
 public class CaptureVersionsFromFolder {
 	
@@ -43,6 +50,34 @@ public class CaptureVersionsFromFolder {
 		versionHandler.createAndPopulateNodeSummaryList();
 		versionHandler.createAndPopulateEdgeSummaryList();
 		
+		assertTrue(versionHandler.convertToJson());
+	}
+	
+	@Test
+	public void shouldBeAbleToAccuratelyIdentifyAPackageNode() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/JUnit");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		
+		NodeSummary nodeSummary = versionHandler.getNodeSummary("junit.awtui");
+		
+		assertEquals("PACKAGENODE",nodeSummary.getNodeType());
+	}
+	
+	@Test
+	public void shouldBeAbleToAccuratelyIdentifyAClassNode() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/JUnit");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		NodeSummary nodeSummary = versionHandler.getNodeSummary("junit.extensions.ActiveTestSuite");
+		
+		assertEquals("CLASSNODE",nodeSummary.getNodeType());
 		assertTrue(versionHandler.convertToJson());
 	}
 
