@@ -12,6 +12,8 @@ public class NodeSummary {
 	private List<Integer> changeVersionsList = new ArrayList<>();
 	private List<Double> versionProbList;
 	private final Double initProb = 1.0;
+	private String packageName;
+	private String className;
 
 	public NodeSummary(String gmLid, String nodeType, int firstAppear, int totalVersions) {
 		this.GMLid = gmLid;
@@ -46,7 +48,7 @@ public class NodeSummary {
 			
 			// Create probs for all versions
 			int changeCounter = 0;
-			for(int i = this.firstAppearance+1; i<endPoint; i++)
+			for(int i = this.firstAppearance+1; i<= endPoint; i++)
 			{
 				if(changeVersionsList.contains(i))
 				{
@@ -114,6 +116,16 @@ public class NodeSummary {
 	public void updateGMLid(NodeSummary nodeSum) 
 	{
 		this.GMLid = nodeSum.GMLid;
+	}
+
+	public void setPackageName(String pakName) 
+	{
+		this.packageName = pakName;
+	}
+
+	public void setClassName(String className) 
+	{
+		this.className = className;
 	}
 
 }

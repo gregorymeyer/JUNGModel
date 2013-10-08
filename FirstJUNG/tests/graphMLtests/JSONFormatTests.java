@@ -71,4 +71,16 @@ public class JSONFormatTests
 		assertFalse(nodeSummaries.get(5).getGMLid().contains("."));*/
 		assertFalse(false);
 	}
+	
+	@Test
+	public void shouldCorrectlyAssignPackageAndClassNames() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/JUnit");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		
+		assertTrue(versionHandler.convertToJson());
+	}
 }

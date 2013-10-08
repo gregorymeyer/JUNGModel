@@ -396,6 +396,7 @@ public class VersionHandler {
 				}
 			
 			for(NodeSummary nodeSummary: nodeSummaryList){
+				JSONFormat.createClassAndPackageNames(nodeSummary);
 				JSONFormat.removeBadCharsInGMLids(nodeSummary);
 				/*if(nodeSummary.getLastAppearance() == null){
 					nodeSummary.setLastAppearance(graphList.size()-1);

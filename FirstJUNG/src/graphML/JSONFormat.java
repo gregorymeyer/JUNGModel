@@ -8,8 +8,6 @@ import analytics.NodeSummary;
 
 public class JSONFormat 
 {
-	private static List<String> badCharacters =  new ArrayList<String>();
-	//private static Character[] badCharacters =  new Character[10];
 	
 	public static void removeGMLidBadChars(GraphWrapper graph) 
 	{	
@@ -42,19 +40,39 @@ public class JSONFormat
 		// Overwrite existing GMLid
 		nodeSum.updateGMLid(newNodeSum);
 	}
+	
 	private static String removeBadChars(String string)
 	{
-		populateBadChacaters();
 		String temp = string;
 		temp = string.replaceAll("\\p{Punct}", "");
-		//String newString = temp.replaceAll("\\p{Digit}", "");
 		return temp;
 	}
-	
-	private static void populateBadChacaters() 
-	{
-		badCharacters.add(".");
-		badCharacters.add("$");
+
+	public static void createClassAndPackageNames(NodeSummary nodeSummary) 
+	{	
+		if(nodeSummary.getNodeType().equals("PACKAGENODE"))
+			createPackageName(nodeSummary);
+		else if(nodeSummary.getNodeType().equals("CLASSNODE"))
+			createClassAndPackageName(nodeSummary);
 	}
 
+	private static void createClassAndPackageName(NodeSummary nodeSummary) 
+	{
+		String[] gmlID = nodeSummary.getGMLid().split("\\.");
+		nodeSummary.setClassName(gmlID[gmlID.length-1]);
+		
+		String packageName = gmlID[0];
+		for(int i = 1; i <= gmlID.length-2; i++) 
+		{packageName = packageName.concat(gmlID[i]);}	 
+		nodeSummary.setPackageName(packageName);
+	}
+
+	private static void createPackageName(NodeSummary nodeSummary) 
+	{
+		String[] gmlID = nodeSummary.getGMLid().split("\\.");
+		String packageName = gmlID[0];
+		for(int i = 1; i < gmlID.length; i++)
+		{packageName = packageName.concat(gmlID[i]);}
+		nodeSummary.setPackageName(packageName);
+	}
 }
