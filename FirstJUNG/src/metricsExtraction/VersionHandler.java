@@ -34,23 +34,19 @@ public class VersionHandler {
 	List<NodeSummary> nodeSummaryList = new ArrayList<>();
 	private List<EdgeSummary> edgeSummaryList = new ArrayList<>();
 
-	public Boolean createGraphsFromFolder(String folderName) throws Exception {
-		
+	public Boolean createGraphsFromFolder(String folderName) throws Exception 
+	{	
 		final File folder = new File(folderName);
-		//getFilesFromFolder(folder);
-		
+		//getFilesFromFolder(folder);	
 		int versionSize = folder.listFiles().length/2;
-		
 		createAndPopulateGraphList(versionSize, folderName);
-		
-		
-
 		return !graphList.isEmpty();
 	}
 	
-	private void createAndPopulateGraphList(int versionSize, String folderName) throws Exception {
-	
-		for (Integer i = 0; i < versionSize; i++){
+	private void createAndPopulateGraphList(int versionSize, String folderName) throws Exception 
+	{
+		for (Integer i = 0; i < versionSize; i++)
+		{
 			GraphManager graphManager = new GraphManager();
 			GraphContext context = graphManager.captureGraphMLFile(folderName + "/" + 
 										i.toString() + ".graphml");
@@ -58,28 +54,26 @@ public class VersionHandler {
 			GraphPopulator graphPopulator = new GraphPopulator();
 			graphPopulator.populate(graph, folderName + "/" + 
 											i.toString() + ".xml");
-			
-			graphList.add(graph);
-											
+			graphList.add(graph);	
 		}
-		
 	}
 
-	public List< List<NodeChange>> getNodeChangeList() {
-		
+	public List< List<NodeChange>> getNodeChangeList() 
+	{	
 		return nodeChangeList;
 	}
 
-	public void createNodeChangeList() {
-	
-		for (int i = 0; i < graphList.size() - 1; i++){
+	public void createNodeChangeList() 
+	{
+		for (int i = 0; i < graphList.size() - 1; i++)
+		{
 			nodeChangeList.add(new GraphComparison(graphList.get(i), graphList.get(i+1))
 									.nodeChanges());
 		}
-		
 	}
 
-	public void createAndPopulateNodeSummaryList() {
+	public void createAndPopulateNodeSummaryList() 
+	{
 		for (List<NodeChange> changeList: nodeChangeList){
 			for (NodeChange nodeChange: changeList){
 				if (!nodeSummaryExists(nodeChange)){
@@ -99,7 +93,8 @@ public class VersionHandler {
 		}
 	}
 
-	private void populateNodeSummary(NodeSummary nodeSummary) {
+	private void populateNodeSummary(NodeSummary nodeSummary) 
+	{
 		findLastAppearance(nodeSummary);
 		findChangeCount(nodeSummary);
 	}
@@ -179,7 +174,8 @@ public class VersionHandler {
 		Boolean isDeleted = false;
 		// Last version that it was seen in
 		for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
-			for (NodeChange nodeChange: nodeChangeList.get(i)){
+			for (NodeChange nodeChange: nodeChangeList.get(i))
+			{
 				if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
 						&& nodeChange.isDeleted())
 				{
@@ -357,7 +353,7 @@ public class VersionHandler {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
 		for(EdgeSummary edgeSummary : edgeSummaryList)
-		{JSONFormat.removeBadCharsInSorTar(edgeSummary);}
+		{JSONFormat.formatEdgeSummary(edgeSummary);}
 		for(NodeSummary nodeSummary: nodeSummaryList)
 		{
 			// Remove bad characters & set class and package names

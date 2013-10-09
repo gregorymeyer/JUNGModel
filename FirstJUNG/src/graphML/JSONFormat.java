@@ -10,7 +10,7 @@ public class JSONFormat
 {
 	private static List<String> TLD = new ArrayList<>();
 
-	public static void removeGMLidBadChars(GraphWrapper graph) 
+	public static void formatGraph(GraphWrapper graph) 
 	{	
 		List<Vertex> nodes = graph.getNodes();
 		// Remove bad characters from all nodes
@@ -21,8 +21,9 @@ public class JSONFormat
 		}
 	}
 
-	public static void removeBadCharsInSorTar(EdgeSummary edgeSum) 
+	public static void formatEdgeSummary(EdgeSummary edgeSum) 
 	{
+		// Remove all bad characters in source & target GMLids
 		String newSource = removeBadChars(removeTLD(edgeSum.getSourceGMLid().split("\\.")));
 		String newTarget = removeBadChars(removeTLD(edgeSum.getTargetGMLid().split("\\.")));
 		int dummyInt = 0;
@@ -61,15 +62,14 @@ public class JSONFormat
 			nodeSum.setPackageName(getPackageNameForPackage(newGMLid));
 		}
 		// Update the GMLid of the NodeSummary
-		updateNodeSumGMLid(nodeSum,newGMLid);
+		updateNodeSumGMLid(nodeSum,removeBadChars(newGMLid));
 	}
 	
 	private static void updateNodeSumGMLid(NodeSummary nodeSum,String newGMLid) 
 	{
 		int dummyInt = 0;
 		String dummy = "dummy";
-		NodeSummary newNodeSum = new NodeSummary(removeBadChars(newGMLid)
-												,dummy,dummyInt,dummyInt);
+		NodeSummary newNodeSum = new NodeSummary(newGMLid,dummy,dummyInt,dummyInt);
 		// Overwrite existing GMLid
 		nodeSum.updateGMLid(newNodeSum);
 	}
@@ -115,5 +115,21 @@ public class JSONFormat
 		// Top Level Domain names to be removed from package names 
 		TLD.add("com");
 		TLD.add("org");
+	}
+
+	public static void removeOnlyGMLIDBadChars(NodeSummary nodeSum) 
+	{
+		String[] temp = nodeSum.getGMLid().split("\\.");
+		for(int i = 0; i<temp.length; i++)
+		{
+			temp[i] = temp[i].replace(temp[i], removeAllButPeriod(temp[i]));
+		}
+		updateNodeSumGMLid(nodeSum,removeTLD(temp));
+	}
+
+	private static String removeAllButPeriod(String string) 
+	{
+		String ret = string.replaceAll("[$%#@]", ""); 
+		return ret;
 	}
 }
