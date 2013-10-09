@@ -23,6 +23,7 @@ import analytics.EdgeSummary;
 import analytics.GraphComparison;
 import analytics.NodeChange;
 import analytics.NodeSummary;
+import analytics.PackageStructure;
 
 
 public class VersionHandler {
@@ -33,6 +34,7 @@ public class VersionHandler {
 	List< List<NodeChange>> nodeChangeList = new ArrayList<>();
 	List<NodeSummary> nodeSummaryList = new ArrayList<>();
 	private List<EdgeSummary> edgeSummaryList = new ArrayList<>();
+	private List<PackageStructure> packageList = new ArrayList<>();
 
 	public Boolean createGraphsFromFolder(String folderName) throws Exception {
 		
@@ -356,6 +358,7 @@ public class VersionHandler {
 			Boolean completed = false;
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			
+			
 			for(EdgeSummary edgeSummary : edgeSummaryList){
 				JSONFormat.removeBadCharsInSorTar(edgeSummary);
 				/*if(edgeSummary.getLastAppearance() == null){
@@ -388,6 +391,90 @@ public class VersionHandler {
 	public List<NodeSummary> getNodeSummaryList() 
 	{
 		return this.nodeSummaryList;
+	}
+
+	public void createPackageStructure() {
+		
+		List< List<String>> nameHierarchyLists = new ArrayList<>(captureNameStructure()); 
+		
+			for(List<String> hierarchy: nameHierarchyLists){
+					
+					if(packageList.isEmpty()){
+						packageList.add(new PackageStructure(hierarchy.get(0)));
+					}
+					
+					Integer baseIndex = setBasePackage(hierarchy.get(0));
+					Integer hierIndex = 1;
+					
+					searchAndInsert(packageList.get(baseIndex),hierarchy,hierIndex);
+			}
+				
+				
+	}
+	
+		private Integer setBasePackage(String name) {
+			Integer basePoint = 0;
+			Boolean isPresent = false;
+			for(PackageStructure basePackage: packageList){
+				
+				if(basePackage.getName().equals(name)) 
+				{
+						isPresent = true;
+						return packageList.indexOf(basePackage);
+				}
+			}
+			if(!isPresent)
+			{
+				packageList.add(new PackageStructure(name));
+			}
+			
+			for(PackageStructure basePackage: packageList){
+				if(basePackage.getName().equals(name))
+					basePoint = packageList.indexOf(basePackage);
+			}
+			return basePoint;
+		}
+	
+	private void searchAndInsert(PackageStructure packageStructure,
+			List<String> hierarchy, Integer index) {
+		
+		if(index < hierarchy.size()){
+			//Enter PackageStructure with same name
+			if(packageStructure.containsName(hierarchy.get(index))){
+				
+				Integer nameIndex = packageStructure.getNameIndex(hierarchy.get(index));
+				index +=1;
+	
+				searchAndInsert(packageStructure.getChildren().get(nameIndex),
+									hierarchy, index);
+			}
+			//First add then enter the added PackageStructure
+			else {
+				 packageStructure.addToChildren(hierarchy.get(index));
+				 
+				 Integer nameIndex = packageStructure.getNameIndex(hierarchy.get(index));
+				 index +=1;
+				
+				 searchAndInsert(packageStructure.getChildren().get(nameIndex),
+										hierarchy, index);	 
+			}
+			
+		}
+	}
+
+	private List<List<String>> captureNameStructure(){
+		
+		List< List< String>> nameHierarchy = new ArrayList<>();
+		for (NodeSummary nodeSummary: nodeSummaryList){
+			String[] hierarchy = nodeSummary.getGMLid().split("\\.");
+			List<String> tempList = new ArrayList<>();
+			
+			for(int i = 0; i < hierarchy.length; i++){
+				tempList.add(hierarchy[i]);
+			}
+			nameHierarchy.add(tempList);
+		}
+		return nameHierarchy;
 	}
 
 }

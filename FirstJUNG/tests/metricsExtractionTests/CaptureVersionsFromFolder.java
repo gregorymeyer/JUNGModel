@@ -80,5 +80,19 @@ public class CaptureVersionsFromFolder {
 		assertEquals("CLASSNODE",nodeSummary.getNodeType());
 		assertTrue(versionHandler.convertToJson());
 	}
+	
+	@Test
+	public void shouldBeAbleToCreateAParentChildPackageStructureFromNodeSummaryList() throws Exception
+	{
+		VersionHandler versionHandler = new VersionHandler();
+		versionHandler.createGraphsFromFolder("TestData/JUnit");
+		versionHandler.createNodeChangeList();
+		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createAndPopulateEdgeSummaryList();
+		versionHandler.createPackageStructure();
+		
+		
+		assertTrue(versionHandler.convertToJson());
+	}
 
 }
