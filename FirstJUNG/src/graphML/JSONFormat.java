@@ -8,7 +8,8 @@ import analytics.NodeSummary;
 
 public class JSONFormat 
 {
-	
+	private static List<String> TLD = new ArrayList<>();
+
 	public static void removeGMLidBadChars(GraphWrapper graph) 
 	{	
 		List<Vertex> nodes = graph.getNodes();
@@ -22,25 +23,86 @@ public class JSONFormat
 
 	public static void removeBadCharsInSorTar(EdgeSummary edgeSum) 
 	{
-		String newSource = removeBadChars(edgeSum.getSourceGMLid());
-		String newTarget = removeBadChars(edgeSum.getTargetGMLid());
+		String newSource = removeBadChars(removeTLD(edgeSum.getSourceGMLid().split("\\.")));
+		String newTarget = removeBadChars(removeTLD(edgeSum.getTargetGMLid().split("\\.")));
 		int dummyInt = 0;
 		EdgeSummary newEdgeSum = new EdgeSummary(newSource,newTarget,dummyInt,dummyInt);
 		// Overwrite existing source & target
 		edgeSum.updateSorTar(newEdgeSum);
 	}
 	
-	public static void removeBadCharsInGMLids(NodeSummary nodeSum) 
+	private static String removeTLD(String[] strArray) 
 	{
-		// Create a dummy NodeSummary 
-		String newGMLid = removeBadChars(nodeSum.getGMLid());
+		createTLDList();
+		//String[] temp = gmlID.split("\\.");
+		String ret = "";
+		for(String string : strArray)
+		{
+			if(!TLD.contains(string))
+				ret = ret + string + ".";
+		}
+		return ret;
+	}
+
+	public static void formatNodeSummary(NodeSummary nodeSum) 
+	{
+		// Split the GMLid
+		String[] gmlID = nodeSum.getGMLid().split("\\.");
+		// Remove TLD
+		String newGMLid = removeTLD(gmlID);
+		// Set class and package names
+		if(nodeSum.getNodeType().equals("CLASSNODE"))
+		{
+			nodeSum.setClassName(getClassName(newGMLid));
+			nodeSum.setPackageName(getPackageNameForClass(newGMLid));
+		}
+		else if(nodeSum.getNodeType().equals("PACKAGENODE"))
+		{
+			nodeSum.setPackageName(getPackageNameForPackage(newGMLid));
+		}
+		// Update the GMLid of the NodeSummary
+		updateNodeSumGMLid(nodeSum,newGMLid);
+	}
+	
+	private static void updateNodeSumGMLid(NodeSummary nodeSum,String newGMLid) 
+	{
 		int dummyInt = 0;
 		String dummy = "dummy";
-		NodeSummary newNodeSum = new NodeSummary(newGMLid,dummy,dummyInt,dummyInt);
+		NodeSummary newNodeSum = new NodeSummary(removeBadChars(newGMLid)
+												,dummy,dummyInt,dummyInt);
 		// Overwrite existing GMLid
 		nodeSum.updateGMLid(newNodeSum);
 	}
-	
+
+	private static String getPackageNameForPackage(String newGMLid) 
+	{
+		String[] temp = newGMLid.split("\\.");
+		String ret = temp[0];
+		for(int i = 1; i<temp.length; i++)
+		{
+			ret = ret.concat(temp[i]);
+		}
+		return removeBadChars(ret);
+	}
+
+	private static String getPackageNameForClass(String newGMLid) 
+	{
+		String[] temp = newGMLid.split("\\.");
+		String ret = temp[0];
+		for(int i = 1; i<temp.length-1; i++)
+		{
+			ret = ret.concat(temp[i]);
+		}
+		return removeBadChars(ret);
+	}
+
+	private static String getClassName(String newGMLid) 
+	{
+		String[] temp = newGMLid.split("\\.");
+		String ret = removeBadChars(temp[temp.length-1]);
+		return ret;
+	}
+
 	private static String removeBadChars(String string)
 	{
 		String temp = string;
@@ -48,31 +110,10 @@ public class JSONFormat
 		return temp;
 	}
 
-	public static void createClassAndPackageNames(NodeSummary nodeSummary) 
-	{	
-		if(nodeSummary.getNodeType().equals("PACKAGENODE"))
-			createPackageName(nodeSummary);
-		else if(nodeSummary.getNodeType().equals("CLASSNODE"))
-			createClassAndPackageName(nodeSummary);
-	}
-
-	private static void createClassAndPackageName(NodeSummary nodeSummary) 
+	private static void createTLDList() 
 	{
-		String[] gmlID = nodeSummary.getGMLid().split("\\.");
-		nodeSummary.setClassName(gmlID[gmlID.length-1]);
-		
-		String packageName = gmlID[0];
-		for(int i = 1; i <= gmlID.length-2; i++) 
-		{packageName = packageName.concat(gmlID[i]);}	 
-		nodeSummary.setPackageName(packageName);
-	}
-
-	private static void createPackageName(NodeSummary nodeSummary) 
-	{
-		String[] gmlID = nodeSummary.getGMLid().split("\\.");
-		String packageName = gmlID[0];
-		for(int i = 1; i < gmlID.length; i++)
-		{packageName = packageName.concat(gmlID[i]);}
-		nodeSummary.setPackageName(packageName);
+		// Top Level Domain names to be removed from package names 
+		TLD.add("com");
+		TLD.add("org");
 	}
 }

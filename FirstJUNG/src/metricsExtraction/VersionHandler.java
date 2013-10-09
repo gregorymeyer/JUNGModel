@@ -203,7 +203,6 @@ public class VersionHandler {
 		}
 	}
 		
-	
 	private Boolean disappearedByNoLink(EdgeSummary edgeSummary) 
 	{
 		Boolean isLinkPresent = false;
@@ -352,37 +351,30 @@ public class VersionHandler {
 		return null;
 	}
 	
-	public Boolean convertToJson(){
-			Boolean completed = false;
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			
-			for(EdgeSummary edgeSummary : edgeSummaryList){
-				JSONFormat.removeBadCharsInSorTar(edgeSummary);
-				/*if(edgeSummary.getLastAppearance() == null){
-					edgeSummary.setLastAppearance(graphList.size()-1);*/
-				}
-			
-			for(NodeSummary nodeSummary: nodeSummaryList){
-				JSONFormat.createClassAndPackageNames(nodeSummary);
-				JSONFormat.removeBadCharsInGMLids(nodeSummary);
-				/*if(nodeSummary.getLastAppearance() == null){
-					nodeSummary.setLastAppearance(graphList.size()-1);
-				}*/
-			}
-			
-			String nodeSummJson = gson.toJson(nodeSummaryList);
-			String edgeSummJson = gson.toJson(edgeSummaryList);
-			try{
-					FileWriter writer = new FileWriter("JSONfiles/JUnit.json");
-					writer.write("{\n\"nodes\": " + nodeSummJson + ",\n\"links\": " + edgeSummJson + "\n}");
-					writer.close();
-					completed = true;
-			}
-			catch (IOException e){
-				e.printStackTrace();
-			}
-			return completed;
+	public Boolean convertToJson()
+	{
+		Boolean completed = false;
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
+		for(EdgeSummary edgeSummary : edgeSummaryList)
+		{JSONFormat.removeBadCharsInSorTar(edgeSummary);}
+		for(NodeSummary nodeSummary: nodeSummaryList)
+		{
+			// Remove bad characters & set class and package names
+			JSONFormat.formatNodeSummary(nodeSummary);
+		}
+		
+		String nodeSummJson = gson.toJson(nodeSummaryList);
+		String edgeSummJson = gson.toJson(edgeSummaryList);
+		try
+		{
+			FileWriter writer = new FileWriter("JSONfiles/JUnit.json");
+			writer.write("{\n\"nodes\": " + nodeSummJson + ",\n\"links\": " + edgeSummJson + "\n}");
+			writer.close();
+			completed = true;
+		}
+		catch (IOException e){e.printStackTrace();}
+		return completed;
 	}
 
 	public List<NodeSummary> getNodeSummaryList() 

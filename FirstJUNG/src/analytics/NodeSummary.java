@@ -15,7 +15,8 @@ public class NodeSummary {
 	private String packageName;
 	private String className;
 
-	public NodeSummary(String gmLid, String nodeType, int firstAppear, int totalVersions) {
+	public NodeSummary(String gmLid, String nodeType, int firstAppear, int totalVersions) 
+	{
 		this.GMLid = gmLid;
 		this.firstAppearance = firstAppear;
 		this.nodeType = nodeType;

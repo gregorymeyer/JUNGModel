@@ -22,7 +22,6 @@ public class EdgeSummary
 		this.target = target;
 		this.firstAppearance = firstAppear;
 		initVersionProbList(totalVersions);
-
 	}
 	
 	private void initVersionProbList(int totalVersions) 

@@ -61,7 +61,7 @@ public class JSONFormatTests
 		versionHandler.convertToJson();
 		
 		List<NodeSummary> nodeSummaries = versionHandler.getNodeSummaryList();
-		for(NodeSummary nodeSum : nodeSummaries) JSONFormat.removeBadCharsInGMLids(nodeSum);
+		for(NodeSummary nodeSum : nodeSummaries) JSONFormat.formatNodeSummary(nodeSum);
 		
 		/*assertFalse(nodeSummaries.get(0).getGMLid().contains("."));
 		assertFalse(nodeSummaries.get(1).getGMLid().contains("."));
