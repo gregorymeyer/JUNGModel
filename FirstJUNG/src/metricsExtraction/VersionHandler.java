@@ -24,6 +24,7 @@ import analytics.GraphComparison;
 import analytics.NodeChange;
 import analytics.NodeSummary;
 import analytics.PackageStructure;
+import analytics.Packing;
 
 
 public class VersionHandler {
@@ -34,7 +35,7 @@ public class VersionHandler {
 	List< List<NodeChange>> nodeChangeList = new ArrayList<>();
 	List<NodeSummary> nodeSummaryList = new ArrayList<>();
 	private List<EdgeSummary> edgeSummaryList = new ArrayList<>();
-	private List<PackageStructure> packageList = new ArrayList<>();
+	private List<Packing> packageList = new ArrayList<>();
 
 	public Boolean createGraphsFromFolder(String folderName) throws Exception 
 	{	
@@ -349,44 +350,10 @@ public class VersionHandler {
 		return null;
 	}
 	
-<<<<<<< HEAD
-	public Boolean convertToJson(){
-			Boolean completed = false;
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			
-			
-			for(EdgeSummary edgeSummary : edgeSummaryList){
-				JSONFormat.removeBadCharsInSorTar(edgeSummary);
-				/*if(edgeSummary.getLastAppearance() == null){
-					edgeSummary.setLastAppearance(graphList.size()-1);*/
-				}
-			
-			for(NodeSummary nodeSummary: nodeSummaryList){
-				JSONFormat.createClassAndPackageNames(nodeSummary);
-				JSONFormat.removeBadCharsInGMLids(nodeSummary);
-				/*if(nodeSummary.getLastAppearance() == null){
-					nodeSummary.setLastAppearance(graphList.size()-1);
-				}*/
-			}
-			
-			String nodeSummJson = gson.toJson(nodeSummaryList);
-			String edgeSummJson = gson.toJson(edgeSummaryList);
-			try{
-					FileWriter writer = new FileWriter("JSONfiles/JUnit.json");
-					writer.write("{\n\"nodes\": " + nodeSummJson + ",\n\"links\": " + edgeSummJson + "\n}");
-					writer.close();
-					completed = true;
-			}
-			catch (IOException e){
-				e.printStackTrace();
-			}
-			return completed;
-=======
 	public Boolean convertToJson()
 	{
 		Boolean completed = false;
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
->>>>>>> branch 'development' of https://github.com/gregorymeyer/JUNGModel.git
 		
 		for(EdgeSummary edgeSummary : edgeSummaryList)
 		{JSONFormat.formatEdgeSummary(edgeSummary);}
@@ -406,6 +373,17 @@ public class VersionHandler {
 			completed = true;
 		}
 		catch (IOException e){e.printStackTrace();}
+		
+		String packageStructureJson = gson.toJson(packageList);
+		try
+		{
+			FileWriter writer = new FileWriter("JSONfiles/JUnitPackages.json");
+			writer.write(packageStructureJson);
+			writer.close();
+			completed = true;
+		}
+		catch (IOException e){e.printStackTrace();}
+		
 		return completed;
 	}
 
@@ -436,7 +414,7 @@ public class VersionHandler {
 		private Integer setBasePackage(String name) {
 			Integer basePoint = 0;
 			Boolean isPresent = false;
-			for(PackageStructure basePackage: packageList){
+			for(Packing basePackage: packageList){
 				
 				if(basePackage.getName().equals(name)) 
 				{
@@ -449,35 +427,44 @@ public class VersionHandler {
 				packageList.add(new PackageStructure(name));
 			}
 			
-			for(PackageStructure basePackage: packageList){
+			for(Packing basePackage: packageList){
 				if(basePackage.getName().equals(name))
 					basePoint = packageList.indexOf(basePackage);
 			}
 			return basePoint;
 		}
 	
-	private void searchAndInsert(PackageStructure packageStructure,
+	private void searchAndInsert(Packing p,
 			List<String> hierarchy, Integer index) {
 		
 		if(index < hierarchy.size()){
 			//Enter PackageStructure with same name
-			if(packageStructure.containsName(hierarchy.get(index))){
+			if(p.containsName(hierarchy.get(index))){
 				
-				Integer nameIndex = packageStructure.getNameIndex(hierarchy.get(index));
+				Integer nameIndex = p.getNameIndex(hierarchy.get(index));
 				index +=1;
 	
-				searchAndInsert(packageStructure.getChildren().get(nameIndex),
+				searchAndInsert(p.getChildren().get(nameIndex),
 									hierarchy, index);
 			}
 			//First add then enter the added PackageStructure
 			else {
-				 packageStructure.addToChildren(hierarchy.get(index));
+				
+				if(Character.isUpperCase(hierarchy.get(index).charAt(0))
+						|| hierarchy.get(index).equals("package-info")){
+				   
+					p.addClassToChildren(hierarchy.get(index));
+				}
+				
+				else{
+				 p.addPackageToChildren(hierarchy.get(index));
 				 
-				 Integer nameIndex = packageStructure.getNameIndex(hierarchy.get(index));
+				 Integer nameIndex = p.getNameIndex(hierarchy.get(index));
 				 index +=1;
 				
-				 searchAndInsert(packageStructure.getChildren().get(nameIndex),
-										hierarchy, index);	 
+				 searchAndInsert(p.getChildren().get(nameIndex),
+										hierarchy, index);
+				}
 			}
 			
 		}
@@ -486,7 +473,9 @@ public class VersionHandler {
 	private List<List<String>> captureNameStructure(){
 		
 		List< List< String>> nameHierarchy = new ArrayList<>();
+		
 		for (NodeSummary nodeSummary: nodeSummaryList){
+			JSONFormat.removeOnlyGMLIDBadChars(nodeSummary);
 			String[] hierarchy = nodeSummary.getGMLid().split("\\.");
 			List<String> tempList = new ArrayList<>();
 			

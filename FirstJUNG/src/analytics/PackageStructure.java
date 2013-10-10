@@ -3,21 +3,16 @@ package analytics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PackageStructure {
+public class PackageStructure extends Packing {
 	
-	private String name;
-	List<PackageStructure> children = new ArrayList<>();
+	List<Packing> children = new ArrayList<>();
 	
 	public PackageStructure(String name){
 		this.name = name;
 	}
-
-	public String getName() {
-		return name;
-	}
-
+	
 	public Boolean containsName(String name) {
-		for (PackageStructure child: children){
+		for (Packing child: children){
 			if(child.getName().equals(name))
 			{
 				return true;
@@ -38,12 +33,17 @@ public class PackageStructure {
 		return null;
 	}
 
-	public List<PackageStructure> getChildren() {
+	public List<Packing> getChildren() {
 		return this.children;
 	}
 
-	public void addToChildren(String name) {
+	public void addPackageToChildren(String name) {
 		children.add(new PackageStructure(name));	
 	}
+	
+	public void addClassToChildren(String name) {
+		children.add(new ClassStructure(name));	
+	}
+
 
 }
