@@ -145,10 +145,10 @@ public class NodeSummary {
 		return this.versionDeltaSLOCList;
 	}
 
-	public void addVersionDeltaSLOC(int i, Double sloc) 
+	public void setVersionDeltaSLOC(int i, Double sloc) 
 	{
 		// How much the SLOC changed from version i to 1 + 1
-		this.versionDeltaSLOCList.add(i,sloc);
+		this.versionDeltaSLOCList.set(i,sloc);
 		
 	}
 

@@ -135,6 +135,7 @@ public class NodeSummaryTests {
 		versionHandler.createGraphsFromFolder("TestData/JUnit");
 		versionHandler.createNodeChangeList();
 		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createPackageStructure();
 		versionHandler.convertToJson();
 		
 		NodeSummary nodeSum = versionHandler.getNodeSummary("junitframeworkTestFailure");

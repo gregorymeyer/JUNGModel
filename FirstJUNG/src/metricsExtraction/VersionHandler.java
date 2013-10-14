@@ -121,7 +121,7 @@ public class VersionHandler {
 						nodeChange.hasChanged())
 				{
 					nodeSummary.addVersionToChangeList(i+1);
-					nodeSummary.addVersionDeltaSLOC(i,nodeChange.getSLOC());
+					nodeSummary.setVersionDeltaSLOC(i,nodeChange.getSLOC());
 				}
 					
 			}
