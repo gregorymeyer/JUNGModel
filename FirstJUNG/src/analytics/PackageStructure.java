@@ -41,8 +41,8 @@ public class PackageStructure extends Packing {
 		children.add(new PackageStructure(name));	
 	}
 	
-	public void addClassToChildren(String name) {
-		children.add(new ClassStructure(name));	
+	public void addClassToChildren(String name, List<Double> versProbs) {
+		children.add(new ClassStructure(name,versProbs));	
 	}
 
 

@@ -1,13 +1,17 @@
 package analytics;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClassStructure extends Packing {
 	
-	Integer depth;
-	public ClassStructure(String name)
+
+	private List<Double> versionProbList = new ArrayList<>();
+	
+	public ClassStructure(String name, List<Double> versProbs)
 	{
 		this.name = name;
+		this.versionProbList = versProbs;
 	}
 	
 	@Override
@@ -35,7 +39,7 @@ public class ClassStructure extends Packing {
 	}
 
 	@Override
-	public void addClassToChildren(String string) {
+	public void addClassToChildren(String string, List<Double> versProbs) {
 		// TODO Auto-generated method stub
 		
 	}

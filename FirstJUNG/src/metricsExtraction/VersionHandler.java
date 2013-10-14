@@ -452,8 +452,18 @@ public class VersionHandler {
 				
 				if(Character.isUpperCase(hierarchy.get(index).charAt(0))
 						|| hierarchy.get(index).equals("package-info")){
-				   
-					p.addClassToChildren(hierarchy.get(index));
+				    
+					String gmlid = hierarchy.get(0);
+					for(int i = 1; i < hierarchy.size(); i++){
+						if(i == hierarchy.size() - 1){
+							gmlid += "." + hierarchy.get(i) + ".";
+						}
+						else {
+							gmlid += "."+ hierarchy.get(i);
+						}
+					}
+					
+					p.addClassToChildren(hierarchy.get(index), getNodeSummary(gmlid).getVersionProbabilities());
 				}
 				
 				else{

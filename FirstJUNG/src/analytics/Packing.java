@@ -18,6 +18,6 @@ public abstract class Packing {
 
 	abstract public void addPackageToChildren(String string);
 
-	abstract public void addClassToChildren(String string);
+	abstract public void addClassToChildren(String string, List<Double> versProbs);
 	
 }
