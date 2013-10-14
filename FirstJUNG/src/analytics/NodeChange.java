@@ -3,8 +3,8 @@ package analytics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NodeChange {
-	
+public class NodeChange 
+{	
 	Boolean isNew = false;
 	Boolean isDeleted = false;
 	Boolean isClass = false;
@@ -24,13 +24,13 @@ public class NodeChange {
 	
 	public NodeChange(String gmlid ,Metrics m ){}
 	
-	public NodeChange(String gmlid, Metrics m, String nodeType){
-			
-			this.GMLid = gmlid;
-			this.metrics = m;
-			this.nodeType = nodeType;
-			this.hasChangedSinceLastGraph = hasNodeChanged();
-		}
+	public NodeChange(String gmlid, Metrics m, String nodeType)
+	{
+		this.GMLid = gmlid;
+		this.metrics = m;
+		this.nodeType = nodeType;
+		this.hasChangedSinceLastGraph = hasNodeChanged();
+	}
 
 	public NodeChange(String gmlid, Metrics m, String nodeType, Boolean flag){
 		

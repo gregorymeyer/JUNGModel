@@ -14,6 +14,7 @@ public class NodeSummary {
 	private final Double initProb = 1.0;
 	private String packageName;
 	private String className;
+	private List<Double> versionDeltaSLOCList = new ArrayList<>();
 
 	public NodeSummary(String gmLid, String nodeType, int firstAppear, int totalVersions) 
 	{
@@ -21,6 +22,16 @@ public class NodeSummary {
 		this.firstAppearance = firstAppear;
 		this.nodeType = nodeType;
 		initVersionProbList(totalVersions);
+		initVersionDeltaSLOCList(totalVersions);
+	}
+
+	private void initVersionDeltaSLOCList(int totalVersions) 
+	{
+		//Initialise all deltas to 0.0
+		for(int i = 0; i <totalVersions-1; i++)
+		{
+			this.versionDeltaSLOCList.add(0.0);
+		}
 	}
 
 	private void initVersionProbList(int totalVersions) 
@@ -127,6 +138,18 @@ public class NodeSummary {
 	public void setClassName(String className) 
 	{
 		this.className = className;
+	}
+
+	public List<Double> getDeltaSLOCList() 
+	{
+		return this.versionDeltaSLOCList;
+	}
+
+	public void addVersionDeltaSLOC(int i, Double sloc) 
+	{
+		// How much the SLOC changed from version i to 1 + 1
+		this.versionDeltaSLOCList.add(i,sloc);
+		
 	}
 
 }

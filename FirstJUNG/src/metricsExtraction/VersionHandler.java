@@ -74,12 +74,16 @@ public class VersionHandler {
 
 	public void createAndPopulateNodeSummaryList() 
 	{
-		for (List<NodeChange> changeList: nodeChangeList){
-			for (NodeChange nodeChange: changeList){
-				if (!nodeSummaryExists(nodeChange)){
-					
+		for (List<NodeChange> changeList: nodeChangeList)
+		{
+			for (NodeChange nodeChange: changeList)
+			{
+				if (!nodeSummaryExists(nodeChange))
+				{
 					int eventIndex = 0;
-					if (nodeChange.isNew()){
+					if (nodeChange.isNew())
+					{
+						// It should appear in the upcoming version
 						eventIndex = nodeChangeList.indexOf(changeList) + 1;
 					}	
 					NodeSummary nodeSummary = new NodeSummary(nodeChange.getGMLid(),
@@ -96,47 +100,29 @@ public class VersionHandler {
 	private void populateNodeSummary(NodeSummary nodeSummary) 
 	{
 		findLastAppearance(nodeSummary);
-		findChangeCount(nodeSummary);
+		findChangeCount(nodeSummary); 
 	}
 
 	private void findChangeCount(NodeSummary nodeSummary) 
 	{
-		// If the node has a finite end appearance  
-		if(nodeSummary.getLastAppearance() != null)
-		{
-			Integer startPoint;
-			if(nodeSummary.getFirstAppearance() !=0){startPoint = nodeSummary.getFirstAppearance()-1;}
-			else startPoint = nodeSummary.getFirstAppearance();
-			
-			for(int i = startPoint; i<= nodeSummary.getLastAppearance()-1; i++)
-			{
-				for(NodeChange nodeChange : nodeChangeList.get(i))
-				{
-					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
-							nodeChange.hasChanged())
-						nodeSummary.addVersionToChangeList(i+1);
-				}
-			}
-			
-		}
-		// If the node exists until the last version
-		else
-		{
-			Integer startPoint;
-			if(nodeSummary.getFirstAppearance() !=0){startPoint = nodeSummary.getFirstAppearance()-1;}
-			else startPoint = nodeSummary.getFirstAppearance();
-			
-			for(int i = startPoint; i< nodeChangeList.size(); i++)
-			{
-				for(NodeChange nodeChange : nodeChangeList.get(i))
-				{
-					if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
-							nodeChange.hasChanged())
-						nodeSummary.addVersionToChangeList(i+1);
-				}
-			}
-		}
+		Integer startPoint;
+		if(nodeSummary.getFirstAppearance() !=0){startPoint = nodeSummary.getFirstAppearance()-1;}
+		else startPoint = nodeSummary.getFirstAppearance();
 		
+		for(int i = startPoint; i <= nodeSummary.getLastAppearance()-1; i++)
+		{
+			for(NodeChange nodeChange : nodeChangeList.get(i))
+			{
+				// Record that the node changed at the specific version
+				if(nodeSummary.getGMLid().equals(nodeChange.getGMLid()) &&
+						nodeChange.hasChanged())
+				{
+					nodeSummary.addVersionToChangeList(i+1);
+					nodeSummary.addVersionDeltaSLOC(i,nodeChange.getSLOC());
+				}
+					
+			}
+		}
 	}
 	
 	private void findSourceTargetChangeCount(EdgeSummary edgeSummary) 
@@ -172,8 +158,9 @@ public class VersionHandler {
 	private void findLastAppearance(NodeSummary nodeSummary)  
 	{
 		Boolean isDeleted = false;
-		// Last version that it was seen in
-		for (int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++){
+		// Find the last version that it was seen in
+		for(int i = nodeSummary.getFirstAppearance(); i < nodeChangeList.size(); i++)
+		{
 			for (NodeChange nodeChange: nodeChangeList.get(i))
 			{
 				if (nodeChange.getGMLid().equals(nodeSummary.getGMLid())
