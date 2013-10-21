@@ -17,19 +17,40 @@ public class GraphComparison {
 	GraphWrapper oldGraph;
 	List<NodeChange> nodeChanges = new ArrayList<>();
 	
+	/**
+	 * Constructor for GraphCompairison
+	 * 
+	 * @param og GraphWrapper from a previous version
+	 * @param ng GraphWrapper from a upcoming version
+	 */
 	public GraphComparison(GraphWrapper og, GraphWrapper ng){
 		this.newGraph = ng;
 		this.oldGraph = og;
 	}
 
+	/**
+	 * Check for the relative number of nodes in two graphs
+	 * 
+	 * @return true if there are more nodes in the new graph, false otherwise
+	 */
 	public Boolean isNodesGreaterInNew() {
 		return (oldGraph.getNodes().size() < newGraph.getNodes().size());
 	}
 
+	/**
+	 * Check for the relative number of edges in two graphs
+	 * 
+	 * @return true if there are more edges in the new graph, false otherwise
+	 */
 	public Boolean isEdgesGreaterInNew() {
 		return (oldGraph.getEdges().size() < newGraph.getEdges().size());
 	}
 
+	/**
+	 * Returns the Nodes that are present only in the new graph
+	 *  
+	 * @return list of Nodes present only in the new graph
+	 */
 	public List<Vertex> addedNodes() {
 		//List<Edge> edgeDiff = new ArrayList<>();
 		List<Vertex> oList = oldGraph.getNodes();
@@ -64,6 +85,11 @@ public class GraphComparison {
 		return null;
 	}
 	
+	/**
+	 * Returns the edges that are present only in the new graph
+	 * 
+	 * @return list of edges that exist only in the new graph
+	 */
 	public List<Edge> addedEdges() {
 		List<Edge> oList = oldGraph.getEdges();
 		List<Edge> nList = newGraph.getEdges();
@@ -97,6 +123,12 @@ public class GraphComparison {
 		return null;
 	}
 
+	/**
+	 * Checks of a list of Nodes is present in the newer of two graphs
+	 * 
+	 * @param nNodeList list of Nodes to be queried
+	 * @return true if the list is completely contained in the newer graph, false otherwise
+	 */
 	public boolean isNodeListPresentInNew(List<Vertex> nNodeList) {
 		boolean isNodePresent = false;
 		boolean isNodeListPresent = true;
@@ -114,6 +146,12 @@ public class GraphComparison {
 		return isNodeListPresent;
 	}
 
+	/**
+	 * Checks of a list of Nodes is present in the older of two graphs
+	 * 
+	 * @param nNodeList list of nodes to be queried
+	 * @return true if list is completely contaiend in the older list, false otherwise
+	 */
 	public boolean isNodeListPresentInOld(List<Vertex> nNodeList) {
 		boolean isReplicated = false;
 		for (int i = 0; i < nNodeList.size(); i++){
@@ -126,6 +164,11 @@ public class GraphComparison {
 		return isReplicated;
 	}
 
+	/**
+	 * Returns the list of NodeChanges between the two graphs
+	 *  
+	 * @return list of NodeChanges for the two graph versions
+	 */
 	public List<NodeChange> nodeChanges() {
 		
 		if (newGraph.getNodes().size() >= oldGraph.getNodes().size()){

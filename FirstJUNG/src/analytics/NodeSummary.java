@@ -16,6 +16,14 @@ public class NodeSummary {
 	private String className;
 	private List<Double> versionDeltaSLOCList = new ArrayList<>();
 
+	/**
+	 * Constructor for a NodeSummary
+	 * 
+	 * @param gmLid name of NodeSummary
+	 * @param nodeType either a package or a class
+	 * @param firstAppear the version of first appearance
+	 * @param totalVersions the total number of versions in the project
+	 */
 	public NodeSummary(String gmLid, String nodeType, int firstAppear, int totalVersions) 
 	{
 		this.GMLid = gmLid;
@@ -41,6 +49,10 @@ public class NodeSummary {
 			versionProbList.add(0.0);
 	}
 	
+	/**
+	 * Command the calculate the change probabilities of the node at each version of
+	 * the project.
+	 */
 	public void calculateVersionProbList() 
 	{
 		// set initial prob to 1
@@ -84,67 +96,138 @@ public class NodeSummary {
 		return prob;
 	}
 
+	/**
+	 * Returns the GMLid of the NodeSummary
+	 * 
+	 * @return GMLid of NodeSummary
+	 */
 	public String getGMLid() {
 		return GMLid;
 	}
 	
+	/**
+	 * Returns the type of node that the NodeSummary represents
+	 * 
+	 * @return either a 'CLASSNODE' or a 'PACKAGENODE'
+	 */
 	public String getNodeType()
 	{
 		return this.nodeType;
 	}
 
+	/**
+	 * Returns the version at which the node first appeared
+	 *  
+	 * @return integer version number of first appearance
+	 */
 	public int getFirstAppearance() {
 		// TODO Auto-generated method stub
 		return firstAppearance;
 	}
 
+	/**
+	 * Sets the version at which the node was last seen
+	 * 
+	 * @param i 
+	 */
 	public void setLastAppearance(Integer i) {
 		this.lastAppearance = i;
 	}
 
+	/**
+	 * Returns the version at which the node was last seen
+	 * 
+	 * @return integer number of the version of last appearance
+	 */
 	public Integer getLastAppearance() {	
 		return lastAppearance;
 	}
 
+	/**
+	 * Returns the number of times that the node changed throughout its lifespan.
+	 * 
+	 * @return integer number of times node changed
+	 */
 	public Integer getChangeCount() 
 	{
 		return this.changeVersionsList.size();
 	}
 
+	/**
+	 * Add the index of the version at which the node changed.
+	 * 
+	 * @param i index of version of node change
+	 */
 	public void addVersionToChangeList(int i) 
 	{
 		changeVersionsList.add(i);
 	}
 
+	/**
+	 * Returns the list of versions at which the node changed.
+	 * 
+	 * @return list of integer version numbers at which the node changed
+	 */
 	public List<Integer> getChangeVersionsList() {
 		return this.changeVersionsList;
 	}
 
+	/**
+	 * Returns the list of probabilities for the node at version of its lifespan. 
+	 * 
+	 * @return list of probabilities per version
+	 */
 	public List<Double> getVersionProbabilities() 
 	{
 		return this.versionProbList;
 	}
 
+	/**
+	 * Updates the current NodeSummary's GMLid
+	 * 
+	 * @param nodeSum object with the GMLid to be assigned to the current NodeSummary
+	 */
 	public void updateGMLid(NodeSummary nodeSum) 
 	{
 		this.GMLid = nodeSum.GMLid;
 	}
 
+	/**
+	 * Assigns the name of the package to which the node belongs
+	 * 
+	 * @param pakName name of containing package 
+	 */
 	public void setPackageName(String pakName) 
 	{
 		this.packageName = pakName;
 	}
 
+	/**
+	 * Assigns the name of the class
+	 * 
+	 * @param className name of class
+	 */
 	public void setClassName(String className) 
 	{
 		this.className = className;
 	}
 
+	/**
+	 * Returns the list of changes in lines of code between versions  
+	 * 
+	 * @return list of changes in lines of code
+	 */
 	public List<Double> getDeltaSLOCList() 
 	{
 		return this.versionDeltaSLOCList;
 	}
 
+	/**
+	 * Assigns the change in the lines of code for a particular version change
+	 * 
+	 * @param i index of the gap between two versions
+	 * @param sloc change in lines of code between two versions
+	 */
 	public void setVersionDeltaSLOC(int i, Double sloc) 
 	{
 		// How much the SLOC changed from version i to 1 + 1
