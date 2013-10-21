@@ -37,6 +37,15 @@ public class VersionHandler {
 	private List<EdgeSummary> edgeSummaryList = new ArrayList<>();
 	private List<Packing> packageList = new ArrayList<>();
 
+	/**
+	 * Creates several graphs from .graphml and .xml files in a specified folder. The
+	 * .graphml files contain the node-edge structure while the .xml files hold the
+	 * graph metadata. 
+	 * 
+	 * @param folderName of the folder containing the .xml and .graphml files
+	 * @return true if successful, false otherwise
+	 * @throws Exception
+	 */
 	public Boolean createGraphsFromFolder(String folderName) throws Exception 
 	{	
 		final File folder = new File(folderName);
@@ -61,11 +70,21 @@ public class VersionHandler {
 		}
 	}
 
+	/**
+	 * 
+	 * @return a list of NodeChange lists where each element is a list of NodeChanges between a
+	 * two discrete versions.
+	 */
 	public List< List<NodeChange>> getNodeChangeList() 
 	{	
 		return nodeChangeList;
 	}
 
+	/**
+	 * Command to create the list of NodeChange lists - one list is created for every version difference in 
+	 * list of graphs.
+	 *  
+	 */
 	public void createNodeChangeList() 
 	{
 		for (int i = 0; i < graphList.size() - 1; i++)
@@ -75,6 +94,10 @@ public class VersionHandler {
 		}
 	}
 
+	/**
+	 * Command to create a list of NodeSummaries where each NodeSummary contains a class' behaviour
+	 * throughout it's entire lifespan. 
+	 */
 	public void createAndPopulateNodeSummaryList() 
 	{
 		for (List<NodeChange> changeList: nodeChangeList)
@@ -250,6 +273,12 @@ public class VersionHandler {
 		return false;
 	}
 
+	/**
+	 * Returns a NodeSummary based on GMLid
+	 * 
+	 * @param gmlid of NodeSummary to be retrieved
+	 * @return NodeSummary whose GMLid matches @param
+	 */
 	public NodeSummary getNodeSummary(String gmlid) {
 		
 		for (NodeSummary nodeSummary: nodeSummaryList){
@@ -260,6 +289,10 @@ public class VersionHandler {
 		return null;
 	}
 
+	/**
+	 * Command to create the list of EdgeSummaries where each EdegSummary represents a the
+	 * behaviour between two classes for their entire lifespan of their relationship.
+	 */
 	public void createAndPopulateEdgeSummaryList() 
 	{
 		for(List<NodeChange> comparisonList : nodeChangeList)
@@ -324,11 +357,23 @@ public class VersionHandler {
 		return false;
 	}
 
+	/**
+	 * Returns the list of EdgeSummaries
+	 * 
+	 * @return the list of EdgeSummaries
+	 */
 	public List<EdgeSummary> getEdgeSummaryList() 
 	{
 		return this.edgeSummaryList;
 	}
 
+	/**
+	 * Returns an EdegSummary where it is identified by the GMLids of the source and target nodes.
+	 * 
+	 * @param source GMLid
+	 * @param target GMLid
+	 * @return EdgeSummary whose source and target GMLids match those of the arguments
+	 */
 	public EdgeSummary getEdgeSummary(String source,String target) {
 		for (EdgeSummary edgeSummary: edgeSummaryList){
 			if(edgeSummary.getSourceGMLid().equals(source) && edgeSummary.getTargetGMLid().equals(target))
@@ -337,6 +382,12 @@ public class VersionHandler {
 		return null;
 	}
 	
+	/**
+	 * Converts the graph structure and nested graph hierarchy to JSON files. NodeSummaries and EdgeSummaries are converted to
+	 * their JSON representations. 
+	 * 
+	 * @return true is successful, false otherwise
+	 */
 	public Boolean convertToJson()
 	{
 		Boolean completed = false;
@@ -354,7 +405,7 @@ public class VersionHandler {
 		String edgeSummJson = gson.toJson(edgeSummaryList);
 		try
 		{
-			FileWriter writer = new FileWriter("JSONfiles/JUnit.json");
+			FileWriter writer = new FileWriter("JSONfiles/NodesAndEdges.json");
 			writer.write("{\n\"nodes\": " + nodeSummJson + ",\n\"links\": " + edgeSummJson + "\n}");
 			writer.close();
 			completed = true;
@@ -364,7 +415,7 @@ public class VersionHandler {
 		String packageStructureJson = gson.toJson(packageList);
 		try
 		{
-			FileWriter writer = new FileWriter("JSONfiles/JUnitPackages.json");
+			FileWriter writer = new FileWriter("JSONfiles/Packages.json");
 			writer.write(packageStructureJson);
 			writer.close();
 			completed = true;
@@ -374,11 +425,19 @@ public class VersionHandler {
 		return completed;
 	}
 
+	/**
+	 * Returns the list of NodeSummaries.
+	 * 
+	 * @return the list of NodeSummaries
+	 */
 	public List<NodeSummary> getNodeSummaryList() 
 	{
 		return this.nodeSummaryList;
 	}
 
+	/**
+	 * Command to create the nested class/package structure from each graph. 
+	 */
 	public void createPackageStructure() {
 		
 		List< List<String>> nameHierarchyLists = new ArrayList<>(captureNameStructure()); 

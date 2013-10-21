@@ -10,6 +10,11 @@ public class JSONFormat
 {
 	private static List<String> TLD = new ArrayList<>();
 
+	/**
+	 * Removes all punctuation from the GMLids of graph nodes
+	 * 
+	 * @param graph whose GMLid is to be removed of punctuation
+	 */
 	public static void formatGraph(GraphWrapper graph) 
 	{	
 		List<Vertex> nodes = graph.getNodes();
@@ -21,6 +26,12 @@ public class JSONFormat
 		}
 	}
 
+	/**
+	 * Removes all punctuation as well as top-level domain names from an edge's source and target
+	 * GMLid
+	 * 
+	 * @param edgeSum whose GMLid is to be rid of punctuation and TLD name
+	 */
 	public static void formatEdgeSummary(EdgeSummary edgeSum) 
 	{
 		// Remove all bad characters in source & target GMLids
@@ -45,6 +56,13 @@ public class JSONFormat
 		return ret;
 	}
 
+	/**
+	 * Removes all punctuation as well as top-level domain names from node GMLids. Also
+	 * populates the 'className' and 'packageName' of the NodeSummary.
+	 * 
+	 * @param nodeSum whose GMLid is to be cleaned and whose class and  package names are
+	 * to be populated.
+	 */
 	public static void formatNodeSummary(NodeSummary nodeSum) 
 	{
 		// Split the GMLid
@@ -117,6 +135,11 @@ public class JSONFormat
 		TLD.add("org");
 	}
 
+	/**
+	 * Removes all punctuation of a NodeSummary's GMLid except for periods.
+	 * 
+	 * @param nodeSum whose GMLid is to be rid of punctuation
+	 */
 	public static void removeOnlyGMLIDBadChars(NodeSummary nodeSum) 
 	{
 		String[] temp = nodeSum.getGMLid().split("\\.");

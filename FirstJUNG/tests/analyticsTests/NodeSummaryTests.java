@@ -132,9 +132,10 @@ public class NodeSummaryTests {
 	public void shouldExtractSLOCDeltaForEachVersionThatTheNodeChanged() throws Exception
 	{
 		VersionHandler versionHandler = new VersionHandler();
-		versionHandler.createGraphsFromFolder("TestData/JUnit");
+		versionHandler.createGraphsFromFolder("TestData/");
 		versionHandler.createNodeChangeList();
 		versionHandler.createAndPopulateNodeSummaryList();
+		versionHandler.createAndPopulateEdgeSummaryList();
 		versionHandler.createPackageStructure();
 		versionHandler.convertToJson();
 		
